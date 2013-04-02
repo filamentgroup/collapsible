@@ -22,26 +22,26 @@
     // plugin constructor
     function Plugin(element, options) {
         this.element = $( element );
+        var self = this,
+            dataOptions = {};
 
         // Allow data-attr option setting
         if( this.element.is( "[data-config]" ) ){
-            var dataOptions = {};
-            for( var i in defaults ){
-                var dType = typeof( defaults[ i ] );
-                if( defaults.hasOwnProperty( i ) && ( dType === "string" || dType === "number" || dType === "boolean" ) ){
-                    var dataOption = this.element.attr( "data-" + i.replace( /[A-Z]/g, function( c ) {
-                            return "-" + c.toLowerCase();
-                        }));
-                        if( dataOption !== undefined ){
-                            if( dataOption === "true" || dataOption === "false" ){
-                                dataOptions[ i ] = dataOption === "true";
-                            }
-                            else {
-                                dataOptions[ i ] = dataOption;
-                            }
-                        }
+            $.each( defaults, function( option ) {
+
+                var value = self.element.attr( "data-" + option.replace( /[A-Z]/g, function( c ) {
+                                return "-" + c.toLowerCase();
+                            }));
+
+                if ( value !== undefined ) {
+                    if( value === "true" || value === "false" ){
+                        dataOptions[ option ] = value === "true";
+                    }
+                    else {
+                        dataOptions[ option ] = value;
+                    }
                 }
-            }
+            });
         }
 
         this.options = $.extend( {}, defaults, dataOptions, options );
