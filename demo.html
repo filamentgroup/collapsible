@@ -8,9 +8,24 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="collapsible.js"></script>
 	<style>
+		body {
+			font-family: sans-serif;
+		}
+		h1 {
+			font-size: 1em;
+			margin: 3em 0 0;
+		}
 		.collapsible-header {
 			cursor: pointer;
 			color: blue;
+		}
+		.collapsible-header::before {
+			content: "[-] ";
+			font-size: .4em;
+			vertical-align: middle;
+		}
+		.collapsible-collapsed .collapsible-header::before {
+			content: "[+] ";
 		}
 		.collapsible-collapsed .collapsible-content {
 			display: none;
@@ -21,6 +36,12 @@
 
 	<h1>Basic Collapsible</h1>
 	<div class="collapsible">
+		<h2>Toggle collapsible content</h2>
+		<p>And this is the collapsible content</p>
+	</div>
+
+	<h1>Basic Collapsible with data-collapsed=false</h1>
+	<div class="collapsible" data-config data-collapsed="false">
 		<h2>Toggle collapsible content</h2>
 		<p>And this is the collapsible content</p>
 	</div>

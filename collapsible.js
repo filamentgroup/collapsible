@@ -27,17 +27,20 @@
         if( this.element.is( "[data-config]" ) ){
             var dataOptions = {};
             for( var i in defaults ){
-                if( defaults.hasOwnProperty( i ) && ( typeof( defaults[ i ] === "string" ) ) || typeof( defaults[ i ] === "number" ) || typeof( defaults[ i ] === "boolean" ) ){
-                    var dataOption = elem.attr( i.replace( /[A-Z]/g, function( c ) {
+                if( defaults.hasOwnProperty( i ) && ( typeof( defaults[ i ] ) === "string" ) || typeof( defaults[ i ] ) === "number" || typeof( defaults[ i ] ) === "boolean" ){
+                    var dataOption = this.element.attr( "data-" + i.replace( /[A-Z]/g, function( c ) {
                             return "-" + c.toLowerCase();
                         }));
 
                     if( typeof( dataOption ) === "string" || typeof( dataOption ) === "number" ){
-                        dataOptions[ i ] = dataOption;
+                        if( dataOption === "true" || dataOption === "false" ){
+                            dataOptions[ i ] = dataOption === "true";
+                        }
+                        else {
+                            dataOptions[ i ] = dataOption;
+                        }
                     }
-                    else if( typeof( dataOption ) === "boolean" ){
-                        dataOptions[ i ] = dataOption === "true";
-                    }
+                    
                 }
             }
         }
