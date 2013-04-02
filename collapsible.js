@@ -15,6 +15,7 @@
         collapsedClass: pluginName + "-collapsed",
         headerClass: pluginName + "-header",
         contentClass: pluginName + "-content",
+        instructions: "Interact to toggle content",
         collapsed: true
     };
 
@@ -60,6 +61,14 @@
 
             this.header.addClass( this.options.headerClass );
 
+            this.header.attr( "title", this.options.instructions );
+
+            this.header.attr( "role", "button" );
+
+            this.header.attr( "aria-expanded", "true" );
+
+            this.header.attr( "tabindex", "0" );
+
             this.content.addClass( this.options.contentClass );
         },
 
@@ -67,13 +76,19 @@
             var self = this;
 
             this.element
-                .bind( "expand", this.expand )
-                .bind( "collapse", this.collapse )
-                .bind( "toggle", this.toggle );
+                .on( "expand", this.expand )
+                .on( "collapse", this.collapse )
+                .on( "toggle", this.toggle );
 
-            this.header.bind( "click", function(){
-                self.element.trigger( "toggle" );
-            });
+            this.header
+                .on( "mouseup", function(){
+                    self.element.trigger( "toggle" );
+                })
+                .on( "keyup", function( e ){
+                    if( e.which === 13 || e.which === 32 ){ 
+                        self.element.trigger( "toggle" );
+                    }
+                });
 
             if( this.options.collapsed ){
                 this.collapse();
@@ -86,12 +101,14 @@
             var self = $.data( this, "plugin_" + pluginName ) || this;
             self.element.removeClass( self.options.collapsedClass );
             self.collapsed = false;
+            self.header.attr( "aria-expanded", "true" );
         },
 
         collapse: function() {
             var self = $.data( this, "plugin_" + pluginName ) || this;
             self.element.addClass( self.options.collapsedClass );
             self.collapsed = true;
+            self.header.attr( "aria-expanded", "false" );
         },
 
         toggle: function(){
