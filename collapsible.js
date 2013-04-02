@@ -27,20 +27,19 @@
         if( this.element.is( "[data-config]" ) ){
             var dataOptions = {};
             for( var i in defaults ){
-                if( defaults.hasOwnProperty( i ) && ( typeof( defaults[ i ] ) === "string" ) || typeof( defaults[ i ] ) === "number" || typeof( defaults[ i ] ) === "boolean" ){
+                var dType = typeof( defaults[ i ] );
+                if( defaults.hasOwnProperty( i ) && ( dType === "string" || dType === "number" || dType === "boolean" ) ){
                     var dataOption = this.element.attr( "data-" + i.replace( /[A-Z]/g, function( c ) {
                             return "-" + c.toLowerCase();
                         }));
-
-                    if( typeof( dataOption ) === "string" || typeof( dataOption ) === "number" ){
-                        if( dataOption === "true" || dataOption === "false" ){
-                            dataOptions[ i ] = dataOption === "true";
+                        if( dataOption !== undefined ){
+                            if( dataOption === "true" || dataOption === "false" ){
+                                dataOptions[ i ] = dataOption === "true";
+                            }
+                            else {
+                                dataOptions[ i ] = dataOption;
+                            }
                         }
-                        else {
-                            dataOptions[ i ] = dataOption;
-                        }
-                    }
-                    
                 }
             }
         }
