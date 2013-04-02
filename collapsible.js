@@ -12,15 +12,15 @@
     // overrideable defaults
     var defaults = {
         pluginClass: pluginName,
-        expandedClass: pluginName + "-expanded",
+        collapsedClass: pluginName + "-collapsed",
         headerClass: pluginName + "-header",
         contentClass: pluginName + "-content",
-        expanded: false
+        collapsed: true
     };
 
     // plugin constructor
     function Plugin(element, options) {
-        this.element = element;
+        this.element = $( element );
 
         // Allow data-attr option setting
         if( this.element.is( "[data-config]" ) ){
@@ -49,10 +49,8 @@
 
     Plugin.prototype = {
         init: function () {
-            
-            this.header = this.element.children( 0 );
+            this.header = this.element.children().eq( 0 );
             this.content = this.header.next();
-
             this._addAttributes();
             this._bindEvents();
         },
@@ -62,10 +60,10 @@
 
             this.header.addClass( this.options.headerClass );
 
-            this.footer.addClass( this.options.contentClass );
+            this.content.addClass( this.options.contentClass );
         },
 
-        bindEvents: function(){
+        _bindEvents: function(){
             var self = this;
 
             this.element
@@ -76,22 +74,29 @@
             this.header.bind( "click", function(){
                 self.element.trigger( "toggle" );
             });
+
+            if( this.options.collapsed ){
+                this.collapse();
+            }
         },
 
-        expanded: true,
+        collapsed: false,
 
         expand: function () {
-            this.element.addClass( this.options.expandedClass );
-            this.expanded = true;
+            var self = $.data( this, "plugin_" + pluginName ) || this;
+            self.element.removeClass( self.options.collapsedClass );
+            self.collapsed = false;
         },
 
         collapse: function() {
-            this.element.removeClass( this.options.expandedClass );
-            this.expanded = false;
+            var self = $.data( this, "plugin_" + pluginName ) || this;
+            self.element.addClass( self.options.collapsedClass );
+            self.collapsed = true;
         },
 
         toggle: function(){
-            this.element.trigger( this.expanded ? "collapse" : "expand" );
+            var self = $.data( this, "plugin_" + pluginName );
+            self.element.trigger( self.collapsed ? "expand" : "collapse" );
         }
     };
 
