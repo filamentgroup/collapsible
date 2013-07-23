@@ -1,4 +1,4 @@
-Co# Collapsible behavior
+# Collapsible behavior
 
    An implementation of collapsible behavior extending a generic behavior.
 
