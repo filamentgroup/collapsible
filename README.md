@@ -5,9 +5,13 @@
    Features :
 
    * Easing
+   
    * Compatible with older browsers
+
    * Supporting responsive design for modern browsers
+
    * Using 'aria-expanded' and 'role' attributes
+
    * Using an OOCSS design pattern and styles from [Cascade Framework](http://jslegers.github.io/cascadeframework/)
    * Using CSS classes as hooks
 
