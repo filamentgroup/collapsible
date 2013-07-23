@@ -1,57 +1,167 @@
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<title>App</title> 
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="collapsible.js"></script>
-	<style>
-		body {
-			font-family: sans-serif;
-		}
-		h1 {
-			font-size: 1em;
-			margin: 3em 0 0;
-		}
-		.collapsible-header {
-			cursor: pointer;
-			color: blue;
-		}
-		.collapsible-header::before {
-			content: "[-] ";
-			font-size: .4em;
-			vertical-align: middle;
-		}
-		.collapsible-collapsed .collapsible-header::before {
-			content: "[+] ";
-		}
-		.collapsible-collapsed .collapsible-content {
-			display: none;
-		}
-	</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>App</title>
+    <link rel="stylesheet" type="text/css" media="all"  href="styles.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="jquery.easing.js"></script>
+    <script type="text/javascript" src="jquery.cascade.collapsible.js"></script>
 </head>
-<body> 
+<body>
+<div class="site-center">
+    <div class="site-body">
+        <div class="site-header">
+            <div class="cell">
+                <div class="col">
+                    <div class="cell">
+                        <h1>Collapsible behavior</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell">
+            <div class="col">
+                <div class="cell">
+                    <h1>Basic use</h1>
+                </div>
+            </div>
+            <div class="col">
+                <div class="cell">
+                    <div class="collapsible">
+                        <h2 class="collapse-trigger">
+                            <span class="collapsed-only">Show</span>
+                            <span class="uncollapsed-only">Hide</span> collapsible content</h2>
+                        <p class="collapse-section">And this is the collapsible content</p>
+                    </div>
+                </div>
+            </div>
 
-	<h1>Basic Collapsible</h1>
-	<div class="collapsible">
-		<h2>Toggle collapsible content</h2>
-		<p>And this is the collapsible content</p>
-	</div>
-
-	<h1>Basic Collapsible with data-collapsed override</h1>
-	<div class="collapsible" data-config data-collapsed="false">
-		<h2>Toggle collapsible content</h2>
-		<p>And this is the collapsible content</p>
-	</div>
-
-	<h1>Basic Collapsible with data-instructions override</h1>
-	<div class="collapsible" data-config data-instructions="click to toggle">
-		<h2>Toggle collapsible content</h2>
-		<p>And this is the collapsible content</p>
-	</div>
-
-
+            <div class="col">
+                <div class="cell">
+                    <h1>Advanced use</h1>
+                </div>
+            </div>
+            <div class="col">
+                <div class="cell collapsible panel">
+                    <div class="header collapse-trigger">
+                        <span class="icon-collapse"></span>
+                        <a href="#">
+                            <span class="collapsed-only">Show</span>
+                            <span class="uncollapsed-only">Hide</span> panel
+                        </a>
+                    </div>
+                    <div class="body collapse-section">
+                        <div class="cell">
+                            <div class="col">
+                                <div class="cell collapsible panel">
+                                    <div class="header collapse-trigger">
+                                        <span class="icon-collapse"></span>
+                                        <a href="#">
+                                            <span class="collapsed-only">Show</span>
+                                            <span class="uncollapsed-only">Hide</span> panel
+                                        </a>
+                                    </div>
+                                    <div class="body collapse-section">
+                                        <div class="cell">
+                                            <div class="col">
+                                                <div class="col width-1of2">
+                                                    <div class="cell collapsible panel collapsed">
+                                                        <div class="header collapse-trigger">
+                                                            <span class="icon-collapse"></span>
+                                                            <a href="#">
+                                                                <span class="collapsed-only">Show</span>
+                                                                <span class="uncollapsed-only">Hide</span> panel
+                                                            </a>
+                                                        </div>
+                                                        <div class="body collapse-section">
+                                                            <div class="cell">
+                                                                This is a panel body.
+                                                            </div>
+                                                        </div>
+                                                        <div class="footer collapse-section">
+                                                            Header
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col width-fill">
+                                                    <div class="cell collapsible panel collapsed">
+                                                        <div class="header collapse-trigger">
+                                                            <span class="icon-collapse"></span>
+                                                            <a href="#">
+                                                                <span class="collapsed-only">Show</span>
+                                                                <span class="uncollapsed-only">Hide</span> panel
+                                                            </a>
+                                                        </div>
+                                                        <div class="body collapse-section">
+                                                            <div class="cell">
+                                                                This is a panel body.
+                                                            </div>
+                                                        </div>
+                                                        <div class="footer collapse-section">
+                                                            Header
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="col width-1of2">
+                                                    <div class="cell collapsible panel collapsed">
+                                                        <div class="header collapse-trigger">
+                                                            <span class="icon-collapse"></span>
+                                                            <a href="#">
+                                                                <span class="collapsed-only">Show</span>
+                                                                <span class="uncollapsed-only">Hide</span> panel
+                                                            </a>
+                                                        </div>
+                                                        <div class="body collapse-section">
+                                                            <div class="cell">
+                                                                This is a panel body.
+                                                            </div>
+                                                        </div>
+                                                        <div class="footer collapse-section">
+                                                            Header
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col width-fill">
+                                                    <div class="cell collapsible panel collapsed">
+                                                        <div class="header collapse-trigger">
+                                                            <span class="icon-collapse"></span>
+                                                            <a href="#">
+                                                                <span class="collapsed-only">Show</span>
+                                                                <span class="uncollapsed-only">Hide</span> panel
+                                                            </a>
+                                                        </div>
+                                                        <div class="body collapse-section">
+                                                            <div class="cell">
+                                                                This is a panel body.
+                                                            </div>
+                                                        </div>
+                                                        <div class="footer collapse-section">
+                                                            Header
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer collapse-section">
+                                        Header
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer collapse-section">
+                        Header
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
