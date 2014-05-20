@@ -7,14 +7,8 @@
 	<title>App</title>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="collapsible.js"></script>
+	<link rel="stylesheet" href="docs.css" />
 	<style>
-		body {
-			font-family: sans-serif;
-		}
-		h1 {
-			font-size: 1em;
-			margin: 3em 0 0;
-		}
 		.collapsible-header {
 			cursor: pointer;
 			color: blue;
@@ -32,24 +26,28 @@
 		}
 	</style>
 </head>
-<body>
-
-	<h1>Basic Collapsible</h1>
-	<div class="collapsible">
-		<h2>Toggle collapsible content</h2>
-		<p>And this is the collapsible content</p>
+<body class="docs">
+	<div class="header">
+		<a href="http://filamentgroup.com/"><h1 id="fg-logo">Filament Group</h1></a>
 	</div>
+	<div class="docs-main">
+		<h3 class="docs">Basic Collapsible</h3>
+		<div class="collapsible">
+			<h4 class="docs">Toggle collapsible content</h4>
+			<p class="docs">And this is the collapsible content</p>
+		</div>
 
-	<h1>Basic Collapsible with data-collapsed override</h1>
-	<div class="collapsible" data-config data-collapsed="false">
-		<h2>Toggle collapsible content</h2>
-		<p>And this is the collapsible content</p>
-	</div>
+		<h3 class="docs">Basic Collapsible with data-collapsed override</h3>
+		<div class="collapsible" data-config data-collapsed="false">
+			<h4 class="docs">Toggle collapsible content</h4>
+			<p class="docs">And this is the collapsible content</p>
+		</div>
 
-	<h1>Basic Collapsible with data-instructions override</h1>
-	<div class="collapsible" data-config data-instructions="click to toggle">
-		<h2>Toggle collapsible content</h2>
-		<p>And this is the collapsible content</p>
+		<h3 class="docs">Basic Collapsible with data-instructions override</h3>
+		<div class="collapsible" data-config data-instructions="click to toggle">
+			<h4 class="docs">Toggle collapsible content</h4>
+			<p class="docs">And this is the collapsible content</p>
+		</div>
 	</div>
 
 
