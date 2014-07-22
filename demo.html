@@ -5,9 +5,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Filament Group Collapsible Header</title>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="collapsible.js"></script>
 	<link rel="stylesheet" href="docs.css" />
+	<link rel="stylesheet" href="/demo-head/demohead.css" />
 	<style>
 		.collapsible-header {
 			cursor: pointer;
@@ -25,11 +24,25 @@
 			display: none;
 		}
 	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="collapsible.js"></script>
+	<script src="/demo-head/loadfont.js"></script>
 </head>
 <body class="docs">
-	<div class="header">
-		<a href="http://filamentgroup.com/"><h1 id="fg-logo">Filament Group</h1></a>
-	</div>
+    <div class="demo-header">
+      <div class="company">
+        <img src="http://filamentgroup.com/images/fg-logo-positive-sm-crop.png">
+      </div>
+      <div class="details">
+        <p class="description-container">Demo of <span class="repo-name">Collapsible</span>
+          <span class="description">Toggle your collapsible content</span>
+        </p>
+        <ul class="outbound-links">
+          <li><a href="https://github.com/filamentgroup/collapsible">Code</a></li>
+          <li><a href="https://github.com/filamentgroup/collapsible/issues">Issues</a></li>
+        </ul>
+      </div>
+    </div>
 	<div class="docs-main">
 		<h3 class="docs">Basic Collapsible</h3>
 <pre><code>
