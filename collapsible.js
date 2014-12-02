@@ -6,7 +6,7 @@
  */
 
 ;(function ($, window, document, undefined) {
-    
+
     // Defaults
     var pluginName = "collapsible";
     // overrideable defaults
@@ -15,7 +15,7 @@
         collapsedClass: pluginName + "-collapsed",
         headerClass: pluginName + "-header",
         contentClass: pluginName + "-content",
-        instructions: "Interact to toggle content",
+        instructions: false,
         collapsed: true
     };
 
@@ -63,7 +63,9 @@
 
             this.header.addClass( this.options.headerClass );
 
-            this.header.attr( "title", this.options.instructions );
+            if( this.options.instructions ){
+                this.header.attr( "title", this.options.instructions );
+            }
 
             this.header.attr( "role", "button" );
 
@@ -87,7 +89,7 @@
                     self.element.trigger( "toggle" );
                 })
                 .on( "keyup", function( e ){
-                    if( e.which === 13 || e.which === 32 ){ 
+                    if( e.which === 13 || e.which === 32 ){
                         self.element.trigger( "toggle" );
                     }
                 });
@@ -128,7 +130,7 @@
             }
         });
     };
-    
+
     // Simple auto-init by selector that runs when the dom is ready. Use if desirable.
     $(function(){
         $( "." + pluginName )[ pluginName ]();
