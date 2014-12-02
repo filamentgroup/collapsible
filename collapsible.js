@@ -27,7 +27,7 @@
 
         // Allow data-attr option setting
         if( this.element.is( "[data-config]" ) ){
-            $.each( defaults, function( option ) {
+            for( var option in defaults ){
 
                 var value = self.element.attr( "data-" + option.replace( /[A-Z]/g, function( c ) {
                                 return "-" + c.toLowerCase();
@@ -41,7 +41,7 @@
                         dataOptions[ option ] = value;
                     }
                 }
-            });
+            }
         }
 
         this.options = $.extend( {}, defaults, dataOptions, options );
