@@ -28,17 +28,18 @@
         // Allow data-attr option setting
         if( this.element.is( "[data-config]" ) ){
             for( var option in defaults ){
+                    if( defaults.hasOwnProperty( option) ){
+                    var value = self.element.attr( "data-" + option.replace( /[A-Z]/g, function( c ) {
+                                    return "-" + c.toLowerCase();
+                                }));
 
-                var value = self.element.attr( "data-" + option.replace( /[A-Z]/g, function( c ) {
-                                return "-" + c.toLowerCase();
-                            }));
-
-                if ( value !== undefined ) {
-                    if( value === "true" || value === "false" ){
-                        dataOptions[ option ] = value === "true";
-                    }
-                    else {
-                        dataOptions[ option ] = value;
+                    if ( value !== undefined ) {
+                        if( value === "true" || value === "false" ){
+                            dataOptions[ option ] = value === "true";
+                        }
+                        else {
+                            dataOptions[ option ] = value;
+                        }
                     }
                 }
             }
