@@ -1,7 +1,7 @@
 /*
- * Toggle widget
- * https://github.com/filamentgroup/toggle
- * Copyright (c) 2013 Filament Group, Inc.
+ * Collapsible widget
+ * https://github.com/filamentgroup/collapsible
+ * Copyright (c) 2014 Filament Group, Inc.
  * Licensed under the MIT, GPL licenses.
  */
 
