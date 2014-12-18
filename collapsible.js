@@ -15,6 +15,7 @@
         collapsedClass: pluginName + "-collapsed",
         headerClass: pluginName + "-header",
         contentClass: pluginName + "-content",
+        enhancedClass: pluginName + "-enhanced",
         instructions: false,
         collapsed: true
     };
@@ -86,7 +87,8 @@
                 .on( "toggle", this.toggle );
 
             this.header
-                .on( "mouseup", function(){
+                // use the tappy plugin if it's available
+                .on( window.tappy ? "tap" : "click", function(){
                     self.element.trigger( "toggle" );
                 })
                 .on( "keyup", function( e ){
