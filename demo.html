@@ -5,66 +5,166 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Filament Group Collapsible Header</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="src/collapsible.js"></script>
+	<script type="text/javascript" src="src/collapsible.set.js"></script>
+	<script type="text/javascript" src="src/collapsible.menu.js"></script>
+	<script>
+		document.documentElement.className += " enhanced";
+		$(function(){
+			$( document ).trigger( "enhance" );
+		})
+	</script>
 	<link rel="stylesheet" href="docs.css" />
-	<link rel="stylesheet" href="/demo-head/demohead.css" />
 	<style>
+		body {
+			margin-bottom: 500px;
+		}
+		.enhanced .collapsible-collapsed .collapsible-content,
+		.collapsible-enhanced.collapsible-collapsed .collapsible-content {
+			display: none;
+		}
 		.collapsible-header {
 			cursor: pointer;
 			color: blue;
 		}
 		.collapsible-header::before {
 			content: "[-] ";
-			font-size: .9em;
+			font-size: .4em;
 			vertical-align: middle;
 		}
 		.collapsible-collapsed .collapsible-header::before {
 			content: "[+] ";
 		}
-		.collapsible-collapsed .collapsible-content {
-			display: none;
+
+
+		.menu-example .collapsible-header,
+		.menu-example .collapsible-content,
+		.menu-example li {
+			border: 1px solid #000;
+			max-width: 400px;
+			width: 100%;
+			background: #fff;
+		}
+		.menu-example ul,
+		.menu-example li,
+		.menu-example .collapsible-header {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		.menu-example .collapsible-header,
+		.menu-example li {
+			padding: .5em;
+			display: block;
+		}
+		@media (min-width: 40em){
+			.menu-example .collapsible-content {
+				position: absolute;
+			}
 		}
 	</style>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="collapsible.js"></script>
-	<script src="/demo-head/loadfont.js"></script>
 </head>
 <body class="docs">
-	<div class="demo-header">
-		<div class="company">
-			<img src="http://filamentgroup.com/images/fg-logo-positive-sm-crop.png">
-		</div>
-		<div class="details">
-			<p class="description-container">Demo of <span class="repo-name">Collapsible</span>
-				<span class="description">Toggle your collapsible content</span>
-			</p>
-			<ul class="outbound-links">
-				<li><a href="https://github.com/filamentgroup/collapsible">Code</a></li>
-				<li><a href="https://github.com/filamentgroup/collapsible/issues">Issues</a></li>
-			</ul>
-		</div>
+	<div class="header">
+		<a href="http://filamentgroup.com/"><h1 id="fg-logo">Filament Group</h1></a>
 	</div>
-	<div class="nav-container">
-		<div class="docs-globalnav">
-			<nav class="docs-nav">
-				<a href="demo.html" class="current">Basic Collapsible</a>
-				<a href="demo-open.html">Collapsible Open by Default</a>
-				<a href="demo-instructions.html">Collapsible with Instructions</a>
-			</nav>
-		</div>
-	</div>
+		<p class="docs"><a href="https://github.com/filamentgroup/collapsible">Code</a></p>
+
 	<div class="docs-main">
 		<h3 class="docs">Basic Collapsible</h3>
 <pre><code>
 &lt;div class="collapsible"&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&gt;Toggle collapsible content&lt;/h4&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="docs"&gt;And this is the collapsible content&lt;/p&gt;
+  &lt;h4 class="docs"&gt;Toggle collapsible content&lt;/h4&gt;
+  &lt;p class="docs"&gt;And this is the collapsible content&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
 		<div class="collapsible">
-			<h4>Toggle collapsible content</h4>
-			<p class="docs">And this is the collapsible content</p>
+			<h4 class="docs collapsible-header">Toggle collapsible content</h4>
+			<p class="docs collapsible-content">And this is the collapsible content</p>
+		</div>
+		<h3 class="docs">Basic Collapsible with collapsed initial state</h3>
+<pre><code>
+&lt;div class="collapsible"&gt;
+  &lt;h4 class="docs"&gt;Toggle collapsible content&lt;/h4&gt;
+  &lt;p class="docs"&gt;And this is the collapsible content&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+		<div class="collapsible collapsible-collapsed">
+			<h4 class="docs collapsible-header">Toggle collapsible content</h4>
+			<p class="docs collapsible-content">And this is the collapsible content</p>
+		</div>
+
+		<p class="docs"><strong>note:</strong> To safely collapse the collapsible when the page first renders, we'd recommend keying off an <code>.enhanced</code> class on the HTML element. Like this:</p>
+		<pre><code>
+<strong>.enhanced .collapsible-collapsed .collapsible-content</strong>,
+.collapsible-enhanced .collapsible-collapsed .collapsible-content {
+	display: none;
+}
+		</code></pre>
+
+		<h3 class="docs">Basic Collapsible with data-instructions override</h3>
+<pre><code>
+&lt;div class="collapsible" data-config data-instructions="click to toggle"&gt;
+  &lt;h4 class="docs"&gt;Toggle collapsible content&lt;/h4&gt;
+  &lt;p class="docs"&gt;And this is the collapsible content&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+		<div class="collapsible" data-config data-instructions="click to toggle">
+			<h4 class="docs collapsible-header">Toggle collapsible content</h4>
+			<p class="docs collapsible-content">And this is the collapsible content</p>
+		</div>
+
+
+	<h2 class="docs">Extensions!</h2>
+
+	<h3 class="docs">Set of collapsibles that work as an accordion (data-set attributes with a shared value to your set)</h3>
+
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
+		<h4 class="docs collapsible-header">Collapsible A</h4>
+		<p class="docs collapsible-content">And this is the collapsible content</p>
+	</div>
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
+		<h4 class="docs collapsible-header">Collapsible B</h4>
+		<p class="docs collapsible-content">And this is the collapsible content</p>
+	</div>
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
+		<h4 class="docs collapsible-header">Collapsible C</h4>
+		<p class="docs collapsible-content">And this is the collapsible content</p>
+	</div>
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="food">
+		<h4 class="docs collapsible-header">Collapsible D</h4>
+		<p class="docs collapsible-content">And this is the collapsible content</p>
+	</div>
+
+
+	<h3 class="docs">Menu collapsibles</h3>
+	<p>(Once included, any time a collapsible-content is absolute positioned, menu behavior will apply (hover and tap-out)</p>
+	<div class="collapsible collapsible-collapsed menu-example">
+		<h4 class="docs collapsible-header">Collapsible Menu</h4>
+		<div class="docs collapsible-content">
+			<ul>
+				<li>Item</li>
+				<li>Item</li>
+				<li>Item</li>
+				<li>Item</li>
+				<li>Item</li>
+			</ul>
 		</div>
 	</div>
+
+	<p class="docs">Just some content after the menu for testing purposes</p>
+	<p class="docs">Just some content after the menu for testing purposes</p>
+	<p class="docs">Just some content after the menu for testing purposes</p>
+	<p class="docs">Just some content after the menu for testing purposes</p>
+	<p class="docs">Just some content after the menu for testing purposes</p>
+	<p class="docs">Just some content after the menu for testing purposes</p>
+	<p class="docs">Just some content after the menu for testing purposes</p>
+	<p class="docs">Just some content after the menu for testing purposes</p>
+	<p class="docs">Just some content after the menu for testing purposes</p>
+	<p class="docs">Just some content after the menu for testing purposes</p>
+
+</div>
 
 </body>
 </html>

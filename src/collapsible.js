@@ -1,12 +1,12 @@
 /*
- * Toggle widget
- * https://github.com/filamentgroup/toggle
- * Copyright (c) 2013 Filament Group, Inc.
+ * Collapsible widget
+ * https://github.com/filamentgroup/collapsible
+ * Copyright (c) 2014 Filament Group, Inc.
  * Licensed under the MIT, GPL licenses.
  */
 
 ;(function ($, window, document, undefined) {
-    
+
     // Defaults
     var pluginName = "collapsible";
     // overrideable defaults
@@ -15,8 +15,9 @@
         collapsedClass: pluginName + "-collapsed",
         headerClass: pluginName + "-header",
         contentClass: pluginName + "-content",
-        instructions: "Interact to toggle content",
-        collapsed: true
+        enhancedClass: pluginName + "-enhanced",
+        instructions: false,
+        collapsed: false
     };
 
     // plugin constructor
@@ -27,24 +28,33 @@
 
         // Allow data-attr option setting
         if( this.element.is( "[data-config]" ) ){
-            $.each( defaults, function( option ) {
+            for( var option in defaults ){
+                    if( defaults.hasOwnProperty( option) ){
+                    var value = self.element.attr( "data-" + option.replace( /[A-Z]/g, function( c ) {
+                                    return "-" + c.toLowerCase();
+                                }));
 
-                var value = self.element.attr( "data-" + option.replace( /[A-Z]/g, function( c ) {
-                                return "-" + c.toLowerCase();
-                            }));
-
-                if ( value !== undefined ) {
-                    if( value === "true" || value === "false" ){
-                        dataOptions[ option ] = value === "true";
-                    }
-                    else {
-                        dataOptions[ option ] = value;
+                    if ( value !== undefined ) {
+                        if( value === "true" || value === "false" ){
+                            dataOptions[ option ] = value === "true";
+                        }
+                        else {
+                            dataOptions[ option ] = value;
+                        }
                     }
                 }
-            });
+            }
         }
 
+
+
         this.options = $.extend( {}, defaults, dataOptions, options );
+
+        // allow the collapsedClass to set the option if specified
+        if( this.element.is( "." + this.options.collapsedClass ) ){
+            this.options.collapsed= true;
+        }
+
         this._defaults = defaults;
         this._name = pluginName;
         this.init();
@@ -56,14 +66,19 @@
             this.content = this.header.next();
             this._addAttributes();
             this._bindEvents();
+            this.element.trigger( "init" );
         },
 
         _addAttributes: function(){
-            this.element.addClass( this.options.pluginClass );
+            this.element
+                .addClass( this.options.pluginClass )
+                .addClass( this.options.enhancedClass );
 
             this.header.addClass( this.options.headerClass );
 
-            this.header.attr( "title", this.options.instructions );
+            if( this.options.instructions ){
+                this.header.attr( "title", this.options.instructions );
+            }
 
             this.header.attr( "role", "button" );
 
@@ -77,18 +92,14 @@
         _bindEvents: function(){
             var self = this;
 
-            this.element
-                .on( "expand", this.expand )
-                .on( "collapse", this.collapse )
-                .on( "toggle", this.toggle );
-
             this.header
-                .on( "mouseup", function(){
-                    self.element.trigger( "toggle" );
+                // use the tappy plugin if it's available
+                .on( window.tappy ? "tap" : "click", function(){
+                    self.toggle();
                 })
                 .on( "keyup", function( e ){
-                    if( e.which === 13 || e.which === 32 ){ 
-                        self.element.trigger( "toggle" );
+                    if( e.which === 13 || e.which === 32 ){
+                        self.toggle();
                     }
                 });
 
@@ -100,22 +111,27 @@
         collapsed: false,
 
         expand: function () {
-            var self = $.data( this, "plugin_" + pluginName ) || this;
+            var self = $( this ).data( "plugin_" + pluginName ) || this;
             self.element.removeClass( self.options.collapsedClass );
             self.collapsed = false;
             self.header.attr( "aria-expanded", "true" );
+            self.element.trigger( "expand" );
         },
 
         collapse: function() {
-            var self = $.data( this, "plugin_" + pluginName ) || this;
+            var self = $( this ).data( "plugin_" + pluginName ) || this;
             self.element.addClass( self.options.collapsedClass );
             self.collapsed = true;
             self.header.attr( "aria-expanded", "false" );
+            self.element.trigger( "collapse" );
         },
 
         toggle: function(){
-            var self = $.data( this, "plugin_" + pluginName );
-            self.element.trigger( self.collapsed ? "expand" : "collapse" );
+            if(  this.collapsed ){
+                this.expand();
+            } else {
+                this.collapse();
+            }
         }
     };
 
@@ -123,15 +139,16 @@
     // preventing against multiple instantiations
     $.fn[ pluginName ] = function (options) {
         return this.each(function () {
-            if ( !$.data( this, "plugin_" + pluginName ) ) {
-                $.data( this, "plugin_" + pluginName, new Plugin( this, options ));
+            if ( !$( this ).data( "plugin_" + pluginName ) ) {
+                $( this ).data( "plugin_" + pluginName, new Plugin( this, options ));
             }
         });
     };
-    
-    // Simple auto-init by selector that runs when the dom is ready. Use if desirable.
-    $(function(){
-        $( "." + pluginName )[ pluginName ]();
+
+    // Simple auto-init by selector that runs when the dom is ready. Trigger "enhance" if desirable.
+    $( document ).bind( "enhance", function( e ){
+        var selector = "." + pluginName;
+        $( $( e.target ).is( selector ) && e.target ).add( selector, e.target ).filter( selector )[ pluginName ]();
     });
 
 })(jQuery, window, document);
