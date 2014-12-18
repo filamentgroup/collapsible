@@ -91,19 +91,14 @@
         _bindEvents: function(){
             var self = this;
 
-            this.element
-                .on( "expand", this.expand )
-                .on( "collapse", this.collapse )
-                .on( "toggle", this.toggle );
-
             this.header
                 // use the tappy plugin if it's available
                 .on( window.tappy ? "tap" : "click", function(){
-                    self.element.trigger( "toggle" );
+                    self.toggle();
                 })
                 .on( "keyup", function( e ){
                     if( e.which === 13 || e.which === 32 ){
-                        self.element.trigger( "toggle" );
+                        self.toggle();
                     }
                 });
 
@@ -119,6 +114,7 @@
             self.element.removeClass( self.options.collapsedClass );
             self.collapsed = false;
             self.header.attr( "aria-expanded", "true" );
+            self.element.trigger( "expand" );
         },
 
         collapse: function() {
@@ -126,11 +122,15 @@
             self.element.addClass( self.options.collapsedClass );
             self.collapsed = true;
             self.header.attr( "aria-expanded", "false" );
+            self.element.trigger( "collapse" );
         },
 
         toggle: function(){
-            var self = $( this ).data( "plugin_" + pluginName );
-            self.element.trigger( self.collapsed ? "expand" : "collapse" );
+            if(  this.collapsed ){
+                this.expand();
+            } else {
+                this.collapse();
+            }
         }
     };
 
