@@ -7,6 +7,7 @@
 	<title>Filament Group Collapsible Header</title>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="src/collapsible.js"></script>
+	<script type="text/javascript" src="src/collapsible.set.js"></script>
 	<script>
 		document.documentElement.className += " enhanced";
 		$(function(){
@@ -80,6 +81,27 @@
 			<h4 class="docs">Toggle collapsible content</h4>
 			<p class="docs">And this is the collapsible content</p>
 		</div>
+	</div>
+
+	<h2 class="docs">Extensions!</h2>
+
+	<h3 class="docs">Set of collapsibles that work as an accordion (data-set attributes with a shared value to your set)</h3>
+
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
+		<h4 class="docs">Collapsible A</h4>
+		<p class="docs">And this is the collapsible content</p>
+	</div>
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
+		<h4 class="docs">Collapsible B</h4>
+		<p class="docs">And this is the collapsible content</p>
+	</div>
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
+		<h4 class="docs">Collapsible C</h4>
+		<p class="docs">And this is the collapsible content</p>
+	</div>
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="food">
+		<h4 class="docs">Collapsible D</h4>
+		<p class="docs">And this is the collapsible content</p>
 	</div>
 
 	<p class="docs"><a href="https://github.com/filamentgroup/collapsible">Code</a></p>
