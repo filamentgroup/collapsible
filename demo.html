@@ -5,24 +5,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Filament Group Collapsible Header</title>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="src/collapsible.js"></script>
-	<script type="text/javascript" src="src/collapsible.set.js"></script>
-	<script type="text/javascript" src="src/collapsible.menu.js"></script>
-	<script>
-		document.documentElement.className += " enhanced";
-		$(function(){
-			$( document ).trigger( "enhance" );
-		})
-	</script>
 	<link rel="stylesheet" href="docs.css" />
+	<link rel="stylesheet" href="src/collapsible.css" />
 	<style>
 		body {
 			margin-bottom: 500px;
-		}
-		.enhanced .collapsible-collapsed .collapsible-content,
-		.collapsible-enhanced.collapsible-collapsed .collapsible-content {
-			display: none;
 		}
 		.collapsible-header {
 			cursor: pointer;
@@ -64,6 +51,17 @@
 			}
 		}
 	</style>
+
+	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="src/collapsible.js"></script>
+	<script type="text/javascript" src="src/collapsible.set.js"></script>
+	<script type="text/javascript" src="src/collapsible.menu.js"></script>
+	<script>
+		document.documentElement.className += " enhanced";
+		$(function(){
+			$( document ).trigger( "enhance" );
+		})
+	</script>
 </head>
 <body class="docs">
 	<div class="header">
