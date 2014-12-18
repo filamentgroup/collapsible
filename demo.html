@@ -8,12 +8,17 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="collapsible.js"></script>
 	<script>
+		document.documentElement.className += " enhanced";
 		$(function(){
 			$( document ).trigger( "enhance" );
 		})
 	</script>
 	<link rel="stylesheet" href="docs.css" />
 	<style>
+		.enhanced .collapsible-collapsed .collapsible-content,
+		.collapsible-enhanced.collapsible-collapsed .collapsible-content {
+			display: none;
+		}
 		.collapsible-header {
 			cursor: pointer;
 			color: blue;
@@ -25,9 +30,6 @@
 		}
 		.collapsible-collapsed .collapsible-header::before {
 			content: "[+] ";
-		}
-		.collapsible-collapsed .collapsible-content {
-			display: none;
 		}
 	</style>
 </head>
@@ -44,20 +46,29 @@
 &lt;/div&gt;
 </code></pre>
 		<div class="collapsible">
-			<h4 class="docs">Toggle collapsible content</h4>
-			<p class="docs">And this is the collapsible content</p>
+			<h4 class="docs collapsible-header">Toggle collapsible content</h4>
+			<p class="docs collapsible-content">And this is the collapsible content</p>
 		</div>
-		<h3 class="docs">Basic Collapsible with data-collapsed override</h3>
+		<h3 class="docs">Basic Collapsible with collapsed initial state</h3>
 <pre><code>
-&lt;div class="collapsible" data-config data-collapsed="false"&gt;
+&lt;div class="collapsible"&gt;
   &lt;h4 class="docs"&gt;Toggle collapsible content&lt;/h4&gt;
   &lt;p class="docs"&gt;And this is the collapsible content&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
-		<div class="collapsible" data-config data-collapsed="false">
+		<div class="collapsible collapsible-collapsed">
 			<h4 class="docs">Toggle collapsible content</h4>
 			<p class="docs">And this is the collapsible content</p>
 		</div>
+
+		<p class="docs"><strong>note:</strong> To safely collapse the collapsible when the page first renders, we'd recommend keying off an <code>.enhanced</code> class on the HTML element. Like this:</p>
+		<pre><code>
+<strong>.enhanced .collapsible-collapsed .collapsible-content</strong>,
+.collapsible-enhanced .collapsible-collapsed .collapsible-content {
+	display: none;
+}
+		</code></pre>
+
 		<h3 class="docs">Basic Collapsible with data-instructions override</h3>
 <pre><code>
 &lt;div class="collapsible" data-config data-instructions="click to toggle"&gt;

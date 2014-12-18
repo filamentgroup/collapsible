@@ -17,7 +17,7 @@
         contentClass: pluginName + "-content",
         enhancedClass: pluginName + "-enhanced",
         instructions: false,
-        collapsed: true
+        collapsed: false
     };
 
     // plugin constructor
@@ -46,7 +46,15 @@
             }
         }
 
+
+
         this.options = $.extend( {}, defaults, dataOptions, options );
+
+        // allow the collapsedClass to set the option if specified
+        if( this.element.is( "." + this.options.collapsedClass ) ){
+            this.options.collapsed= true;
+        }
+
         this._defaults = defaults;
         this._name = pluginName;
         this.init();
@@ -61,7 +69,9 @@
         },
 
         _addAttributes: function(){
-            this.element.addClass( this.options.pluginClass );
+            this.element
+                .addClass( this.options.pluginClass )
+                .addClass( this.options.enhancedClass );
 
             this.header.addClass( this.options.headerClass );
 
