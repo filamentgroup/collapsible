@@ -66,7 +66,7 @@
             this.content = this.header.next();
             this._addAttributes();
             this._bindEvents();
-            this.trigger( "init" );
+            this.element.trigger( "init" );
         },
 
         _addAttributes: function(){
