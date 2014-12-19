@@ -94,11 +94,11 @@
 
 			this.header
 				// use the tappy plugin if it's available
-				.bind( ( window.tappy ? "tap" : "click" ) + "." + pluginName, function( e ){
+				.on( ( window.tappy ? "tap" : "click" ) + "." + pluginName, function( e ){
 					self.toggle();
 					e.preventDefault();
 				})
-				.bind( "keyup." + pluginName, function( e ){
+				.on( "keyup." + pluginName, function( e ){
 					if( e.which === 13 || e.which === 32 ){
 						self.toggle();
 						e.preventDefault();
