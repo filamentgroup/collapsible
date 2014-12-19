@@ -20,22 +20,50 @@
 			throws(block, [expected], [message])
 	*/
 
-	module( "Global", {
+	module( "Default", {
+		setup: function(){
+				$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
+		}
+	});
+
+	test( "Global Initialization", function() {
+		ok( $( "html" ).is( ".enhanced" ), "Has global initialization class." );
+	});
+
+	test( "Initialization", function() {
+		ok( $( "#default.collapsible" ).is( ".collapsible-enhanced" ), "Has individual initialization class." );
+		ok( $( "#default .collapsible-content" ).not( ":hidden" ).length, "Content is visible by default." );
+	});
+
+	test( "Aria", function() {
+		ok( $( "#default .collapsible-header" ).is( "[role=button]" ), "Role added." );
+		ok( $( "#default .collapsible-header" ).is( "[aria-expanded]" ), "aria-expanded added." );
+	});
+
+	test( "Click the header", function() {
+		$( "#default .collapsible-header" ).trigger( "click" );
+		ok( $( "#default .collapsible-content" ).is( ":hidden" ), "Content is hidden after header click." );
+
+		$( "#default .collapsible-header" ).trigger( "click" );
+		ok( !$( "#default .collapsible-content" ).is( ":hidden" ), "Content is visible after header second click." );
+	});
+
+	module( "Collapsed Initialization", {
 		setup: function(){
 				$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
 		}
 	});
 
 	test( "Initialization", function() {
-		ok( $( "html" ).is( ".enhanced" ), "Has global initialization class." );
-		ok( $( ".collapsible" ).is( ".collapsible-enhanced" ), "Has individual initialization class." );
-		ok( $( ".collapsible-content" ).not( ":hidden" ).length, "Content is visible by default." );
+		ok( $( "#collapsed .collapsible-content" ).is( ":hidden" ), "Content is hidden by default." );
 	});
 
 	test( "Click the header", function() {
-		$( ".collapsible-header" ).trigger( "click" );
+		$( "#collapsed .collapsible-header" ).trigger( "click" );
+		ok( !$( "#collapsed .collapsible-content" ).is( ":hidden" ), "Content is visible after header click." );
 
-		ok( $( ".collapsible-content" ).is( ":hidden" ), "Content is hidden after header click." );
+		$( "#collapsed .collapsible-header" ).trigger( "click" );
+		ok( $( "#collapsed .collapsible-content" ).is( ":hidden" ), "Content is hidden after header second click." );
 	});
 
 }(jQuery));

@@ -1,6 +1,5 @@
-'use strict';
-
 module.exports = function(grunt) {
+	'use strict';
 
 	// Project configuration.
 	grunt.initConfig({
@@ -12,4 +11,5 @@ module.exports = function(grunt) {
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	grunt.registerTask('test', ['qunit']);
+	grunt.registerTask('default', ['test']);
 };
