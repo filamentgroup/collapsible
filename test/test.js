@@ -66,7 +66,7 @@
 		ok( $( "#collapsed .collapsible-content" ).is( ":hidden" ), "Content is hidden after header second click." );
 	});
 
-	module( "Collapsed Initialization", {
+	module( "Accordion Plugin", {
 		setup: function(){
 				$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
 		}
