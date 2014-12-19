@@ -10,19 +10,31 @@
 	$( document ).bind( "init", function( e ){
 		var pluginName = "collapsible";
 		if( $( e.target ).is( "." + pluginName ) ){
+			var $collapsible = $( e.target );
+
 			function isMenu(){
-				return $( e.target ).find( "." + pluginName + "-content" ).css( "position" ) === "absolute";
+				return $collapsible.find( "." + pluginName + "-content" ).css( "position" ) === "absolute";
 			}
 
-			$( e.target )
+			// tapout/clickout behavior
+			$( document ).bind( "touchstart click", function( a ){
+				if( !$( a.target ).closest( e.target ).length && !$collapsible.data( "plugin_" + pluginName ).collapsed && isMenu ){
+					setTimeout(function(){
+						$collapsible.data( "plugin_" + pluginName ).collapse();
+					});
+					a.preventDefault();
+				}
+			} );
+
+			$collapsible
 				.bind( "mouseenter", function(){
 					if( isMenu() ){
-						$( e.target ).data( "plugin_" + pluginName ).expand();
+						$collapsible.data( "plugin_" + pluginName ).expand();
 					}
 				} )
 				.bind( "mouseleave", function(){
 					if( isMenu() ){
-						$( e.target ).data( "plugin_" + pluginName ).collapse();
+						$collapsible.data( "plugin_" + pluginName ).collapse();
 					}
 				} );
 		}
