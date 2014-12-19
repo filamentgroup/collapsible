@@ -17,7 +17,7 @@
 			var $set = $( "." + pluginName + "[" + setAttr + "='" + value + "']" ).not( e.target );
 			if( $set.length ){
 				$set.each(function(){
-					$( this ).data( "plugin_" + pluginName ).collapse();
+					$( this ).data( pluginName ).collapse();
 				});
 			}
 		}

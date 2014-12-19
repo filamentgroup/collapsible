@@ -113,7 +113,7 @@
 		collapsed: false,
 
 		expand: function () {
-			var self = $( this ).data( "plugin_" + pluginName ) || this;
+			var self = $( this ).data( pluginName ) || this;
 			self.element.removeClass( self.options.collapsedClass );
 			self.collapsed = false;
 			self.header.attr( "aria-expanded", "true" );
@@ -121,7 +121,7 @@
 		},
 
 		collapse: function() {
-			var self = $( this ).data( "plugin_" + pluginName ) || this;
+			var self = $( this ).data( pluginName ) || this;
 			self.element.addClass( self.options.collapsedClass );
 			self.collapsed = true;
 			self.header.attr( "aria-expanded", "false" );
@@ -141,8 +141,8 @@
 	// preventing against multiple instantiations
 	$.fn[ pluginName ] = function (options) {
 		return this.each(function () {
-			if ( !$( this ).data( "plugin_" + pluginName ) ) {
-				$( this ).data( "plugin_" + pluginName, new Plugin( this, options ));
+			if ( !$( this ).data( pluginName ) ) {
+				$( this ).data( pluginName, new Plugin( this, options ));
 			}
 		});
 	};
