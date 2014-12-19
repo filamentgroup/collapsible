@@ -21,7 +21,7 @@
 			}
 
 			// tapout/clickout behavior
-			$( document ).bind( "touchstart click", function( a ){
+			$( document ).bind( "touchstart." + pluginName + " click." + pluginName, function( a ){
 				// if the event target is not in the collapsible, and the collapsible is expanded, and it's a menu presentation... collapse it!
 				if( !$( a.target ).closest( e.target ).length && !$collapsible.data( pluginName ).collapsed && isMenu ){
 					setTimeout(function(){
@@ -32,12 +32,12 @@
 			} );
 
 			$collapsible
-				.bind( "mouseenter", function(){
+				.bind( "mouseenter." + pluginName, function(){
 					if( isMenu() ){
 						$collapsible.data( pluginName ).expand();
 					}
 				} )
-				.bind( "mouseleave", function(){
+				.bind( "mouseleave." + pluginName, function(){
 					if( isMenu() ){
 						$collapsible.data( pluginName ).collapse();
 					}
