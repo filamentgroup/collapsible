@@ -9,6 +9,8 @@
 	<script src="../node_modules/jquery/dist/jquery.js"></script>
 	<script src="../node_modules/qunitjs/qunit/qunit.js"></script>
 	<script src="../src/collapsible.js"></script>
+	<script src="../src/collapsible.set.js"></script>
+	<script src="../src/collapsible.menu.js"></script>
 	<script src="test.js"></script>
 	<script>
 	/* Removing access to jQuery and $. But it'll still be available as _$, if
@@ -32,6 +34,14 @@
 		<div id="collapsed" class="collapsible collapsible-collapsed">
 			<h4 class="docs">Toggle collapsible content</h4>
 			<p class="docs">And this is the collapsible content</p>
+		</div>
+		<div id="accordion-a" class="collapsible collapsible-collapsed" data-collapsible-set="accordion">
+			<h4 class="docs collapsible-header">Collapsible A</h4>
+			<p class="docs collapsible-content">And this is the collapsible content</p>
+		</div>
+		<div id="accordion-b" class="collapsible collapsible-collapsed" data-collapsible-set="accordion">
+			<h4 class="docs collapsible-header">Collapsible B</h4>
+			<p class="docs collapsible-content">And this is the collapsible content</p>
 		</div>
 	</div>
 </body>

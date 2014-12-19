@@ -66,4 +66,19 @@
 		ok( $( "#collapsed .collapsible-content" ).is( ":hidden" ), "Content is hidden after header second click." );
 	});
 
+	module( "Collapsed Initialization", {
+		setup: function(){
+				$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
+		}
+	});
+
+	test( "Click the header", function() {
+		$( "#accordion-a .collapsible-header" ).trigger( "click" );
+		ok( !$( "#accordion-a .collapsible-content" ).is( ":hidden" ), "First accordion collapsible content is visible after header click." );
+
+		$( "#accordion-b .collapsible-header" ).trigger( "click" );
+		ok( !$( "#accordion-b .collapsible-content" ).is( ":hidden" ), "Second accordion collapsible content is visible after header click." );
+		ok( $( "#accordion-a .collapsible-content" ).is( ":hidden" ), "First accordion collapsible content is visible after second collapsible header click." );
+	});
+
 }(jQuery));
