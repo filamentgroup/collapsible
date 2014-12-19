@@ -16,8 +16,13 @@
 				return $collapsible.find( "." + pluginName + "-content" ).css( "position" ) === "absolute";
 			}
 
+			function isInViewport(){
+				// todo
+			}
+
 			// tapout/clickout behavior
 			$( document ).bind( "touchstart click", function( a ){
+				// if the event target is not in the collapsible, and the collapsible is expanded, and it's a menu presentation... collapse it!
 				if( !$( a.target ).closest( e.target ).length && !$collapsible.data( "plugin_" + pluginName ).collapsed && isMenu ){
 					setTimeout(function(){
 						$collapsible.data( "plugin_" + pluginName ).collapse();
