@@ -73,12 +73,16 @@
 	});
 
 	test( "Click the header", function() {
+		ok( $( "#accordion-c .collapsible-content" ).is( ":hidden" ), "Third unrelated collapsible content initial state." );
+
 		$( "#accordion-a .collapsible-header" ).trigger( "click" );
 		ok( !$( "#accordion-a .collapsible-content" ).is( ":hidden" ), "First accordion collapsible content is visible after header click." );
+		ok( $( "#accordion-c .collapsible-content" ).is( ":hidden" ), "Third unrelated collapsible content is still hidden after header click." );
 
 		$( "#accordion-b .collapsible-header" ).trigger( "click" );
 		ok( !$( "#accordion-b .collapsible-content" ).is( ":hidden" ), "Second accordion collapsible content is visible after header click." );
 		ok( $( "#accordion-a .collapsible-content" ).is( ":hidden" ), "First accordion collapsible content is visible after second collapsible header click." );
+		ok( $( "#accordion-c .collapsible-content" ).is( ":hidden" ), "Third unrelated collapsible content is still hidden after header click." );
 	});
 
 }(jQuery));
