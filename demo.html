@@ -45,6 +45,25 @@
 			padding: .5em;
 			display: block;
 		}
+
+		/* underlay styles */
+		.collapsible[data-collapsible-underlay] {
+			position: relative;
+		}
+		.collapsible-underlay-contain {
+			position: relative;
+		}
+		.collapsible-underlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(0,0,0,.2);
+		}
+		.collapsible-underlay-hidden {
+			display: none;
+		}
 		@media (min-width: 40em){
 			.menu-example .collapsible-content {
 				position: absolute;
@@ -57,6 +76,8 @@
 	<script type="text/javascript" src="src/collapsible.js"></script>
 	<script type="text/javascript" src="src/collapsible.set.js"></script>
 	<script type="text/javascript" src="src/collapsible.menu.js"></script>
+	<script type="text/javascript" src="src/collapsible.menuunderlay.js"></script>
+
 	<script>
 		document.documentElement.className += " enhanced";
 		$(function(){
@@ -163,6 +184,22 @@
 	<p class="docs">Just some content after the menu for testing purposes</p>
 	<p><a href="http://google.com">Real link that should not work when menu is open</a></p>
 	<p class="docs">Just some content after the menu for testing purposes</p>
+
+
+	<h3 class="docs">Underlay collapsibles</h3>
+	<p>(Once included, a collapsible with a <code>data-collapsible-underlay</code> attr will receive an underlay div sibling (prepended to its parent) with classes <code>.collapsible-underlay</code> and, when collapsed, <code>.collapsible-underlay-hidden</code>.</p>
+	<div class="collapsible collapsible-collapsed menu-example" data-collapsible-underlay>
+		<h4 class="docs collapsible-header">Collapsible Menu</h4>
+		<div class="docs collapsible-content">
+			<ul>
+				<li>Item</li>
+				<li>Item</li>
+				<li>Item</li>
+				<li>Item</li>
+				<li>Item</li>
+			</ul>
+		</div>
+	</div>
 
 </div>
 
