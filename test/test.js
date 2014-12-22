@@ -22,7 +22,7 @@
 
 	module( "Default", {
 		setup: function(){
-				$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
+			$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
 		}
 	});
 
@@ -50,7 +50,7 @@
 
 	module( "Collapsed Initialization", {
 		setup: function(){
-				$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
+			$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
 		}
 	});
 
@@ -68,7 +68,7 @@
 
 	module( "Accordion Plugin", {
 		setup: function(){
-				$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
+			$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
 		}
 	});
 
@@ -85,4 +85,19 @@
 		ok( $( "#accordion-c .collapsible-content" ).is( ":hidden" ), "Third unrelated collapsible content is still hidden after header click." );
 	});
 
+	module( "Menu Plugin", {
+		setup: function(){
+				$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
+		}
+	});
+
+	test( "Hover header", function() {
+		ok( $( "#menu .collapsible-content" ).is( ":hidden" ), "Menu collapsible content initial state." );
+
+		$( "#menu" ).trigger( "mouseenter" );
+		ok( !$( "#menu .collapsible-content" ).is( ":hidden" ), "Menu collapsible content visible after mouseenter." );
+
+		$( "#menu" ).trigger( "mouseleave" );
+		ok( $( "#menu .collapsible-content" ).is( ":hidden" ), "Menu collapsible content hidden after mouseleave." );
+	});
 }(jQuery));
