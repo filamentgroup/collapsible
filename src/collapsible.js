@@ -108,7 +108,7 @@
 					self.toggle();
 					e.preventDefault();
 				})
-				.bind( "keyup." + pluginName, function( e ){
+				.bind( "keydown." + pluginName, function( e ){
 					if( e.which === 13 || e.which === 32 ){
 						self.toggle();
 						e.preventDefault();
@@ -146,6 +146,10 @@
 			} else {
 				this.collapse();
 			}
+		},
+
+		focusNext: function(){
+
 		}
 	};
 
