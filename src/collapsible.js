@@ -115,6 +115,14 @@
 						self.toggle( e.target );
 						e.preventDefault();
 					}
+					else if( e.which === 39 || e.which === 40 ){
+						self.tab(e.target );
+						e.preventDefault();
+					}
+					else if( e.which === 37 || e.which === 38 ){
+						self.tab( e.target, true );
+						e.preventDefault();
+					}
 				});
 
 			if( this.options.collapsed ){
@@ -150,6 +158,32 @@
 				this.expand( target );
 			} else {
 				this.collapse( target );
+			}
+		},
+
+		focusable: "a, input, textarea, select, button, [tabindex=0]",
+
+		tab: function( target, back ){
+			var $focusables = $( this.content ).find( this.focusable );
+			var next;
+			if( $( target ).is( this.header ) && !back ){
+				this.expand();
+				next = $focusables[ 0 ];
+			}
+			else {
+				$focusables.each(function( i ){
+					var sibIndex = back ?  i - 1 : i + 1;
+					if( $( this ).is( target ) && $focusables[ sibIndex ] ){
+						next = $focusables[ sibIndex ];
+					}
+				});
+			}
+
+			if( next ){
+				next.focus();
+			}
+			else {
+				this.header.focus();
 			}
 		}
 
