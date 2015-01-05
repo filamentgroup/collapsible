@@ -92,6 +92,8 @@
 
 			this.header.attr( "tabindex", "0" );
 
+			this.content.attr( "tabindex", "0" );
+
 			this.content.attr( "role", "menu" );
 
 			this.content.addClass( this.options.contentClass );
@@ -105,51 +107,71 @@
 				// use the tappy plugin if it's available
 				// tap can't be namespaced yet without special events api: https://github.com/filamentgroup/tappy/issues/22
 				.bind( ( window.tappy ? "tap" : "click" ), function( e ){
-					self.toggle();
+					self.toggle( e.target );
 					e.preventDefault();
-				})
+				});
+
+			this.element
 				.bind( "keydown." + pluginName, function( e ){
-					if( e.which === 13 || e.which === 32 ){
-						self.toggle();
+					if( ( e.which === 13 || e.which === 32 ) ){
+						self.toggle( e.target );
 						e.preventDefault();
 					}
 				});
 
 			if( this.options.collapsed ){
-				this.collapse();
+				this.collapse( false );
 			}
 		},
 
 		collapsed: false,
 
-		expand: function () {
+		expand: function ( target ) {
 			var self = $( this ).data( pluginName ) || this;
 			self.element.removeClass( self.options.collapsedClass );
 			self.collapsed = false;
 			self.header.attr( "aria-expanded", "true" );
 			self.content.attr( "aria-hidden", "false" );
+			self.focusNext( target );
 			self.element.trigger( "expand" );
 		},
 
-		collapse: function() {
+		collapse: function( target ) {
 			var self = $( this ).data( pluginName ) || this;
 			self.element.addClass( self.options.collapsedClass );
 			self.collapsed = true;
 			self.header.attr( "aria-expanded", "false" );
 			self.content.attr( "aria-hidden", "true" );
+			if( $( target ).closest( self.header ).length || $( target ).is( self.content ) ){
+				self.focusHeader();
+			}
 			self.element.trigger( "collapse" );
 		},
 
-		toggle: function(){
+		toggle: function( target ){
 			if(  this.collapsed ){
-				this.expand();
+				this.expand( target );
 			} else {
-				this.collapse();
+				this.collapse( target );
 			}
 		},
 
-		focusNext: function(){
+		focusHeader: function(){
+			this.header.focus();
+		},
 
+		focusNext: function( target ){
+			var $nextFocusable = $( target ).nextAll( "a, input, select, button, [tabindex]" ).first();
+			if( $nextFocusable.length ){
+				$nextFocusable[ 0 ].focus();
+			}
+		},
+
+		focusPrev: function(){
+			var $nextFocusable = $( target ).prevAll( "a, input, select, button, [tabindex]" ).first();
+			if( $nextFocusable.length ){
+				$nextFocusable[ 0 ].focus();
+			}
 		}
 	};
 
