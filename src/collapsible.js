@@ -9,6 +9,7 @@
 
 	// Defaults
 	var pluginName = "collapsible";
+	var idInt = 0;
 	// overrideable defaults
 	var defaults = {
 		pluginClass: pluginName,
@@ -66,6 +67,7 @@
 			this.content = this.header.next();
 			this._addAttributes();
 			this._bindEvents();
+			idInt++;
 			this.element.trigger( "init" );
 		},
 
@@ -80,13 +82,20 @@
 				this.header.attr( "title", this.options.instructions );
 			}
 
+			var id = "collapsible-" + idInt;
+
 			this.header.attr( "role", "button" );
 
-			this.header.attr( "aria-expanded", "true" );
+			this.header.attr( "aria-haspopup", "true" );
+
+			this.header.attr( "aria-controls", id );
 
 			this.header.attr( "tabindex", "0" );
 
+			this.content.attr( "role", "menu" );
+
 			this.content.addClass( this.options.contentClass );
+			this.content.id = id;
 		},
 
 		_bindEvents: function(){
@@ -118,6 +127,7 @@
 			self.element.removeClass( self.options.collapsedClass );
 			self.collapsed = false;
 			self.header.attr( "aria-expanded", "true" );
+			self.content.attr( "aria-hidden", "false" );
 			self.element.trigger( "expand" );
 		},
 
@@ -126,6 +136,7 @@
 			self.element.addClass( self.options.collapsedClass );
 			self.collapsed = true;
 			self.header.attr( "aria-expanded", "false" );
+			self.content.attr( "aria-hidden", "true" );
 			self.element.trigger( "collapse" );
 		},
 
