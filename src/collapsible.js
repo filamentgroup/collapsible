@@ -92,8 +92,6 @@
 
 			this.header.attr( "tabindex", "0" );
 
-			this.content.attr( "tabindex", "0" );
-
 			this.content.attr( "role", "menu" );
 
 			this.content.addClass( this.options.contentClass );
