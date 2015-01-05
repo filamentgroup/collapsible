@@ -122,6 +122,9 @@
 			if( this.options.collapsed ){
 				this.collapse( false );
 			}
+			else {
+				this.expand();
+			}
 		},
 
 		collapsed: false,
@@ -132,7 +135,6 @@
 			self.collapsed = false;
 			self.header.attr( "aria-expanded", "true" );
 			self.content.attr( "aria-hidden", "false" );
-			self.focusNext( target );
 			self.element.trigger( "expand" );
 		},
 
@@ -142,9 +144,6 @@
 			self.collapsed = true;
 			self.header.attr( "aria-expanded", "false" );
 			self.content.attr( "aria-hidden", "true" );
-			if( $( target ).closest( self.header ).length || $( target ).is( self.content ) ){
-				self.focusHeader();
-			}
 			self.element.trigger( "collapse" );
 		},
 
@@ -154,25 +153,8 @@
 			} else {
 				this.collapse( target );
 			}
-		},
-
-		focusHeader: function(){
-			this.header.focus();
-		},
-
-		focusNext: function( target ){
-			var $nextFocusable = $( target ).nextAll( "a, input, select, button, [tabindex]" ).first();
-			if( $nextFocusable.length ){
-				$nextFocusable[ 0 ].focus();
-			}
-		},
-
-		focusPrev: function(){
-			var $nextFocusable = $( target ).prevAll( "a, input, select, button, [tabindex]" ).first();
-			if( $nextFocusable.length ){
-				$nextFocusable[ 0 ].focus();
-			}
 		}
+
 	};
 
 	// lightweight plugin wrapper around the constructor,
