@@ -50,9 +50,15 @@
 	test( "Click the header", function() {
 		$( "#default .collapsible-header" ).trigger( "click" );
 		ok( $( "#default .collapsible-content" ).is( ":hidden" ), "Content is hidden after header click." );
+		ok( $( "#default .collapsible-header" ).is( "[aria-expanded='false']" ), "Header has aria-expanded=false after header click." );
+		ok( $( "#default .collapsible-content" ).is( "[aria-hidden='true']" ), "Content has aria-hidden=true after header click." );
+
 
 		$( "#default .collapsible-header" ).trigger( "click" );
-		ok( !$( "#default .collapsible-content" ).is( ":hidden" ), "Content is visible after header second click." );
+		ok( !$( "#default .collapsible-content" ).is( ":visible" ), "Content is visible after header second click." );
+		ok( $( "#default .collapsible-header" ).is( "[aria-expanded='true']" ), "Header has aria-expanded=true after header second click." );
+		ok( $( "#default .collapsible-content" ).is( "[aria-hidden='false']" ), "Content has aria-hidden=false after header second click." );
+
 	});
 
 	module( "Collapsed Initialization", {
