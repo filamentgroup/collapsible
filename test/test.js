@@ -39,6 +39,7 @@
 		ok( $( "#default .collapsible-header" ).is( "[role=button]" ), "Role added." );
 		ok( $( "#default .collapsible-header" ).is( "[aria-expanded]" ), "aria-expanded added." );
 		ok( $( "#default .collapsible-header" ).is( "[aria-haspopup]" ), "aria-haspopup added." );
+		ok( $( "#default .collapsible-header" ).is( "[aria-controls]" ), "aria-controls added." );
 	});
 
 	test( "Click the header", function() {
