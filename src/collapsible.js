@@ -119,9 +119,8 @@
 			// arrow key handling applies to the entire collapsible
 			this.element
 				.bind( "keydown." + pluginName, function( e ){
-
 					// arrow key behavior: collapsible must be expanded to accept arrow navigation
-					if( !this.collapsed ){
+					if( !self.collapsed ){
 						if( e.which === 39 || e.which === 40 ){
 							self.arrow( e.target );
 							e.preventDefault();
@@ -174,23 +173,41 @@
 
 		// arrow method handles the arrow key navigation, which largely maps to the tab key within the component
 		arrow: function( target, back ){
-			var $focusables = $( this.content ).find( this.focusable );
-			var next;
+			var self = this;
+			// find all focusables in this collapsible content area
+			var $focusables = this.content.find( this.focusable );
+			var nextTab;
 
 			if( $( target ).is( this.header ) && !back ){
-				next = $focusables[ 0 ];
+				nextTab = $focusables[ 0 ];
 			}
 			else {
+				// if it's a backward arrow, let's reverse the array
+				if( back ){
+					// shoestring is already an array
+					if( $focusables.reverse ){
+						$focusables = $focusables.reverse();
+					}
+					// jquery will need a get()
+					else {
+						$focusables = $( $focusables.get().reverse() );
+					}
+				}
+				var afterTarget = false;
 				$focusables.each(function( i ){
-					var sibIndex = back ?  i - 1 : i + 1;
-					if( $( this ).is( target ) && $focusables[ sibIndex ] ){
-						next = $focusables[ sibIndex ];
+					if( !nextTab && afterTarget && !$( this ).closest( ".collapsible-collapsed .collapsible-content" ).length ){
+						nextTab = this;
+					}
+
+					if( !afterTarget ) {
+						afterTarget = $( this ).is( target );
 					}
 				});
 			}
 
-			if( next ){
-				next.focus();
+			// if we have a next element to send focus to at this point, do that. Otherwise, focus back on header
+			if( nextTab ){
+				nextTab.focus();
 			}
 			else {
 				this.header[ 0 ].focus();
