@@ -95,7 +95,8 @@
 			this.content.attr( "role", "menu" );
 
 			this.content.addClass( this.options.contentClass );
-			this.content.id = id;
+
+			this.content.attr( "id", id );
 		},
 
 		_bindEvents: function(){

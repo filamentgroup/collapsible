@@ -40,6 +40,8 @@
 		ok( $( "#default .collapsible-header" ).is( "[aria-expanded]" ), "aria-expanded added." );
 		ok( $( "#default .collapsible-header" ).is( "[aria-haspopup]" ), "aria-haspopup added." );
 		ok( $( "#default .collapsible-header" ).is( "[aria-controls]" ), "aria-controls added." );
+		ok( $( "#default .collapsible-content" ).is( "[id]" ), "collapsible content has an ID." );
+		equal( $( "#default .collapsible-header" ).attr( "aria-controls" ), $( "#default .collapsible-content" ).attr( "id" ), "aria-controls value matches content ID." );
 	});
 
 	test( "Click the header", function() {
