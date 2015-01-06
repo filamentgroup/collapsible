@@ -68,6 +68,7 @@
 			this._addAttributes();
 			this._bindEvents();
 			idInt++;
+			this.element.data( pluginName, this );
 			this.element.trigger( "init" );
 		},
 
@@ -232,7 +233,7 @@
 	$.fn[ pluginName ] = function (options) {
 		return this.each(function () {
 			if ( !$( this ).data( pluginName ) ) {
-				$( this ).data( pluginName, new Plugin( this, options ));
+				new Plugin( this, options );
 			}
 		});
 	};
