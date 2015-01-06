@@ -36,6 +36,7 @@
 	});
 
 	test( "Aria", function() {
+		ok( $( "#default .collapsible-header" ).is( "[tabindex='0']" ), "Tabindex added." );
 		ok( $( "#default .collapsible-header" ).is( "[role=button]" ), "Role added." );
 		ok( $( "#default .collapsible-header" ).is( "[aria-expanded]" ), "aria-expanded added." );
 		ok( $( "#default .collapsible-header" ).is( "[aria-haspopup]" ), "aria-haspopup added." );
