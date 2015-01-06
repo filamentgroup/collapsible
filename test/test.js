@@ -38,6 +38,7 @@
 	test( "Aria", function() {
 		ok( $( "#default .collapsible-header" ).is( "[role=button]" ), "Role added." );
 		ok( $( "#default .collapsible-header" ).is( "[aria-expanded]" ), "aria-expanded added." );
+		ok( $( "#default .collapsible-header" ).is( "[aria-haspopup]" ), "aria-haspopup added." );
 	});
 
 	test( "Click the header", function() {
@@ -95,7 +96,7 @@
 		ok( $( "#menu .collapsible-content" ).is( ":hidden" ), "Menu collapsible content initial state." );
 
 		$( "#menu" ).trigger( "mouseenter" );
-		ok( !$( "#menu .collapsible-content" ).is( ":hidden" ), "Menu collapsible content visible after mouseenter." );
+		ok( !$( "#menu .collapsible-content" ).is( ":visible" ), "Menu collapsible content visible after mouseenter." );
 
 		$( "#menu" ).trigger( "mouseleave" );
 		ok( $( "#menu .collapsible-content" ).is( ":hidden" ), "Menu collapsible content hidden after mouseleave." );
