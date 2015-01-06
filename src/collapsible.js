@@ -119,14 +119,19 @@
 			// arrow key handling applies to the entire collapsible
 			this.element
 				.bind( "keydown." + pluginName, function( e ){
-					if( e.which === 39 || e.which === 40 ){
-						self.arrow( e.target );
-						e.preventDefault();
+
+					// arrow key behavior: collapsible must be expanded to accept arrow navigation
+					if( !this.collapsed ){
+						if( e.which === 39 || e.which === 40 ){
+							self.arrow( e.target );
+							e.preventDefault();
+						}
+						else if( e.which === 37 || e.which === 38 ){
+							self.arrow( e.target, true );
+							e.preventDefault();
+						}
 					}
-					else if( e.which === 37 || e.which === 38 ){
-						self.arrow( e.target, true );
-						e.preventDefault();
-					}
+
 				});
 
 			if( this.options.collapsed ){
@@ -172,26 +177,23 @@
 			var $focusables = $( this.content ).find( this.focusable );
 			var next;
 
-			// collapsible must be expanded to accept arrow navigation
-			if( !this.collapsed ){
-				if( $( target ).is( this.header ) && !back ){
-					next = $focusables[ 0 ];
-				}
-				else {
-					$focusables.each(function( i ){
-						var sibIndex = back ?  i - 1 : i + 1;
-						if( $( this ).is( target ) && $focusables[ sibIndex ] ){
-							next = $focusables[ sibIndex ];
-						}
-					});
-				}
+			if( $( target ).is( this.header ) && !back ){
+				next = $focusables[ 0 ];
+			}
+			else {
+				$focusables.each(function( i ){
+					var sibIndex = back ?  i - 1 : i + 1;
+					if( $( this ).is( target ) && $focusables[ sibIndex ] ){
+						next = $focusables[ sibIndex ];
+					}
+				});
+			}
 
-				if( next ){
-					next.focus();
-				}
-				else {
-					this.header.focus();
-				}
+			if( next ){
+				next.focus();
+			}
+			else {
+				this.header[ 0 ].focus();
 			}
 		}
 
