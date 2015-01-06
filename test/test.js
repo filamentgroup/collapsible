@@ -42,6 +42,7 @@
 		ok( $( "#default .collapsible-header" ).is( "[aria-haspopup]" ), "aria-haspopup added." );
 		ok( $( "#default .collapsible-header" ).is( "[aria-controls]" ), "aria-controls added." );
 		ok( $( "#default .collapsible-content" ).is( "[id]" ), "collapsible content has an ID." );
+		ok( $( "#default .collapsible-content" ).is( "[role='menu']" ), "collapsible content has menu role." );
 		equal( $( "#default .collapsible-header" ).attr( "aria-controls" ), $( "#default .collapsible-content" ).attr( "id" ), "aria-controls value matches content ID." );
 	});
 
