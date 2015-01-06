@@ -161,7 +161,7 @@
 			}
 		},
 
-		focusable: "a, input, textarea, select, button, [tabindex=0]",
+		focusable: "a, input, textarea, select, button, [tabindex='0']",
 
 		tab: function( target, back ){
 			var $focusables = $( this.content ).find( this.focusable );
