@@ -36,16 +36,29 @@
 	});
 
 	test( "Aria", function() {
+		ok( $( "#default .collapsible-header" ).is( "[tabindex='0']" ), "Tabindex added." );
 		ok( $( "#default .collapsible-header" ).is( "[role=button]" ), "Role added." );
 		ok( $( "#default .collapsible-header" ).is( "[aria-expanded]" ), "aria-expanded added." );
+		ok( $( "#default .collapsible-header" ).is( "[aria-haspopup]" ), "aria-haspopup added." );
+		ok( $( "#default .collapsible-header" ).is( "[aria-controls]" ), "aria-controls added." );
+		ok( $( "#default .collapsible-content" ).is( "[id]" ), "collapsible content has an ID." );
+		ok( $( "#default .collapsible-content" ).is( "[role='menu']" ), "collapsible content has menu role." );
+		ok( $( "#default .collapsible-content" ).is( "[aria-hidden]" ), "aria-hidden attribute added to content." );
+		equal( $( "#default .collapsible-header" ).attr( "aria-controls" ), $( "#default .collapsible-content" ).attr( "id" ), "aria-controls value matches content ID." );
 	});
 
 	test( "Click the header", function() {
 		$( "#default .collapsible-header" ).trigger( "click" );
 		ok( $( "#default .collapsible-content" ).is( ":hidden" ), "Content is hidden after header click." );
+		ok( $( "#default .collapsible-header" ).is( "[aria-expanded='false']" ), "Header has aria-expanded=false after header click." );
+		ok( $( "#default .collapsible-content" ).is( "[aria-hidden='true']" ), "Content has aria-hidden=true after header click." );
+
 
 		$( "#default .collapsible-header" ).trigger( "click" );
-		ok( !$( "#default .collapsible-content" ).is( ":hidden" ), "Content is visible after header second click." );
+		ok( !$( "#default .collapsible-content" ).is( ":visible" ), "Content is visible after header second click." );
+		ok( $( "#default .collapsible-header" ).is( "[aria-expanded='true']" ), "Header has aria-expanded=true after header second click." );
+		ok( $( "#default .collapsible-content" ).is( "[aria-hidden='false']" ), "Content has aria-hidden=false after header second click." );
+
 	});
 
 	module( "Collapsed Initialization", {
@@ -95,7 +108,7 @@
 		ok( $( "#menu .collapsible-content" ).is( ":hidden" ), "Menu collapsible content initial state." );
 
 		$( "#menu" ).trigger( "mouseenter" );
-		ok( !$( "#menu .collapsible-content" ).is( ":hidden" ), "Menu collapsible content visible after mouseenter." );
+		ok( !$( "#menu .collapsible-content" ).is( ":visible" ), "Menu collapsible content visible after mouseenter." );
 
 		$( "#menu" ).trigger( "mouseleave" );
 		ok( $( "#menu .collapsible-content" ).is( ":hidden" ), "Menu collapsible content hidden after mouseleave." );

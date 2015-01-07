@@ -9,6 +9,7 @@
 
 	// Defaults
 	var pluginName = "collapsible";
+	var idInt = 0;
 	// overrideable defaults
 	var defaults = {
 		pluginClass: pluginName,
@@ -66,6 +67,8 @@
 			this.content = this.header.next();
 			this._addAttributes();
 			this._bindEvents();
+			idInt++;
+			this.element.data( pluginName, this );
 			this.element.trigger( "init" );
 		},
 
@@ -80,13 +83,21 @@
 				this.header.attr( "title", this.options.instructions );
 			}
 
+			var id = "collapsible-" + idInt;
+
 			this.header.attr( "role", "button" );
 
-			this.header.attr( "aria-expanded", "true" );
+			this.header.attr( "aria-haspopup", "true" );
+
+			this.header.attr( "aria-controls", id );
 
 			this.header.attr( "tabindex", "0" );
 
+			this.content.attr( "role", "menu" );
+
 			this.content.addClass( this.options.contentClass );
+
+			this.content.attr( "id", id );
 		},
 
 		_bindEvents: function(){
@@ -96,46 +107,56 @@
 				// use the tappy plugin if it's available
 				// tap can't be namespaced yet without special events api: https://github.com/filamentgroup/tappy/issues/22
 				.bind( ( window.tappy ? "tap" : "click" ), function( e ){
-					self.toggle();
+					self.toggle( e.target );
 					e.preventDefault();
 				})
-				.bind( "keyup." + pluginName, function( e ){
+				.bind( "keydown." + pluginName, function( e ){
 					if( e.which === 13 || e.which === 32 ){
-						self.toggle();
+						self.toggle( e.target );
 						e.preventDefault();
 					}
 				});
 
 			if( this.options.collapsed ){
-				this.collapse();
+				this.collapse( false );
+			}
+			else {
+				this.expand();
 			}
 		},
 
 		collapsed: false,
 
-		expand: function () {
+		expand: function ( target ) {
 			var self = $( this ).data( pluginName ) || this;
 			self.element.removeClass( self.options.collapsedClass );
 			self.collapsed = false;
 			self.header.attr( "aria-expanded", "true" );
+			self.content.attr( "aria-hidden", "false" );
 			self.element.trigger( "expand" );
 		},
 
-		collapse: function() {
+		collapse: function( target ) {
 			var self = $( this ).data( pluginName ) || this;
 			self.element.addClass( self.options.collapsedClass );
 			self.collapsed = true;
 			self.header.attr( "aria-expanded", "false" );
+			self.content.attr( "aria-hidden", "true" );
 			self.element.trigger( "collapse" );
 		},
 
-		toggle: function(){
+		toggle: function( target ){
 			if(  this.collapsed ){
-				this.expand();
+				this.expand( target );
 			} else {
-				this.collapse();
+				this.collapse( target );
 			}
-		}
+		},
+
+		focusable: "a, input, textarea, select, button, [tabindex='0']"
+
+
+
 	};
 
 	// lightweight plugin wrapper around the constructor,
@@ -143,7 +164,7 @@
 	$.fn[ pluginName ] = function (options) {
 		return this.each(function () {
 			if ( !$( this ).data( pluginName ) ) {
-				$( this ).data( pluginName, new Plugin( this, options ));
+				new Plugin( this, options );
 			}
 		});
 	};
