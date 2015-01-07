@@ -55,7 +55,7 @@
 
 
 		$( "#default .collapsible-header" ).trigger( "click" );
-		ok( !$( "#default .collapsible-content" ).is( ":visible" ), "Content is visible after header second click." );
+		ok( $( "#default .collapsible-content" ).is( ":visible" ), "Content is visible after header second click." );
 		ok( $( "#default .collapsible-header" ).is( "[aria-expanded='true']" ), "Header has aria-expanded=true after header second click." );
 		ok( $( "#default .collapsible-content" ).is( "[aria-hidden='false']" ), "Content has aria-hidden=false after header second click." );
 
