@@ -1,6 +1,6 @@
 {
-  "name": "collapsible",
-  "version": "1.0.0",
+  "name": "fg-collapsible",
+  "version": "0.1.1",
   "description": "Toggle your collapsible content",
   "scripts": {
     "test": "grunt test"
