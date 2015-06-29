@@ -127,7 +127,7 @@
 
 		collapsed: false,
 
-		expand: function ( target ) {
+		expand: function () {
 			var self = $( this ).data( pluginName ) || this;
 			self.element.removeClass( self.options.collapsedClass );
 			self.collapsed = false;
@@ -136,7 +136,7 @@
 			self.element.trigger( "expand" );
 		},
 
-		collapse: function( target ) {
+		collapse: function() {
 			var self = $( this ).data( pluginName ) || this;
 			self.element.addClass( self.options.collapsedClass );
 			self.collapsed = true;
@@ -145,11 +145,11 @@
 			self.element.trigger( "collapse" );
 		},
 
-		toggle: function( target ){
+		toggle: function(){
 			if(  this.collapsed ){
-				this.expand( target );
+				this.expand();
 			} else {
-				this.collapse( target );
+				this.collapse();
 			}
 		},
 
