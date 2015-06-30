@@ -69,6 +69,25 @@
 				position: absolute;
 			}
 		}
+		.tabnav {
+			display: table;
+			width: 100%;
+		}
+		.tabnav a {
+			display: table-cell;
+			border: 2px solid #fff;
+			border-bottom-width: 0;
+			background-color: #aaa;
+			color: #fff;
+			padding: .4em 1em;
+			text-decoration: none;
+		}
+		.tabnav .tab-active {
+			border: 1px solid #aaa;
+			border-bottom-width: 0;
+			background-color: #fff;
+			color: #222;
+		}
 	</style>
 
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
@@ -161,7 +180,7 @@
 	<h3 class="docs">Tabbed Collapsible Set</h3>
 
 	<div class="tabs">
-		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
+		<div class="collapsible" data-collapsible-set="tabs-example">
 			<h4 class="docs collapsible-header">Collapsible A</h4>
 			<p class="docs collapsible-content">And this is the collapsible content for tab A</p>
 		</div>

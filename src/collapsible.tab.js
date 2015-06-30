@@ -9,15 +9,17 @@
 
 	$( document ).bind( "init", function( e ){
 		var pluginName = "collapsible";
-		var $collapsible = $( e.target );
+		var activeTabClass = "tab-active";
+		var $collapsible = $( e.target ).closest( "." + pluginName );
 		var $tabContainer = $collapsible.parent();
 
 		if( $collapsible.is( "." + pluginName ) && $tabContainer.is( ".tabs" ) ){
 			var self = $collapsible.data( pluginName );
 
-			self.createTabNav = function( tab ) {
+			self.createTabNav = function( $tab ) {
 				var $tabnav = $( "<nav class='tabnav'></nav>" );
-				$tabnav.append( tab );
+				$tabnav.append( $tab );
+				$tab.addClass( activeTabClass );
 				$tabContainer.prepend( $tabnav );
 			};
 
@@ -32,6 +34,9 @@
 				this.$tab.bind( window.tappy ? "tap" : "click", function( e ){
 					e.preventDefault();
 					e.stopPropagation();
+
+					$tabContainer.find( '.' + activeTabClass ).removeClass( activeTabClass );
+					self.$tab.addClass( activeTabClass );
 
 					self.toggle();
 				});

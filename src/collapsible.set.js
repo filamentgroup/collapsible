@@ -13,9 +13,10 @@
 		var pluginName = "collapsible";
 		var setAttr = "data-" + pluginName + "-set";
 		var selector = "." + pluginName + "[" + setAttr + "]";
-		if( $( e.target ).is( selector ) ){
-			var value = $( e.target ).attr( setAttr );
-			var $set = $( "." + pluginName + "[" + setAttr + "='" + value + "']" ).not( e.target );
+		var $collapsible = $( e.target );
+		if( $collapsible.is( selector ) ){
+			var value = $collapsible.attr( setAttr );
+			var $set = $( "." + pluginName + "[" + setAttr + "='" + value + "']" ).not( $collapsible );
 			if( $set.length ){
 				$set.each(function(){
 					$( this ).data( pluginName ).collapse();
