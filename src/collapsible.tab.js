@@ -12,43 +12,43 @@
 		var activeTabClass = "tab-active";
 		var $collapsible = $( e.target ).closest( "." + pluginName );
 		var $tabContainer = $collapsible.parent();
+		var $tabNav = $tabContainer.find( ".tabnav" );
+		var self;
+		var id;
 
 		if( $collapsible.is( "." + pluginName ) && $tabContainer.is( ".tabs" ) ){
-			var self = $collapsible.data( pluginName );
+			self = $collapsible.data( pluginName );
+			id = self.content.attr( "id" );
+			$tabNav.find( "[aria-controls=" + id + "]" ).remove();
 
-			self.createTabNav = function( $tab ) {
-				var $tabnav = $( "<nav class='tabnav'></nav>" );
-				$tabnav.append( $tab );
-				$tab.addClass( activeTabClass );
-				$tabContainer.prepend( $tabnav );
-			};
+			self.$tabHeader = $( "<a href='#'>" + self.header[0].innerHTML + "</a>" ).attr( "aria-controls", id );
+			self.header.css( 'display', 'none' );
 
-			self.createTab = function(){
-				this.$tab = $( "<a href='#'>" + this.header[0].innerHTML + "</a>" );
+			self.$tabHeader.bind( window.tappy ? "tap" : "click", function( e ){
+				e.preventDefault();
+				e.stopPropagation();
 
-				var self = this;
-				var $tabNav = $tabContainer.find( ".tabnav" );
-
-				this.header.remove();
-
-				this.$tab.bind( window.tappy ? "tap" : "click", function( e ){
-					e.preventDefault();
-					e.stopPropagation();
-
-					$tabContainer.find( '.' + activeTabClass ).removeClass( activeTabClass );
-					self.$tab.addClass( activeTabClass );
-
-					self.toggle();
-				});
-
-				if( $tabNav.length === 0 ) {
-					this.createTabNav( this.$tab );
+				if( self.$tabHeader.is( '.' + activeTabClass ) ) {
+					self.$tabHeader.removeClass( activeTabClass );
 				} else {
-					$tabNav.append( this.$tab );
+					$tabContainer.find( '.' + activeTabClass ).removeClass( activeTabClass );
+					self.$tabHeader.addClass( activeTabClass );
 				}
-			};
 
-			self.createTab( $collapsible );
+				self.toggle();
+			});
+
+			if( !$tabNav.length ) {
+				$tabNav = $( "<nav class='tabnav'></nav>" );
+				$tabContainer.prepend( $tabNav );
+			}
+
+			if( !self.collapsed ) {
+				self.$tabHeader.addClass( activeTabClass );
+				self._expand();
+			}
+
+			$tabNav.append( self.$tabHeader );
 		}
 	});
 

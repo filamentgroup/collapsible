@@ -17,11 +17,9 @@
 		if( $collapsible.is( selector ) ){
 			var value = $collapsible.attr( setAttr );
 			var $set = $( "." + pluginName + "[" + setAttr + "='" + value + "']" ).not( $collapsible );
-			if( $set.length ){
-				$set.each(function(){
-					$( this ).data( pluginName ).collapse();
-				});
-			}
+			$set.each(function(){
+				$( this ).data( pluginName ).collapse();
+			});
 		}
 	});
 
