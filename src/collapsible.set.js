@@ -16,7 +16,10 @@
 		var $collapsible = $( e.target );
 		if( $collapsible.is( selector ) ){
 			var value = $collapsible.attr( setAttr );
-			var $set = $( "." + pluginName + "[" + setAttr + "='" + value + "']" ).not( $collapsible );
+			var $set = $( "." + pluginName + "[" + setAttr + "='" + value + "']" )).filter(function() {
+				return this !== $collapsible[0];
+			});
+
 			$set.each(function(){
 				$( this ).data( pluginName ).collapse();
 			});
