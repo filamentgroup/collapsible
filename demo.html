@@ -69,6 +69,25 @@
 				position: absolute;
 			}
 		}
+		.tabnav {
+			display: table;
+			width: 100%;
+		}
+		.tabnav a {
+			display: table-cell;
+			border: 2px solid #fff;
+			border-bottom-width: 0;
+			background-color: #aaa;
+			color: #fff;
+			padding: .4em 1em;
+			text-decoration: none;
+		}
+		.tabnav .tab-active {
+			border: 1px solid #aaa;
+			border-bottom-width: 0;
+			background-color: #fff;
+			color: #222;
+		}
 	</style>
 
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
@@ -77,6 +96,7 @@
 	<script type="text/javascript" src="src/collapsible.set.js"></script>
 	<script type="text/javascript" src="src/collapsible.menu.js"></script>
 	<script type="text/javascript" src="src/collapsible.menuunderlay.js"></script>
+	<script type="text/javascript" src="src/collapsible.tab.js"></script>
 
 	<script>
 		document.documentElement.className += " enhanced";
@@ -157,6 +177,37 @@
 		<p class="docs collapsible-content">And this is the collapsible content</p>
 	</div>
 
+	<h3 class="docs">Tabbed Collapsible Set</h3>
+
+	<div class="tabs">
+		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
+			<h4 class="docs collapsible-header">Collapsible A</h4>
+			<p class="docs collapsible-content">And this is the collapsible content for tab A</p>
+		</div>
+		<div class="collapsible" data-collapsible-set="tabs-example">
+			<h4 class="docs collapsible-header">Collapsible B</h4>
+			<p class="docs collapsible-content">And this is the collapsible content for tab B</p>
+		</div>
+		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
+			<h4 class="docs collapsible-header">Collapsible C</h4>
+			<p class="docs collapsible-content">And this is the collapsible content for tab C</p>
+		</div>
+		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
+			<h4 class="docs collapsible-header">Collapsible D</h4>
+			<p class="docs collapsible-content">And this is the collapsible content for tab D</p>
+		</div>
+	</div>
+
+	<div class="tabs" id="tabs">
+		<div id="tabs-a" class="collapsible" data-collapsible-set="tabs">
+			<h4 class="docs collapsible-header">Collapsible A</h4>
+			<p class="docs collapsible-content">And this is the collapsible content (A)</p>
+		</div>
+		<div id="tabs-b" class="collapsible collapsible-collapsed" data-collapsible-set="tabs">
+			<h4 class="docs collapsible-header">Collapsible B</h4>
+			<p class="docs collapsible-content">And this is the collapsible content (B)</p>
+		</div>
+	</div>
 
 	<h3 class="docs">Menu collapsibles</h3>
 	<p>(Once included, any time a collapsible-content is absolute positioned, menu behavior will apply (hover and tap-out)</p>

@@ -118,38 +118,48 @@
 				});
 
 			if( this.options.collapsed ){
-				this.collapse( false );
+				this._collapse();
 			}
 			else {
-				this.expand();
+				this._expand();
 			}
 		},
 
 		collapsed: false,
 
-		expand: function ( target ) {
+		// used internally to expand without triggering events (for init)
+		_expand: function() {
+			this.element.removeClass( this.options.collapsedClass );
+			this.collapsed = false;
+			this.header.attr( "aria-expanded", "true" );
+			this.content.attr( "aria-hidden", "false" );
+		},
+
+		expand: function () {
 			var self = $( this ).data( pluginName ) || this;
-			self.element.removeClass( self.options.collapsedClass );
-			self.collapsed = false;
-			self.header.attr( "aria-expanded", "true" );
-			self.content.attr( "aria-hidden", "false" );
+			self._expand();
 			self.element.trigger( "expand" );
 		},
 
-		collapse: function( target ) {
+		// used internally to expand without triggering events (for init)
+		_collapse: function() {
+			this.element.addClass( this.options.collapsedClass );
+			this.collapsed = true;
+			this.header.attr( "aria-expanded", "false" );
+			this.content.attr( "aria-hidden", "true" );
+		},
+		
+		collapse: function() {
 			var self = $( this ).data( pluginName ) || this;
-			self.element.addClass( self.options.collapsedClass );
-			self.collapsed = true;
-			self.header.attr( "aria-expanded", "false" );
-			self.content.attr( "aria-hidden", "true" );
+			self._collapse();
 			self.element.trigger( "collapse" );
 		},
 
-		toggle: function( target ){
+		toggle: function(){
 			if(  this.collapsed ){
-				this.expand( target );
+				this.expand();
 			} else {
-				this.collapse( target );
+				this.collapse();
 			}
 		},
 

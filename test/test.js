@@ -81,7 +81,7 @@
 
 	module( "Accordion Plugin", {
 		setup: function(){
-			$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
+			$( '#qunit-fixture' ).find( '.collapsible' ).removeData( 'collapsible' ).collapsible();
 		}
 	});
 
@@ -96,6 +96,22 @@
 		ok( !$( "#accordion-b .collapsible-content" ).is( ":hidden" ), "Second accordion collapsible content is visible after header click." );
 		ok( $( "#accordion-a .collapsible-content" ).is( ":hidden" ), "First accordion collapsible content is visible after second collapsible header click." );
 		ok( $( "#accordion-c .collapsible-content" ).is( ":hidden" ), "Third unrelated collapsible content is still hidden after header click." );
+	});
+
+	module( "Tabs Plugin", {
+		setup: function(){
+			$( '#qunit-fixture' ).find( '.tabnav' ).remove();
+			$( '#qunit-fixture' ).find( '.collapsible' ).removeData( 'collapsible' ).collapsible();
+		}
+	});
+
+	test( "Click the header", function() {
+		ok( !$( "#tabs-a .collapsible-content" ).is( ":hidden" ), "Initial state of first tab: visible" );
+		ok( $( "#tabs-b .collapsible-content" ).is( ":hidden" ), "Initial state of second tab: hidden" );
+
+		$( "#tabs .tabnav a" ).eq( 1 ).trigger( "click" );
+		ok( $( "#tabs-a .collapsible-content" ).is( ":hidden" ), "Initial state of first tab: hidden" );
+		ok( !$( "#tabs-b .collapsible-content" ).is( ":hidden" ), "Initial state of second tab: visible" );
 	});
 
 	module( "Menu Plugin", {
