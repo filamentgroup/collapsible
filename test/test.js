@@ -18,13 +18,17 @@
 			strictEqual(actual, expected, [message])
 			notStrictEqual(actual, expected, [message])
 			throws(block, [expected], [message])
-	*/
+	 */
 
-	module( "Default", {
-		setup: function(){
-			$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
-		}
-	});
+	function moduleSetup() {
+		$( '.collapsible' ).collapsible();
+	}
+
+	var moduleDef = {
+		setup: moduleSetup
+	};
+
+	module( "Default", moduleDef);
 
 	test( "Global Initialization", function() {
 		ok( $( "html" ).is( ".enhanced" ), "Has global initialization class." );
@@ -61,11 +65,7 @@
 
 	});
 
-	module( "Collapsed Initialization", {
-		setup: function(){
-			$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
-		}
-	});
+	module( "Collapsed Initialization", moduleDef);
 
 	test( "Initialization", function() {
 		ok( $( "#collapsed .collapsible-content" ).is( ":hidden" ), "Content is hidden by default." );
@@ -79,11 +79,7 @@
 		ok( $( "#collapsed .collapsible-content" ).is( ":hidden" ), "Content is hidden after header second click." );
 	});
 
-	module( "Accordion Plugin", {
-		setup: function(){
-			$( '#qunit-fixture' ).find( '.collapsible' ).removeData( 'collapsible' ).collapsible();
-		}
-	});
+	module( "Accordion Plugin", moduleDef);
 
 	test( "Click the header", function() {
 		ok( $( "#accordion-c .collapsible-content" ).is( ":hidden" ), "Third unrelated collapsible content initial state." );
@@ -101,7 +97,7 @@
 	module( "Tabs Plugin", {
 		setup: function(){
 			$( '#qunit-fixture' ).find( '.tabnav' ).remove();
-			$( '#qunit-fixture' ).find( '.collapsible' ).removeData( 'collapsible' ).collapsible();
+			moduleSetup();
 		}
 	});
 
@@ -114,11 +110,7 @@
 		ok( !$( "#tabs-b .collapsible-content" ).is( ":hidden" ), "Initial state of second tab: visible" );
 	});
 
-	module( "Menu Plugin", {
-		setup: function(){
-				$( '#qunit-fixture' ).find( '.collapsible' ).collapsible();
-		}
-	});
+	module( "Menu Plugin", moduleDef );
 
 	test( "Hover header", function() {
 		ok( $( "#menu .collapsible-content" ).is( ":hidden" ), "Menu collapsible content initial state." );

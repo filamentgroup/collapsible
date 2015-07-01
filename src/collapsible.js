@@ -148,7 +148,7 @@
 			this.header.attr( "aria-expanded", "false" );
 			this.content.attr( "aria-hidden", "true" );
 		},
-		
+
 		collapse: function() {
 			var self = $( this ).data( pluginName ) || this;
 			self._collapse();
@@ -164,9 +164,6 @@
 		},
 
 		focusable: "a, input, textarea, select, button, [tabindex='0']"
-
-
-
 	};
 
 	// lightweight plugin wrapper around the constructor,
@@ -178,11 +175,4 @@
 			}
 		});
 	};
-
-	// Simple auto-init by selector that runs when the dom is ready. Trigger "enhance" if desirable.
-	$( document ).bind( "enhance", function( e ){
-		var selector = "." + pluginName;
-		$( $( e.target ).is( selector ) && e.target ).add( selector, e.target ).filter( selector )[ pluginName ]();
-	});
-
 })(jQuery, window, document);
