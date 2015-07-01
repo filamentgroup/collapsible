@@ -13,21 +13,11 @@
 	<script src="../src/collapsible.tab.js"></script>
 	<script src="../src/collapsible.menu.js"></script>
 	<script src="test.js"></script>
-	<script>
-	/* Removing access to jQuery and $. But it'll still be available as _$, if
-			 you REALLY want to mess around with jQuery in the console. REMEMBER WE
-			 ARE TESTING A PLUGIN HERE, THIS HELPS ENSURE BEST PRACTICES. REALLY. */
-	window._$ = jQuery.noConflict(true);
-
-	document.documentElement.className += " enhanced";
-	_$(function(){
-		_$( document ).trigger( "enhance" );
-	});
-	</script>
 </head>
 <body>
 	<div id="qunit"></div>
 	<div id="qunit-fixture">
+    <div id="init" class="collapsible"></div>
 		<div id="default" class="collapsible">
 			<h4 class="docs">Toggle collapsible content</h4>
 			<p class="docs">And this is the collapsible content</p>

@@ -21,18 +21,37 @@
 	 */
 
 	function moduleSetup() {
-		$( '.collapsible' ).collapsible();
+		$( '.collapsible' )
+      .collapsible()
+      .collapsibleTab();
 	}
 
 	var moduleDef = {
 		setup: moduleSetup
 	};
 
-	module( "Default", moduleDef);
+	module( "Init" );
 
-	test( "Global Initialization", function() {
-		ok( $( "html" ).is( ".enhanced" ), "Has global initialization class." );
+	asyncTest( "can't init twice", function(){
+		var $c = $( '#init' ), $doc = $( document );
+
+		$doc.one( "init", function(){
+			ok( true, "called once" );
+
+			$doc.one( "init", function(){
+				ok( false, "not called twice" );
+			});
+
+			// assuming synchronous
+			$c.collapsible();
+			$doc.unbind( "init" );
+			start();
+		});
+
+		$c.collapsible();
 	});
+
+	module( "Default", moduleDef);
 
 	test( "Initialization", function() {
 		ok( $( "#default.collapsible" ).is( ".collapsible-enhanced" ), "Has individual initialization class." );
@@ -94,20 +113,15 @@
 		ok( $( "#accordion-c .collapsible-content" ).is( ":hidden" ), "Third unrelated collapsible content is still hidden after header click." );
 	});
 
-	module( "Tabs Plugin", {
-		setup: function(){
-			$( '#qunit-fixture' ).find( '.tabnav' ).remove();
-			moduleSetup();
-		}
-	});
+	module( "Tabs Plugin", moduleDef );
 
 	test( "Click the header", function() {
 		ok( !$( "#tabs-a .collapsible-content" ).is( ":hidden" ), "Initial state of first tab: visible" );
 		ok( $( "#tabs-b .collapsible-content" ).is( ":hidden" ), "Initial state of second tab: hidden" );
 
 		$( "#tabs .tabnav a" ).eq( 1 ).trigger( "click" );
-		ok( $( "#tabs-a .collapsible-content" ).is( ":hidden" ), "Initial state of first tab: hidden" );
-		ok( !$( "#tabs-b .collapsible-content" ).is( ":hidden" ), "Initial state of second tab: visible" );
+		ok( $( "#tabs-a .collapsible-content" ).is( ":hidden" ), "after click state of first tab: hidden" );
+		ok( !$( "#tabs-b .collapsible-content" ).is( ":hidden" ), "after click state of second tab: visible" );
 	});
 
 	module( "Menu Plugin", moduleDef );

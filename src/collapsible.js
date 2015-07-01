@@ -25,7 +25,12 @@
 	function Plugin(element, options) {
 		this.element = $( element );
 		var self = this,
-			dataOptions = {};
+			  dataOptions = {};
+
+		// prevent double init
+		if ( this.element.data( pluginName ) ) {
+			return;
+		}
 
 		// Allow data-attr option setting
 		if( this.element.is( "[data-config]" ) ){
@@ -46,8 +51,6 @@
 				}
 			}
 		}
-
-
 
 		this.options = $.extend( {}, defaults, dataOptions, options );
 
@@ -170,9 +173,7 @@
 	// preventing against multiple instantiations
 	$.fn[ pluginName ] = function (options) {
 		return this.each(function () {
-			if ( !$( this ).data( pluginName ) ) {
-				new Plugin( this, options );
-			}
+			new Plugin( this, options );
 		});
 	};
 })(jQuery, window, document);
