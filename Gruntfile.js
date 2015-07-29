@@ -3,6 +3,14 @@ module.exports = function(grunt) {
 
 	// Project configuration.
 	grunt.initConfig({
+		jshint: {
+			all: {
+				options: {
+					jshintrc: ".jshintrc"
+				},
+				src: ['Gruntfile.js', 'src/*.js']
+			}
+		},
 		qunit: {
 			files: ['test/**/*.html']
 		}
@@ -11,5 +19,6 @@ module.exports = function(grunt) {
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	grunt.registerTask('test', ['qunit']);
-	grunt.registerTask('default', ['test']);
+	grunt.registerTask('lint', ['jshint']);
+	grunt.registerTask('default', ['test', 'lint']);
 };
