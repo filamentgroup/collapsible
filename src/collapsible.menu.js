@@ -15,13 +15,9 @@
 			var $trigger = $collapsible.prev().filter( "." + pluginName + "-trigger" );
 			var triggerExpand = pluginName + "-trigger-expand";
 
-			function isMenu(){
+			var isMenu = function(){
 				return $collapsible.find( "." + pluginName + "-content" ).css( "position" ) === "absolute";
-			}
-
-			function isInViewport(){
-				// todo
-			}
+			};
 
 			// tapout/clickout behavior
 			$( document ).bind( "touchstart." + pluginName + " click." + pluginName, function( a ){
@@ -93,7 +89,7 @@
 					// afterTarget becomes true once the target has been passed in the each loop
 					var afterTarget = false;
 					// loop focusables
-					$focusables.each(function( i ){
+					$focusables.each(function(){
 						// if nextTab isn't defined yet, we're after the target in the loop, and the target appears to be displayed
 						// NOTE: the offset checks replaced the following, which tied keyboard behavior to aria state:
 							// !$( this ).closest( ".collapsible-collapsed .collapsible-content" ).length
