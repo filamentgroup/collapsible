@@ -23,6 +23,19 @@
 			$set.each(function(){
 				$( this ).data( pluginName ).collapse();
 			});
+			var openItemTop = e.target.offsetTop;
+			// from jquery...
+			var scroll =  (function() {
+				var prop = 'pageYOffset',
+					method = 'scrollTop';
+				return window ? (prop in window) ? window[ prop ] :
+					window.document.documentElement[ method ] :
+					window.document.body[ method ];
+			}());
+
+			if( scroll > openItemTop ){
+				window.scrollTo( 0, openItemTop );
+			}
 		}
 	});
 
