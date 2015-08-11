@@ -63,8 +63,14 @@
 
 	Plugin.prototype = {
 		init: function () {
-			this.header = this.element.children().eq( 0 );
-			this.content = this.header.next();
+			this.header = this.element.find( "." + this.options.headerClass );
+			if( !this.header.length ){
+				this.header = this.element.children().eq( 0 );
+			}
+			this.content = this.element.find( "." + this.options.contentClass );
+			if( !this.content.length ){
+				this.content = this.header.next();
+			}
 			this._addAttributes();
 			this._bindEvents();
 			idInt++;
@@ -148,7 +154,7 @@
 			this.header.attr( "aria-expanded", "false" );
 			this.content.attr( "aria-hidden", "true" );
 		},
-		
+
 		collapse: function() {
 			var self = $( this ).data( pluginName ) || this;
 			self._collapse();
