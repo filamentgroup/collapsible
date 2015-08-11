@@ -63,11 +63,11 @@
 
 	Plugin.prototype = {
 		init: function () {
-			this.header = this.element.find( "." + this.options.headerClass );
+			this.header = this.element.children().filter( "." + this.options.headerClass );
 			if( !this.header.length ){
 				this.header = this.element.children().eq( 0 );
 			}
-			this.content = this.element.find( "." + this.options.contentClass );
+			this.content = this.element.children().filter( "." + this.options.contentClass );
 			if( !this.content.length ){
 				this.content = this.header.next();
 			}
