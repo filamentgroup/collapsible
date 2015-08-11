@@ -35,6 +35,11 @@
 		ok( $( "#default .collapsible-content" ).not( ":hidden" ).length, "Content is visible by default." );
 	});
 
+	test( "Header content order", function() {
+		ok( !$( "#outoforder .collapsible-content" ).is( ".collapsible-header" ), "Content can come first in child order, if classes are preset" );
+		ok( !$( "#outoforder .collapsible-header" ).is( ".collapsible-content" ), "header can come second in child order, if classes are preset" );
+	});
+
 	test( "Aria", function() {
 		ok( $( "#default .collapsible-header" ).is( "[tabindex='0']" ), "Tabindex added." );
 		ok( $( "#default .collapsible-header" ).is( "[role=button]" ), "Role added." );
