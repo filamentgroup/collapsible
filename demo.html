@@ -97,6 +97,7 @@
 	<script type="text/javascript" src="src/collapsible.menu.js"></script>
 	<script type="text/javascript" src="src/collapsible.menuunderlay.js"></script>
 	<script type="text/javascript" src="src/collapsible.tab.js"></script>
+	<script type="text/javascript" src="src/collapsible.externaltoggle.js"></script>
 
 	<script>
 		document.documentElement.className += " enhanced";
@@ -229,6 +230,23 @@
 	<h3 class="docs">Underlay collapsibles</h3>
 	<p>(Once included, a collapsible with a <code>data-collapsible-underlay</code> attr will receive an underlay div sibling (prepended to its parent) with classes <code>.collapsible-underlay</code> and, when collapsed, <code>.collapsible-underlay-hidden</code>.</p>
 	<div class="collapsible collapsible-collapsed menu-example" data-collapsible-underlay>
+		<h4 class="docs collapsible-header">Collapsible Menu</h4>
+		<div class="docs collapsible-content">
+			<ul>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<h3 class="docs">External Toggle collapsibles</h3>
+	<p>Clickable targets that exist outside of the collapsible HTML that can toggle any specified collapsible target.</p>
+
+	<a href="#external-toggle-example" data-collapsible-target>Toggle Collapsible</a>
+	<div class="collapsible collapsible-collapsed" id="external-toggle-example">
 		<h4 class="docs collapsible-header">Collapsible Menu</h4>
 		<div class="docs collapsible-content">
 			<ul>

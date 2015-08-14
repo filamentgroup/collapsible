@@ -10,7 +10,6 @@
 
 	// Simple auto-init by selector that runs when the dom is ready. Trigger "enhance" if desirable.
 	$( document ).bind( "expand." + pluginName, function( e ){
-		var pluginName = "collapsible";
 		var setAttr = "data-" + pluginName + "-set";
 		var selector = "." + pluginName + "[" + setAttr + "]";
 		var $collapsible = $( e.target );
