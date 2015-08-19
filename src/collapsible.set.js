@@ -20,7 +20,10 @@
 			});
 
 			$set.each(function(){
-				$( this ).data( pluginName ).collapse();
+				var thisData = $( this ).data( pluginName );
+				if( thisData ){
+					thisData.collapse();
+				}
 			});
 			var openItemTop = e.target.offsetTop;
 			// from jquery...
