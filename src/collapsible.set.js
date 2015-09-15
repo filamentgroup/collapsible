@@ -25,7 +25,7 @@
 					thisData.collapse();
 				}
 			});
-			var openItemTop = e.target.offsetTop;
+			var openItemTop = e.target.getBoundingClientRect().top + ( document.body.scrollY || document.body.scrollTop );
 			// from jquery...
 			var scroll =  (function() {
 				var prop = 'pageYOffset',
