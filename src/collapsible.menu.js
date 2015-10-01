@@ -20,19 +20,39 @@
 			};
 
 			// tapout/clickout behavior
-			$( document ).bind( "touchstart." + pluginName + " click." + pluginName, function( a ){
-				// if the event target is not in the collapsible, and the collapsible is expanded, and it's a menu presentation... collapse it!
-				if( !$( a.target ).closest( e.target ).length &&
-					!$( a.target ).closest( $trigger ).length &&
-					!$collapsible.data( pluginName ).collapsed &&
-					isMenu() ){
+			var targetTop;
+			var touchCancel = false;
+			$( "body" )
+				.bind( "gesturestart." + pluginName, function( a ){
+					touchCancel = true;
+				})
+				.bind( "touchstart." + pluginName, function( a ){
+					targetTop = a.target.getBoundingClientRect().top;
+				})
+				.bind( "touchend." + pluginName + " click." + pluginName, function( a ){
+					if( a.type === "touchend" ){
+						if( targetTop && Math.abs( targetTop - a.target.getBoundingClientRect().top ) > 5 ){
+							touchCancel = true;
+						}
+					}
 
-					setTimeout(function(){
-						$collapsible.data( pluginName ).collapse();
-					});
-					a.preventDefault();
-				}
-			} );
+					// if the event target is not in the collapsible, and the collapsible is expanded, and it's a menu presentation... collapse it!
+					if( !$( a.target ).closest( e.target ).length &&
+						!$( a.target ).closest( $trigger ).length &&
+						!$collapsible.data( pluginName ).collapsed &&
+						isMenu()  &&
+						touchCancel === false ){
+
+						setTimeout(function(){
+							$collapsible.data( pluginName ).collapse();
+						});
+						a.preventDefault();
+					}
+					setTimeout( function(){
+						targetTop = null;
+						touchCancel = false;
+					}, 200 );
+				} );
 
 			// hover behavior for collapsibles and triggers relies on the presence of data-collapsible-hover attr
 			if( $collapsible.is( "[data-collapsible-hover]" ) ){
