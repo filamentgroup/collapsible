@@ -25,7 +25,7 @@
 					thisData.collapse();
 				}
 			});
-			var openItemTop = e.target.getBoundingClientRect().top + ( document.body.scrollY || document.body.scrollTop );
+			var openItemTop = e.target.getBoundingClientRect().top + ( document.body.scrollY || document.body.scrollTop || document.documentElement.scrollTop );
 			// from jquery...
 			var scroll =  (function() {
 				var prop = 'pageYOffset',
