@@ -23,7 +23,7 @@
 			var targetTop;
 			var touchCancel = false;
 			$( "body" )
-				.bind( "gesturestart." + pluginName, function( a ){
+				.bind( "gesturestart." + pluginName, function(){
 					touchCancel = true;
 				})
 				.bind( "touchstart." + pluginName, function( a ){
