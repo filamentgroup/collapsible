@@ -5,11 +5,20 @@
  * Licensed under the MIT, GPL licenses.
  */
 
-;(function ($, window, document, undefined) {
+;(function ( w, undefined ) {
+	// Defaults
+	if( typeof require !== "undefined" ){
+		var $ = require( "jquery" );
+		require( "collapsible" );
+	}
+	else {
+		$ = w.jQuery;
+	}
+
 	var pluginName = "collapsible";
 
 	// Simple auto-init by selector that runs when the dom is ready. Trigger "enhance" if desirable.
-	$( document ).bind( "expand." + pluginName, function( e ){
+	$( w.document ).bind( "expand." + pluginName, function( e ){
 		var setAttr = "data-" + pluginName + "-set";
 		var selector = "." + pluginName + "[" + setAttr + "]";
 		var $collapsible = $( e.target );
@@ -25,20 +34,20 @@
 					thisData.collapse();
 				}
 			});
-			var openItemTop = e.target.getBoundingClientRect().top + ( document.body.scrollY || document.body.scrollTop || document.documentElement.scrollTop );
+			var openItemTop = e.target.getBoundingClientRect().top + ( w.document.body.scrollY || w.document.body.scrollTop || w.document.documentElement.scrollTop );
 			// from jquery...
 			var scroll =  (function() {
 				var prop = 'pageYOffset',
 					method = 'scrollTop';
-				return window ? (prop in window) ? window[ prop ] :
-					window.document.documentElement[ method ] :
-					window.document.body[ method ];
+				return w ? (prop in w) ? w[ prop ] :
+					w.document.documentElement[ method ] :
+					w.document.body[ method ];
 			}());
 
 			if( scroll > openItemTop ){
-				window.scrollTo( 0, openItemTop );
+				w.scrollTo( 0, openItemTop );
 			}
 		}
 	});
 
-})(jQuery, window, document);
+})( typeof global !== "undefined" ? global : this );

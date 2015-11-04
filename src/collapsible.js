@@ -5,9 +5,16 @@
  * Licensed under the MIT, GPL licenses.
  */
 
-;(function ($, window, document, undefined) {
+;(function ( w, undefined ) {
 
 	// Defaults
+	if( typeof require !== "undefined" ){
+		var $ = require( "jquery" );
+		require( "tappy" );
+	}
+	else {
+		$ = w.jQuery;
+	}
 	var pluginName = "collapsible";
 	var idInt = 0;
 	// overrideable defaults
@@ -112,7 +119,7 @@
 			this.header
 				// use the tappy plugin if it's available
 				// tap can't be namespaced yet without special events api: https://github.com/filamentgroup/tappy/issues/22
-				.bind( ( window.tappy ? "tap" : "click" ), function( e ){
+				.bind( ( w.tappy ? "tap" : "click" ), function( e ){
 					self.toggle( e.target );
 					e.preventDefault();
 				})
@@ -186,9 +193,14 @@
 	};
 
 	// Simple auto-init by selector that runs when the dom is ready. Trigger "enhance" if desirable.
-	$( document ).bind( "enhance", function( e ){
+	$( w.document ).bind( "enhance", function( e ){
 		var selector = "." + pluginName;
 		$( $( e.target ).is( selector ) && e.target ).add( selector, e.target ).filter( selector )[ pluginName ]();
 	});
 
-})(jQuery, window, document);
+	// commonjs
+	if( typeof module !== "undefined" ){
+		module.exports = $.fn[ pluginName ];
+	}
+
+})( typeof global !== "undefined" ? global : this );

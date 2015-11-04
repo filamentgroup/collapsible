@@ -5,9 +5,18 @@
  * Licensed under the MIT, GPL licenses.
  */
 
-;(function ($, window, document, undefined) {
+;(function ( w, undefined) {
 
-	$( document ).bind( "init", function( e ){
+	// Defaults
+	if( typeof require !== "undefined" ){
+		var $ = require( "jquery" );
+		require( "collapsible" );
+	}
+	else {
+		$ = w.jQuery;
+	}
+
+	$( w.document ).bind( "init", function( e ){
 		var pluginName = "collapsible";
 		if( $( e.target ).is( "." + pluginName ) ){
 			var $collapsible = $( e.target );
@@ -157,4 +166,4 @@
 		}
 	} );
 
-})(jQuery, window, document);
+})( typeof global !== "undefined" ? global : this );

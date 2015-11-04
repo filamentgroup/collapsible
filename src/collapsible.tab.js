@@ -5,9 +5,17 @@
  * Licensed under the MIT, GPL licenses.
  */
 
-;(function ($, window, document) {
+;(function ( w, undefined ) {
+	// Defaults
+	if( typeof require !== "undefined" ){
+		var $ = require( "jquery" );
+		require( "collapsible" );
+	}
+	else {
+		$ = w.jQuery;
+	}
 
-	$( document ).bind( "init", function( e ){
+	$( w.document ).bind( "init", function( e ){
 		var pluginName = "collapsible";
 		var activeTabClass = "tab-active";
 		var $collapsible = $( e.target ).closest( "." + pluginName );
@@ -24,7 +32,7 @@
 			self.$tabHeader = $( "<a href='#'>" + self.header[0].innerHTML + "</a>" ).attr( "aria-controls", id );
 			self.header.css( 'display', 'none' );
 
-			self.$tabHeader.bind( window.tappy ? "tap" : "click", function( e ){
+			self.$tabHeader.bind( w.tappy ? "tap" : "click", function( e ){
 				e.preventDefault();
 				e.stopPropagation();
 
@@ -52,4 +60,4 @@
 		}
 	});
 
-})(jQuery, window, document);
+})( typeof global !== "undefined" ? global : this );

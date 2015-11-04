@@ -11,6 +11,13 @@ module.exports = function(grunt) {
 				src: ['Gruntfile.js', 'src/*.js']
 			}
 		},
+		browserify: {
+			dist: {
+				files: {
+					'dist/collapsible.js': ['src/*.js']
+				}
+			}
+		},
 		qunit: {
 			files: ['test/**/*.html']
 		}
@@ -20,5 +27,5 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('test', ['qunit']);
 	grunt.registerTask('lint', ['jshint']);
-	grunt.registerTask('default', ['test', 'lint']);
+	grunt.registerTask('default', ['test', 'lint', 'browserify']);
 };
