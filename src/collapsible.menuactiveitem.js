@@ -14,18 +14,18 @@
 			var self = $collapsible.data( pluginName );
 			var menuActiveClass = pluginName + "-menu-active";
 
-			function clearActive( $collapsible ) {
-				$collapsible.find( "." + menuActiveClass ).removeClass( menuActiveClass );
-			}
+			self.clearActive = function() {
+				this.element.find( "." + menuActiveClass ).removeClass( menuActiveClass );
+			};
 
 			self.content.find( "a" ).add( self.header )
 				.bind( "focus mouseover", function( e ) {
-					clearActive( $collapsible );
+					self.clearActive();
 
 					$( e.target ).addClass( menuActiveClass );
 				})
 				.bind( "blur mouseout", function() {
-					clearActive( $collapsible );
+					self.clearActive();
 				});
 		}
 	} );
