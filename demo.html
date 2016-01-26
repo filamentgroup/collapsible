@@ -45,6 +45,9 @@
 			padding: .5em;
 			display: block;
 		}
+		.collapsible-content .collapsible-menu-active {
+			background-color: #eee;
+		}
 
 		/* underlay styles */
 		.collapsible[data-collapsible-underlay] {
@@ -96,8 +99,10 @@
 	<script type="text/javascript" src="src/collapsible.set.js"></script>
 	<script type="text/javascript" src="src/collapsible.menu.js"></script>
 	<script type="text/javascript" src="src/collapsible.menuunderlay.js"></script>
+	<script type="text/javascript" src="src/collapsible.menuactiveitem.js"></script>
 	<script type="text/javascript" src="src/collapsible.tab.js"></script>
 	<script type="text/javascript" src="src/collapsible.externaltoggle.js"></script>
+	<script type="text/javascript" src="src/collapsible.selectproxy.js"></script>
 
 	<script>
 		document.documentElement.className += " enhanced";
@@ -255,6 +260,29 @@
 				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<h3 class="docs">Select Proxy</h3>
+	<select id="bag-priority-1">
+		<option value="Highest">Highest Priority</option>
+		<option value="High">High Priority</option>
+		<option value="Medium">Medium Priority</option>
+		<option value="Low">Low Priority</option>
+		<option value="Lowest">Lowest Priority</option>
+		<option value="None">No Priority</option>
+	</select>
+	<div aria-hidden="true" class="collapsible collapsible-menu collapsible-collapsed" data-collapsible-selectproxy="bag-priority-1">
+		<h4 class="collapsible-header"><strong>Highest</strong> Priority</h4>
+		<div class="collapsible-content">
+			<ul>
+				<li><a href="#" data-value="Highest"><strong>Highest</strong> Priority</a></li>
+				<li><a href="#" data-value="High"><strong>High</strong> Priority</a></li>
+				<li><a href="#" data-value="Medium"><strong>Medium</strong> Priority</a></li>
+				<li><a href="#" data-value="Low"><strong>Low</strong> Priority</a></li>
+				<li><a href="#" data-value="Lowest"><strong>Lowest</strong> Priority</a></li>
+				<li><a href="#" data-value="None">No priority</a></li>
 			</ul>
 		</div>
 	</div>
