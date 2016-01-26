@@ -22,7 +22,7 @@
 				.bind( "focus mouseover", function( e ) {
 					self.clearActive();
 
-					$( e.target ).addClass( menuActiveClass );
+					$( e.target ).closest( "a,." + self.options.headerClass ).addClass( menuActiveClass );
 				})
 				.bind( "blur mouseout", function() {
 					self.clearActive();
