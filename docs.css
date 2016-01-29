@@ -40,6 +40,10 @@ textarea {
 	padding: .6em;
 	font-size: 100%;
 }
+input[type="checkbox"] {
+	display: inline-block;
+	width: auto;
+}
 
 .menu {
 	background-color: white;

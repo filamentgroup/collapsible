@@ -15,7 +15,9 @@
 		var $target;
 		var $link = $( event.target ).closest( '[' + attrName + ']' );
 		if( $link.length ) {
-			event.preventDefault();
+			if( $link.is( "a[href]" ) ) {
+				event.preventDefault();
+			}
 
 			$target = $( $link.attr( attrName ) || $link.attr( 'href' ) );
 			var component = $target.data( pluginName );
