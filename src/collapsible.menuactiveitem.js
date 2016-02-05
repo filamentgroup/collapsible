@@ -7,27 +7,22 @@
 
 ;(function ( $, window, document ) {
 
-	$( document ).bind( "init", function( e ){
-		var pluginName = "collapsible";
-		if( $( e.target ).is( "." + pluginName ) ){
-			var $collapsible = $( e.target );
-			var self = $collapsible.data( pluginName );
-			var menuActiveClass = pluginName + "-menu-active";
+	var headerClass = "collapsible-header";
+	var menuActiveClass = "collapsible-menu-active";
 
-			self.clearActive = function() {
-				this.element.find( "." + menuActiveClass ).removeClass( menuActiveClass );
-			};
+	function clearActive( $link ) {
+		$link.closest( "ul,ol" ).find( "." + menuActiveClass ).removeClass( menuActiveClass );
+	}
 
-			self.content.find( "a" ).add( self.header )
-				.bind( "focus mouseover", function( e ) {
-					self.clearActive();
-
-					$( e.target ).closest( "a,." + self.options.headerClass ).addClass( menuActiveClass );
-				})
-				.bind( "blur mouseout", function() {
-					self.clearActive();
-				});
+	$( document.body ).on( "focus mouseover blur mouseout", function( e ) {
+		var $link = $( e.target ).closest( "a," + headerClass );
+		var $collapsible = $link.closest( ".collapsible" );
+		if( $link.length && $collapsible.length ) {
+			clearActive( $link );
+			if( e.type === "focus" || e.type === "mouseover" ) {
+				$link.addClass( menuActiveClass );
+			}
 		}
-	} );
+	});
 
 })(jQuery, window, document);
