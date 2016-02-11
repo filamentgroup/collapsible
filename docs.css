@@ -40,7 +40,8 @@ textarea {
 	padding: .6em;
 	font-size: 100%;
 }
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="radio"] {
 	display: inline-block;
 	width: auto;
 }

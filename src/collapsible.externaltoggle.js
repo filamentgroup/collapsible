@@ -22,7 +22,18 @@
 			$target = $( $link.attr( attrName ) || $link.attr( 'href' ) );
 			var component = $target.data( pluginName );
 			if( component ) {
-				component.toggle();
+				var isRadio = $link.is( "[type='radio']" );
+				if( isRadio || $link.is( "[type='checkbox']" ) ) {
+					$( isRadio ? $( "[name='" + $link.attr( "name" ) + "']" ) : $link ).unbind( "change." + pluginName ).bind( "change." + pluginName, function() {
+						if( $link[ 0 ].checked ) {
+							component.expand();
+						} else {
+							component.collapse();
+						}
+					});
+				} else {
+					component.toggle();
+				}
 			}
 		}
 	});
