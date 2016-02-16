@@ -10,6 +10,14 @@
 	var pluginName = "collapsible";
 	var attrName = 'data-collapsible-target';
 
+	function radioCheckboxChange( isChecked ) {
+		if( isChecked ) {
+			this.expand();
+		} else {
+			this.collapse();
+		}
+	}
+
 	// Simple auto-init by selector that runs when the dom is ready. Trigger "enhance" if desirable.
 	$( document ).bind( "click." + pluginName, function( event ){
 		var $target;
@@ -24,12 +32,11 @@
 			if( component ) {
 				var isRadio = $link.is( "[type='radio']" );
 				if( isRadio || $link.is( "[type='checkbox']" ) ) {
+					radioCheckboxChange.call( component, $link[ 0 ].checked );
+
+					// bind so that unchecking other radios in the set will also trigger
 					$( isRadio ? $( "[name='" + $link.attr( "name" ) + "']" ) : $link ).unbind( "change." + pluginName ).bind( "change." + pluginName, function() {
-						if( $link[ 0 ].checked ) {
-							component.expand();
-						} else {
-							component.collapse();
-						}
+						radioCheckboxChange.call( component, $link[ 0 ].checked );
 					});
 				} else {
 					component.toggle();
