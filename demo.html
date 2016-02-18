@@ -11,6 +11,9 @@
 		body {
 			margin-bottom: 500px;
 		}
+		form {
+			padding: 0 2em;
+		}
 		.collapsible-header {
 			cursor: pointer;
 			color: blue;
@@ -125,8 +128,8 @@
 &lt;/div&gt;
 </code></pre>
 		<div class="collapsible">
-			<h4 class="docs collapsible-header">Toggle collapsible content</h4>
-			<p class="docs collapsible-content">And this is the collapsible content</p>
+			<h4 class="collapsible-header">Toggle collapsible content</h4>
+			<p class="collapsible-content">And this is the collapsible content</p>
 		</div>
 		<h3 class="docs">Basic Collapsible with collapsed initial state</h3>
 <pre><code>
@@ -136,8 +139,8 @@
 &lt;/div&gt;
 </code></pre>
 		<div class="collapsible collapsible-collapsed">
-			<h4 class="docs collapsible-header">Toggle collapsible content</h4>
-			<p class="docs collapsible-content">And this is the collapsible content</p>
+			<h4 class="collapsible-header">Toggle collapsible content</h4>
+			<p class="collapsible-content">And this is the collapsible content</p>
 		</div>
 
 		<p class="docs"><strong>note:</strong> To safely collapse the collapsible when the page first renders, we'd recommend keying off an <code>.enhanced</code> class on the HTML element. Like this:</p>
@@ -156,8 +159,8 @@
 &lt;/div&gt;
 </code></pre>
 		<div class="collapsible" data-config data-instructions="click to toggle">
-			<h4 class="docs collapsible-header">Toggle collapsible content</h4>
-			<p class="docs collapsible-content">And this is the collapsible content</p>
+			<h4 class="collapsible-header">Toggle collapsible content</h4>
+			<p class="collapsible-content">And this is the collapsible content</p>
 		</div>
 
 
@@ -166,48 +169,48 @@
 	<h3 class="docs">Set of collapsibles that work as an accordion (data-set attributes with a shared value to your set)</h3>
 
 	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-		<h4 class="docs collapsible-header">Collapsible A</h4>
-		<p class="docs collapsible-content">And this is the collapsible content</p>
+		<h4 class="collapsible-header">Collapsible A</h4>
+		<p class="collapsible-content">And this is the collapsible content</p>
 	</div>
 	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-		<h4 class="docs collapsible-header">Collapsible B</h4>
-		<p class="docs collapsible-content">And this is the collapsible content</p>
+		<h4 class="collapsible-header">Collapsible B</h4>
+		<p class="collapsible-content">And this is the collapsible content</p>
 	</div>
 	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-		<h4 class="docs collapsible-header">Collapsible C</h4>
-		<p class="docs collapsible-content">And this is the collapsible content</p>
+		<h4 class="collapsible-header">Collapsible C</h4>
+		<p class="collapsible-content">And this is the collapsible content</p>
 	</div>
 	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-		<h4 class="docs collapsible-header">Collapsible D</h4>
-		<p class="docs collapsible-content">And this is the collapsible content</p>
+		<h4 class="collapsible-header">Collapsible D</h4>
+		<p class="collapsible-content">And this is the collapsible content</p>
 	</div>
 
 	<h3 class="docs">Tabbed Collapsible Set</h3>
 
 	<div class="tabs">
 		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
-			<h4 class="docs collapsible-header">Collapsible A</h4>
-			<p class="docs collapsible-content">And this is the collapsible content for tab A</p>
+			<h4 class="collapsible-header">Collapsible A</h4>
+			<p class="collapsible-content">And this is the collapsible content for tab A</p>
 		</div>
 		<div class="collapsible" data-collapsible-set="tabs-example">
-			<h4 class="docs collapsible-header">Collapsible B</h4>
-			<p class="docs collapsible-content">And this is the collapsible content for tab B</p>
+			<h4 class="collapsible-header">Collapsible B</h4>
+			<p class="collapsible-content">And this is the collapsible content for tab B</p>
 		</div>
 		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
-			<h4 class="docs collapsible-header">Collapsible C</h4>
-			<p class="docs collapsible-content">And this is the collapsible content for tab C</p>
+			<h4 class="collapsible-header">Collapsible C</h4>
+			<p class="collapsible-content">And this is the collapsible content for tab C</p>
 		</div>
 		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
-			<h4 class="docs collapsible-header">Collapsible D</h4>
-			<p class="docs collapsible-content">And this is the collapsible content for tab D</p>
+			<h4 class="collapsible-header">Collapsible D</h4>
+			<p class="collapsible-content">And this is the collapsible content for tab D</p>
 		</div>
 	</div>
 
 	<h3 class="docs">Menu collapsibles</h3>
 	<p>(Once included, any time a collapsible-content is absolute positioned, menu behavior will apply (hover and tap-out)</p>
 	<div class="collapsible collapsible-collapsed menu-example" data-collapsible-hover>
-		<h4 class="docs collapsible-header">Collapsible Menu</h4>
-		<div class="docs collapsible-content">
+		<h4 class="collapsible-header">Collapsible Menu</h4>
+		<div class="collapsible-content">
 			<ul>
 				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
@@ -234,8 +237,8 @@
 	<h3 class="docs">Underlay collapsibles</h3>
 	<p>(Once included, a collapsible with a <code>data-collapsible-underlay</code> attr will receive an underlay div sibling (prepended to its parent) with classes <code>.collapsible-underlay</code> and, when collapsed, <code>.collapsible-underlay-hidden</code>.</p>
 	<div class="collapsible collapsible-collapsed menu-example" data-collapsible-underlay>
-		<h4 class="docs collapsible-header">Collapsible Menu</h4>
-		<div class="docs collapsible-content">
+		<h4 class="collapsible-header">Collapsible Menu</h4>
+		<div class="collapsible-content">
 			<ul>
 				<li><a href="#"><strong>Item</strong></a></li>
 				<li><a href="#">Item</a></li>
@@ -251,8 +254,8 @@
 
 	<a href="#external-toggle-example" data-collapsible-target>Toggle Collapsible</a>
 	<div class="collapsible collapsible-collapsed" id="external-toggle-example">
-		<h4 class="docs collapsible-header">Collapsible</h4>
-		<div class="docs collapsible-content">
+		<h4 class="collapsible-header">Collapsible</h4>
+		<div class="collapsible-content">
 			<ul>
 				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
@@ -265,11 +268,27 @@
 
 	<h4 class="docs">Toggle with Checkbox</h4>
 	<form>
-		<!-- <input type="checkbox" id="test1"> <label for="test1">Toggle Collapsible</label> -->
-		<label for="external-toggle-checkbox"><input type="checkbox" data-collapsible-target="#external-toggle-checkbox-example" id="external-toggle-checkbox"> Toggle Collapsible</label>
+		<label><input type="checkbox" data-collapsible-target="#external-toggle-checkbox-example"> Toggle Collapsible</label>
 		<div class="collapsible collapsible-collapsed" id="external-toggle-checkbox-example">
-			<h4 class="docs collapsible-header">Collapsible</h4>
-			<div class="docs collapsible-content">
+			<h4 class="collapsible-header">Collapsible</h4>
+			<div class="collapsible-content">
+				<ul>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+				</ul>
+			</div>
+		</div>
+	</form>
+
+	<h4 class="docs">Toggle with Checkbox (Collapsed by Default)</h4>
+	<form>
+		<label><input type="checkbox" checked data-collapsible-target="#external-toggle-checkbox-example2"> Toggle Collapsible</label>
+		<div class="collapsible collapsible-collapsed" id="external-toggle-checkbox-example2">
+			<h4 class="collapsible-header">Collapsible</h4>
+			<div class="collapsible-content">
 				<ul>
 					<li><a href="#">Item</a></li>
 					<li><a href="#">Item</a></li>
@@ -286,8 +305,8 @@
 		<label><input type="radio" name="collapsible-radio"> Collapse</label>
 		<label><input type="radio" data-collapsible-target="#external-toggle-radio-example" name="collapsible-radio"> Expand</label>
 		<div class="collapsible collapsible-collapsed" id="external-toggle-radio-example">
-			<h4 class="docs collapsible-header">Collapsible</h4>
-			<div class="docs collapsible-content">
+			<h4 class="collapsible-header">Collapsible</h4>
+			<div class="collapsible-content">
 				<ul>
 					<li><a href="#">Item</a></li>
 					<li><a href="#">Item</a></li>
