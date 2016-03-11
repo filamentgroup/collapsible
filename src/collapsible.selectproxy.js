@@ -17,10 +17,12 @@
 
 			$target.on( "click", "a", function( e ) {
 				var $a = $( e.target ).closest( "a" );
-				$a.closest( "." + pluginName + "-content" ).prev().filter( "." + pluginName + "-header" ).html( $a.html() );
-				$a.closest( "." + pluginName ).data( pluginName ).collapse();
-				$select.val( $a.attr( "data-value" ) );
-				e.preventDefault();
+				if( $a.is( "[data-value]" ) ) {
+					$a.closest( "." + pluginName + "-content" ).prev().filter( "." + pluginName + "-header" ).html( $a.html() );
+					$a.closest( "." + pluginName ).data( pluginName ).collapse();
+					$select.val( $a.attr( "data-value" ) );
+					e.preventDefault();
+				}
 			});
 		}
 	});
