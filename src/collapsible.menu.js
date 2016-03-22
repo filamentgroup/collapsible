@@ -140,7 +140,7 @@
 			self.element
 				.bind( "keydown." + pluginName, function( e ){
 					// arrow key behavior: collapsible must be expanded to accept arrow navigation
-					if( !self.collapsed ){
+					if( !self.collapsed && isMenu() ){
 						if( e.which === 39 || e.which === 40 ){
 							self.arrow( e.target );
 							e.preventDefault();
