@@ -20,7 +20,7 @@
 				if( $a.is( "[data-value]" ) ) {
 					$a.closest( "." + pluginName + "-content" ).prev().filter( "." + pluginName + "-header" ).html( $a.html() );
 					$a.closest( "." + pluginName ).data( pluginName ).collapse();
-					$select.val( $a.attr( "data-value" ) );
+					$select.val( $a.attr( "data-value" ) ).trigger( "change" );
 					e.preventDefault();
 				}
 			});

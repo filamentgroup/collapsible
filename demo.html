@@ -129,7 +129,7 @@
 </code></pre>
 		<div class="collapsible">
 			<h4 class="collapsible-header">Toggle collapsible content</h4>
-			<p class="collapsible-content">And this is the collapsible content</p>
+			<p class="collapsible-content">And this is the collapsible content <input type="text"> <input type="text"></p>
 		</div>
 		<h3 class="docs">Basic Collapsible with collapsed initial state</h3>
 <pre><code>
@@ -169,47 +169,47 @@
 	<h3 class="docs">Set of collapsibles that work as an accordion (data-set attributes with a shared value to your set)</h3>
 
 	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-		<h4 class="collapsible-header">Collapsible A</h4>
-		<p class="collapsible-content">And this is the collapsible content</p>
+		<h4 class="collapsible-header">Accordion A</h4>
+		<p class="collapsible-content">And this is the accordion tab content</p>
 	</div>
 	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-		<h4 class="collapsible-header">Collapsible B</h4>
-		<p class="collapsible-content">And this is the collapsible content</p>
+		<h4 class="collapsible-header">Accordion B</h4>
+		<p class="collapsible-content">And this is the accordion tab content</p>
 	</div>
 	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-		<h4 class="collapsible-header">Collapsible C</h4>
-		<p class="collapsible-content">And this is the collapsible content</p>
+		<h4 class="collapsible-header">Accordion C</h4>
+		<p class="collapsible-content">And this is the accordion tab content</p>
 	</div>
 	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-		<h4 class="collapsible-header">Collapsible D</h4>
-		<p class="collapsible-content">And this is the collapsible content</p>
+		<h4 class="collapsible-header">Accordion D</h4>
+		<p class="collapsible-content">And this is the accordion tab content</p>
 	</div>
 
 	<h3 class="docs">Tabbed Collapsible Set</h3>
 
 	<div class="tabs">
 		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
-			<h4 class="collapsible-header">Collapsible A</h4>
-			<p class="collapsible-content">And this is the collapsible content for tab A</p>
+			<h4 class="collapsible-header">Tab A</h4>
+			<p class="collapsible-content">And this is the content for tab A</p>
 		</div>
 		<div class="collapsible" data-collapsible-set="tabs-example">
-			<h4 class="collapsible-header">Collapsible B</h4>
-			<p class="collapsible-content">And this is the collapsible content for tab B</p>
+			<h4 class="collapsible-header">Tab B</h4>
+			<p class="collapsible-content">And this is the content for tab B</p>
 		</div>
 		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
-			<h4 class="collapsible-header">Collapsible C</h4>
-			<p class="collapsible-content">And this is the collapsible content for tab C</p>
+			<h4 class="collapsible-header">Tab C</h4>
+			<p class="collapsible-content">And this is the content for tab C</p>
 		</div>
 		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
-			<h4 class="collapsible-header">Collapsible D</h4>
-			<p class="collapsible-content">And this is the collapsible content for tab D</p>
+			<h4 class="collapsible-header">Tab D</h4>
+			<p class="collapsible-content">And this is the content for tab D</p>
 		</div>
 	</div>
 
 	<h3 class="docs">Menu collapsibles</h3>
 	<p>(Once included, any time a collapsible-content is absolute positioned, menu behavior will apply (hover and tap-out)</p>
 	<div class="collapsible collapsible-collapsed menu-example" data-collapsible-hover>
-		<h4 class="collapsible-header">Collapsible Menu</h4>
+		<h4 class="collapsible-header">Menu</h4>
 		<div class="collapsible-content">
 			<ul>
 				<li><a href="#">Item</a></li>
@@ -250,9 +250,18 @@
 	</div>
 
 	<h3 class="docs">External Toggle collapsibles</h3>
-	<p>Clickable targets that exist outside of the collapsible HTML that can toggle any specified collapsible target.</p>
+	<p>Clickable targets that exist outside of the collapsible HTML that can toggle any specified collapsible target. Works with checkbox, radio, select, links.</p>
 
 	<a href="#external-toggle-example" data-collapsible-target>Toggle Collapsible</a>
+	<a href="#external-toggle-example" data-collapsible-target data-force-expand>Expand Collapsible</a>
+	<a href="#external-toggle-example" data-collapsible-target data-force-collapse>Collapse Collapsible</a>
+	<label><input type="checkbox" data-collapsible-target="#external-toggle-example"> Toggle</label>
+	<select data-collapsible-target="#external-toggle-example">
+		<option data-ignore>Select one</option>
+		<option data-force-expand>Expand</option>
+		<option data-force-collapse>Collapse</option>
+		<option>Toggle</option>
+	</select>
 	<div class="collapsible collapsible-collapsed" id="external-toggle-example">
 		<h4 class="collapsible-header">Collapsible</h4>
 		<div class="collapsible-content">
@@ -263,25 +272,20 @@
 				<li><a href="#">Item</a></li>
 				<li><a href="#">Item</a></li>
 			</ul>
+			<label>
+				Text Input
+				<input type="text">
+			</label>
+			<label>
+				Text Input
+				<input type="text">
+			</label>
+			<label>
+				Text Input
+				<input type="text">
+			</label>
 		</div>
 	</div>
-
-	<h4 class="docs">Toggle with Checkbox</h4>
-	<form>
-		<label><input type="checkbox" data-collapsible-target="#external-toggle-checkbox-example"> Toggle Collapsible</label>
-		<div class="collapsible collapsible-collapsed" id="external-toggle-checkbox-example">
-			<h4 class="collapsible-header">Collapsible</h4>
-			<div class="collapsible-content">
-				<ul>
-					<li><a href="#">Item</a></li>
-					<li><a href="#">Item</a></li>
-					<li><a href="#">Item</a></li>
-					<li><a href="#">Item</a></li>
-					<li><a href="#">Item</a></li>
-				</ul>
-			</div>
-		</div>
-	</form>
 
 	<h4 class="docs">Toggle with Checkbox (Collapsed by Default)</h4>
 	<form>
@@ -338,6 +342,7 @@
 				<li><a href="#" data-value="Low"><strong>Low</strong> Priority</a></li>
 				<li><a href="#" data-value="Lowest"><strong>Lowest</strong> Priority</a></li>
 				<li><a href="#" data-value="None">No priority</a></li>
+				<li><a href="#">Not linked to select</a></li>
 			</ul>
 		</div>
 	</div>
