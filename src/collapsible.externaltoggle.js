@@ -83,7 +83,6 @@
 
 	// Simple auto-init by selector that runs when the dom is ready. Trigger "enhance" if desirable.
 	$( document ).bind( "click." + pluginName, function( event ){
-		var $target;
 		$( event.target ).closest( '[' + attrName + ']' ).each(function() {
 			var component = init( $( this ) );
 			component.onclick.call( component, event );
