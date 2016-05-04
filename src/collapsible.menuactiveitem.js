@@ -14,12 +14,12 @@
 		$link.closest( "ul,ol" ).find( "." + menuActiveClass ).removeClass( menuActiveClass );
 	}
 
-	$( document.body ).on( "focus mouseover blur mouseout", function( e ) {
-		var $link = $( e.target ).closest( "a," + headerClass );
+	$( document ).on( "focusin focusout mouseover mouseout", function( e ) {
+		var $link = $( e.target ).closest( "a, ." + headerClass );
 		var $collapsible = $link.closest( ".collapsible" );
 		if( $link.length && $collapsible.length ) {
 			clearActive( $link );
-			if( e.type === "focus" || e.type === "mouseover" ) {
+			if( e.type === "focusin" || e.type === "mouseover" ) {
 				$link.addClass( menuActiveClass );
 			}
 		}
