@@ -11,7 +11,9 @@
 	var menuActiveClass = "collapsible-menu-active";
 
 	function clearActive( $link ) {
-		$link.closest( "ul,ol" ).find( "." + menuActiveClass ).removeClass( menuActiveClass );
+		// remove on link, if header and remove on sibling list items
+		$link.removeClass( menuActiveClass )
+			.closest( "ul,ol" ).find( "." + menuActiveClass ).removeClass( menuActiveClass );
 	}
 
 	$( document ).on( "focusin focusout mouseover mouseout", function( e ) {
