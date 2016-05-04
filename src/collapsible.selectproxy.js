@@ -13,7 +13,7 @@
 		var attr = "data-" + pluginName + "-selectproxy";
 		var $select;
 		if( $target.is( "." + pluginName + "[" + attr + "]" ) ){
-			$select = $( "#" + $target.attr( attr ) );
+			$select = $( "#" + $target.attr( attr ) ).attr( "tabindex", "-1" );
 
 			$target.on( "click", "a", function( e ) {
 				var $a = $( e.target ).closest( "a" );

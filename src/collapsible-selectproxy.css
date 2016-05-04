@@ -1,0 +1,6 @@
+.collapsible-selectproxy {
+	display: none;
+}
+.enhanced .collapsible-selectproxy {
+	display: inline-block;
+}
