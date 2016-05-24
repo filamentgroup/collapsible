@@ -56,16 +56,28 @@
 
 			// hover behavior for collapsibles and triggers relies on the presence of data-collapsible-hover attr
 			if( $collapsible.is( "[data-collapsible-hover]" ) ){
+				var startedByTouch = false;
+				var exclusiveHover = $collapsible.is( "[data-collapsible-hover]" );
+
+				if( exclusiveHover ){
+					self.header.unbind( "click tap" );
+				}
 
 				$collapsible
 					.add( $trigger )
+					.bind( "touchstart pointerdown", function(){
+						// ignore hovers that begin with touch
+						if( exclusiveHover ){
+							startedByTouch = true;
+						}
+					} )
 					.bind( "mouseenter." + pluginName, function(){
-						if( isMenu() ){
+						if( !startedByTouch && isMenu() ){
 							$collapsible.data( pluginName ).expand();
 						}
 					} )
 					.bind( "mouseleave." + pluginName, function(){
-						if( isMenu() ){
+						if( !startedByTouch && isMenu() ){
 							$collapsible.data( pluginName ).collapse();
 						}
 					} );
