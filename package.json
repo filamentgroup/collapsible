@@ -24,6 +24,6 @@
     "grunt-contrib-jshint": "~1.0.0",
     "jquery": "^2.2.3",
     "matchdep": "^1.0.1",
-    "qunitjs": "^2.0.0-rc1"
+    "qunitjs": "^2.0.0"
   }
 }
