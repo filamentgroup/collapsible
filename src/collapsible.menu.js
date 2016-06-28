@@ -55,10 +55,12 @@
 				} );
 
 			// hover behavior for collapsibles and triggers relies on the presence of data-collapsible-hover attr
-			if( $collapsible.is( "[data-collapsible-hover]" ) ){
-				var startedByTouch = false;
-				var exclusiveHover = $collapsible.is( "[data-collapsible-hover]" );
+			// the exclusive hover behavior requires a value of "exclusive"
+			var startedByTouch = false;
+			var hover = $collapsible.is( "[data-collapsible-hover]" );
+			var exclusiveHover = $collapsible.is( "[data-collapsible-hover='exclusive']" );
 
+			if( hover ){
 				if( exclusiveHover ){
 					self.header.unbind( "click tap" );
 				}
@@ -90,6 +92,7 @@
 						$trigger.removeClass( triggerExpand );
 					} );
 			}
+
 
 
 			// add keyboard/arrow handling
