@@ -46,7 +46,9 @@
 						setTimeout(function(){
 							$collapsible.data( pluginName ).collapse();
 						});
-						a.preventDefault();
+						if( $( a.target ).closest( "a,select,input,textarea,button,label" ).length && !$( a.target ).closest( "." + pluginName + "-header" ).length ){
+							a.preventDefault();
+						}
 					}
 					setTimeout( function(){
 						targetTop = null;
