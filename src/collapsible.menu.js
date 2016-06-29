@@ -15,8 +15,9 @@
 			var $trigger = $collapsible.prev().filter( "." + pluginName + "-trigger" );
 			var triggerExpand = pluginName + "-trigger-expand";
 
+			// menu behavior (clickout, and optionally hover)
 			var isMenu = function(){
-				return $collapsible.find( "." + pluginName + "-content" ).css( "position" ) === "absolute";
+				return $collapsible.children( "." + pluginName + "-content" ).css( "position" ) === "absolute" || $collapsible.is( "[data-collapsible-ismenu]" );
 			};
 
 			// tapout/clickout behavior
