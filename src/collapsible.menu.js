@@ -76,13 +76,14 @@
 							startedByTouch = true;
 						}
 					} )
-					.bind( "mouseenter." + pluginName, function(){
-						if( !startedByTouch && isMenu() ){
+					// mouseover covers child collapsibles in a more friendly way than mouseleave
+					.bind( "mouseover." + pluginName, function( e ){
+						if( !startedByTouch && isMenu() && $( e.target ).closest( self.header ).length ){
 							$collapsible.data( pluginName ).expand();
 						}
 					} )
 					.bind( "mouseleave." + pluginName, function(){
-						if( !startedByTouch && isMenu() ){
+						if( !startedByTouch && isMenu() && $( e.target ).is( $collapsible ) ){
 							$collapsible.data( pluginName ).collapse();
 						}
 					} );
