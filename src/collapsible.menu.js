@@ -72,9 +72,7 @@
 					.add( $trigger )
 					.bind( "touchstart pointerdown", function(){
 						// ignore hovers that begin with touch
-						if( exclusiveHover ){
-							startedByTouch = true;
-						}
+						startedByTouch = true;
 					} )
 					// mouseover covers child collapsibles in a more friendly way than mouseleave
 					.bind( "mouseover." + pluginName, function( e ){
