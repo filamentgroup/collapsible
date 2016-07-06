@@ -27,11 +27,12 @@
 				.bind( "gesturestart." + pluginName, function(){
 					touchCancel = true;
 				})
-				.bind( "touchstart." + pluginName, function( a ){
+				.bind( "touchstart." + pluginName + " pointerdown." + pluginName + " MSPointerDown." + pluginName, function( a ){
 					targetTop = a.target.getBoundingClientRect().top;
 				})
-				.bind( "touchend." + pluginName + " click." + pluginName, function( a ){
-					if( a.type === "touchend" ){
+				.bind( "touchend." + pluginName + " click." + pluginName+ " pointerup." + pluginName + " MSPointerUp." + pluginName, function( a ){
+					var atype = a.originalEvent ? a.originalEvent.type || a.type;
+					if( atype === "touchend" || atype === "pointerup" || atype === "MSPointerUp" ){
 						if( targetTop && Math.abs( targetTop - a.target.getBoundingClientRect().top ) > 5 ){
 							touchCancel = true;
 						}
@@ -70,7 +71,7 @@
 
 				$collapsible
 					.add( $trigger )
-					.bind( "touchstart pointerdown", function(){
+					.bind( "touchstart pointerdown MSPointerDown", function(){
 						// ignore hovers that begin with touch
 						startedByTouch = true;
 					} )
