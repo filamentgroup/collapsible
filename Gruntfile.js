@@ -11,6 +11,14 @@ module.exports = function(grunt) {
 				src: ['Gruntfile.js', 'src/*.js']
 			}
 		},
+		copy: {
+			libs: {
+				files: [
+          { expand: true, cwd: 'node_modules/jquery/dist', src: [ "jquery.js" ], dest: "src/lib"},
+          { expand: true, cwd: 'node_modules/xrayhtml/dist/', src: [ "xrayhtml.*" ], dest: "src/lib"}
+				]
+			}
+    },
 		qunit: {
 			files: ['test/**/*.html']
 		}
@@ -20,5 +28,5 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('test', ['qunit']);
 	grunt.registerTask('lint', ['jshint']);
-	grunt.registerTask('default', ['test', 'lint']);
+	grunt.registerTask('default', ['copy', 'test', 'lint']);
 };
