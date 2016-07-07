@@ -22,7 +22,7 @@
     "grunt": "^1.0.1",
     "grunt-contrib-qunit": "^1.2.0",
     "grunt-contrib-jshint": "~1.0.0",
-    "jquery": "^2.2.3",
+    "jquery": "^3.1.0",
     "matchdep": "^1.0.1",
     "qunitjs": "^2.0.0-rc1"
   }
