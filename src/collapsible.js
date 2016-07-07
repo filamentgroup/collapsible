@@ -14,6 +14,7 @@
 	var defaults = {
 		pluginClass: pluginName,
 		collapsedClass: pluginName + "-collapsed",
+		expandedClass: pluginName + "-expanded", // NOTE: don't use this class for showing/hiding collapsible-content. Instead, use it for expanded visual exceptions.
 		headerClass: pluginName + "-header",
 		contentClass: pluginName + "-content",
 		enhancedClass: pluginName + "-enhanced",
@@ -63,8 +64,14 @@
 
 	Plugin.prototype = {
 		init: function () {
-			this.header = this.element.children().eq( 0 );
-			this.content = this.header.next();
+			this.header = this.element.children().filter( "." + this.options.headerClass );
+			if( !this.header.length ){
+				this.header = this.element.children().eq( 0 );
+			}
+			this.content = this.element.children().filter( "." + this.options.contentClass );
+			if( !this.content.length ){
+				this.content = this.header.next();
+			}
 			this._addAttributes();
 			this._bindEvents();
 			idInt++;
@@ -130,6 +137,7 @@
 		// used internally to expand without triggering events (for init)
 		_expand: function() {
 			this.element.removeClass( this.options.collapsedClass );
+			this.element.addClass( this.options.expandedClass );
 			this.collapsed = false;
 			this.header.attr( "aria-expanded", "true" );
 			this.content.attr( "aria-hidden", "false" );
@@ -144,11 +152,12 @@
 		// used internally to expand without triggering events (for init)
 		_collapse: function() {
 			this.element.addClass( this.options.collapsedClass );
+			this.element.removeClass( this.options.expandedClass );
 			this.collapsed = true;
 			this.header.attr( "aria-expanded", "false" );
 			this.content.attr( "aria-hidden", "true" );
 		},
-		
+
 		collapse: function() {
 			var self = $( this ).data( pluginName ) || this;
 			self._collapse();
