@@ -191,29 +191,27 @@ To use any data attribute configuration, first include the <code>data-config</co
 <p class="docs">Include the collapsible.set.js to use collapsible sets. A set of collapsibles work as an accordion. In the HTML, add <code>data-set</code> attributes with a shared value to include collapsibles in a set.</p>
 
 <div data-xrayhtml>
-<div class="collapsible" data-collapsible-set="foo">
-	<h4>Accordion A</h4>
-	<p>And this is the accordion tab content</p>
-</div>
-<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-	<h4>Accordion B</h4>
-	<p>And this is the accordion tab content</p>
-</div>
-<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-	<h4>Accordion C</h4>
-	<p>And this is the accordion tab content</p>
-</div>
-<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
-	<h4>Accordion D</h4>
-	<p>And this is the accordion tab content</p>
-</div>
-
-<style>
-
-	[data-collapsible-set="foo"] .collapsible-content {
-		margin-bottom: 0;
-	}
-</style>
+	<div class="collapsible" data-collapsible-set="foo">
+		<h4>Accordion A</h4>
+		<p>And this is the accordion tab content</p>
+	</div>
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
+		<h4>Accordion B</h4>
+		<p>And this is the accordion tab content</p>
+	</div>
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
+		<h4>Accordion C</h4>
+		<p>And this is the accordion tab content</p>
+	</div>
+	<div class="collapsible collapsible-collapsed" data-collapsible-set="foo">
+		<h4>Accordion D</h4>
+		<p>And this is the accordion tab content</p>
+	</div>
+	<style>
+		[data-collapsible-set="foo"] .collapsible-content {
+			margin-bottom: 0;
+		}
+	</style>
 </div>
 
 
@@ -223,45 +221,45 @@ To use any data attribute configuration, first include the <code>data-config</co
 	include the collapsible.tab.js script, and something like the CSS in this example:</p>
 
 <div data-xrayhtml>
-<div class="tabs">
-	<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
-		<h4>Tab A</h4>
-		<p >And this is the content for tab A</p>
+	<div class="tabs">
+		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
+			<h4>Tab A</h4>
+			<p >And this is the content for tab A</p>
+		</div>
+		<div class="collapsible" data-collapsible-set="tabs-example">
+			<h4>Tab B</h4>
+			<p >And this is the content for tab B</p>
+		</div>
+		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
+			<h4>Tab C</h4>
+			<p >And this is the content for tab C</p>
+		</div>
+		<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
+			<h4>Tab D</h4>
+			<p >And this is the content for tab D</p>
+		</div>
 	</div>
-	<div class="collapsible" data-collapsible-set="tabs-example">
-		<h4>Tab B</h4>
-		<p >And this is the content for tab B</p>
-	</div>
-	<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
-		<h4>Tab C</h4>
-		<p >And this is the content for tab C</p>
-	</div>
-	<div class="collapsible collapsible-collapsed" data-collapsible-set="tabs-example">
-		<h4>Tab D</h4>
-		<p >And this is the content for tab D</p>
-	</div>
-</div>
-<style>
-.tabnav {
-	display: table;
-	width: 100%;
-}
-.tabnav a {
-	display: table-cell;
-	border: 2px solid #fff;
-	border-bottom-width: 0;
-	background-color: #aaa;
-	color: #fff;
-	padding: .4em 1em;
-	text-decoration: none;
-}
-.tabnav .tab-active {
-	border: 1px solid #aaa;
-	border-bottom-width: 0;
-	background-color: #fff;
-	color: #222;
-}
-</style>
+	<style>
+	.tabnav {
+		display: table;
+		width: 100%;
+	}
+	.tabnav a {
+		display: table-cell;
+		border: 2px solid #fff;
+		border-bottom-width: 0;
+		background-color: #aaa;
+		color: #fff;
+		padding: .4em 1em;
+		text-decoration: none;
+	}
+	.tabnav .tab-active {
+		border: 1px solid #aaa;
+		border-bottom-width: 0;
+		background-color: #fff;
+		color: #222;
+	}
+	</style>
 </div>
 
 <h3 class="docs">Menu collapsibles</h3>
@@ -269,51 +267,51 @@ To use any data attribute configuration, first include the <code>data-config</co
 The following example has an absolute-positioned collapsible-content div at wider viewport sizes, making it closeable via click/tap-out.</p>
 
 <div data-xrayhtml>
-<div class="collapsible collapsible-collapsed menu-example">
-	<h4 class="collapsible-header">Menu</h4>
-	<div class="collapsible-content">
-		<ul>
-			<li><a href="#">Item</a></li>
-			<li><a href="#">Item</a></li>
-			<li><a href="#">Item</a></li>
-			<li><a href="#">Item</a></li>
-			<li><a href="#">Item</a></li>
-		</ul>
+	<div class="collapsible collapsible-collapsed menu-example">
+		<h4 class="collapsible-header">Menu</h4>
+		<div class="collapsible-content">
+			<ul>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+				<li><a href="#">Item</a></li>
+			</ul>
+		</div>
 	</div>
-</div>
-<style>
-/* demo styles for the collapsible menus on this page */
-@media (min-width: 40em){
-	/* make tap-out to close work at wider breakpoints */
-	.menu-example .collapsible-content {
-		position: absolute;
+	<style>
+	/* demo styles for the collapsible menus on this page */
+	@media (min-width: 40em){
+		/* make tap-out to close work at wider breakpoints */
+		.menu-example .collapsible-content {
+			position: absolute;
+		}
 	}
-}
-.menu-example .collapsible-header,
-.menu-example .collapsible-content,
-.menu-example li {
-	max-width: 300px;
-	width: 100%;
-	box-sizing: border-box;
-}
-.menu-example .collapsible-header {
-	background-image: url(img/tri-down.png);
-}
-.menu-example .collapsible-content {
-	padding: 0;
-}
-.menu-example ul,
-.menu-example li {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-.menu-example a {
-	padding: .5em 30px;
-	display: block;
-	border-bottom: 1px solid #eee;
-}
-</style>
+	.menu-example .collapsible-header,
+	.menu-example .collapsible-content,
+	.menu-example li {
+		max-width: 300px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+	.menu-example .collapsible-header {
+		background-image: url(img/tri-down.png);
+	}
+	.menu-example .collapsible-content {
+		padding: 0;
+	}
+	.menu-example ul,
+	.menu-example li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.menu-example a {
+		padding: .5em 30px;
+		display: block;
+		border-bottom: 1px solid #eee;
+	}
+	</style>
 </div>
 
 <h3 class="docs">Menu with active state</h3>
@@ -400,7 +398,6 @@ The following example has an absolute-positioned collapsible-content div at wide
 		</ul>
 	</div>
 </div>
-</div>
 
 
 <style>
@@ -464,7 +461,6 @@ The following example has an absolute-positioned collapsible-content div at wide
 	</div>
 </div>
 </div>
-</div>
 
 <h4 class="docs">Toggle with Checkbox (Collapsed by Default)</h4>
 <p class="docs">Include the collapsible.externaltoggle.js script.</p>
@@ -504,7 +500,7 @@ The following example has an absolute-positioned collapsible-content div at wide
 			</ul>
 		</div>
 	</div>
-</form
+</form>
 </div>
 
 
