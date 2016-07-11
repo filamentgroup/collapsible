@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="../src/lib/xrayhtml.css">
 	<link rel="stylesheet" href="../src/collapsible.css" />
 	<link rel="stylesheet" href="../src/collapsible-selectproxy.css" />
+	<link rel="stylesheet" href="../src/collapsible.navbar.css" />
 	<script src="../src/lib/jquery.js"></script>
 	<script src="../src/lib/xrayhtml.js"></script>
 	<script type="text/javascript" src="../src/collapsible.js"></script>
@@ -20,7 +21,11 @@
 	<script type="text/javascript" src="../src/collapsible.tab.js"></script>
 	<script type="text/javascript" src="../src/collapsible.externaltoggle.js"></script>
 	<script type="text/javascript" src="../src/collapsible.selectproxy.js"></script>
+	<script type="text/javascript" src="../src/collapsible.navbar.js"></script>
 	<script src="https://filamentgroup.github.io/demo-head/loadfont.js"></script>
+	<script>
+		document.documentElement.className += " enhanced";
+	</script>
 </head>
 
 
@@ -530,6 +535,26 @@ The following example has an absolute-positioned collapsible-content div at wide
 	</div>
 </div>
 </div>
+
+
+
+	<h3 class="docs">Collapsible Navbars</h3>
+	<p class="docs">Include the collapsible.navbar.js script.</p>
+	<div data-xrayhtml>
+		<div class="navbar navbar-collapsed collapsible" role="navigation" data-config data-collapsed-class="navbar-collapsed" data-expanded-class="navbar-expanded" data-header-class="navbar_more" data-enhanced-class="navbar-enhanced" data-content-class="navbar_items">
+			<ul class="navbar_items">
+				<li class="navbar_item"><a href="#" class="navbar_itemlink navbar_itemlink-active">Men</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Women</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Kids</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">New</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Ties</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Gifts</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Sale</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Performance</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Gift Guide</a></li>
+			</ul>
+			<h2 class="navbar_more">More <span class="icon-arrow-menu"></span></h2>
+		</div><!--navbar-->
 	</div>
 
 </div>

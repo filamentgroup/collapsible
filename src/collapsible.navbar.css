@@ -1,0 +1,117 @@
+.navbar {
+  font-size: 1em;
+  float: left; /* necessary to get overflow working */
+  position: relative;
+}
+.enhanced .navbar {
+  overflow: hidden; /* hide items visually while calculating */
+  max-height: 2.65em; /* set to match height of navbar */
+}
+.enhanced .navbar_more {
+  visibility: hidden;
+}
+.enhanced .navbar-ready {
+  overflow: visible; /* this class is present whenever navbar is done shuffling */
+}
+.enhanced .navbar-ready .navbar_more {
+  visibility: visible;
+}
+.navbar_items,
+.navbar_item,
+.navbar_more {
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  max-width: none;
+}
+.navbar_itemlink,
+.navbar_more {
+  padding: 1em .7em;
+  text-transform: uppercase;
+  font-size: 1em;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  background: #fff;
+}
+.navbar_itemlink,
+.collapsible .navbar_itemlink.collapsible-header {
+  text-align: left;
+}
+.navbar_item-menu [data-append-element]{
+  display: none;
+}
+.navbar_itemlink:hover,
+.navbar_itemlink:focus {
+	position: relative;
+	text-decoration: none;
+  z-index: 300;
+}
+.navbar_itemlink {
+  position: relative;
+}
+.navbar_item-overflow .navbar_itemlink:after {
+	display: none;
+}
+.navbar_item-overflow .navbar_itemlink {
+	border-top: 1px solid #eee;
+}
+.navbar_item-overflow ~ .navbar_item-overflow .navbar_itemlink {
+  border-top: none;
+}
+.navbar_item-overflow:last-child .navbar_itemlink {
+  border-bottom: 1px solid #eee;
+}
+
+.navbar_more {
+	width: 5.1em;
+	white-space: nowrap;
+	position: absolute;
+	left: -9999px;
+	top: -999px;
+}
+.enhanced .navbar_more {
+	position: relative;
+	left: auto;
+	top: auto;
+}
+.navbar_more:focus {
+	outline: none;
+}
+.navbar_more .icon-arrow-menu {
+	display: inline-block;
+	width: 11px;
+	height: 7px;
+}
+.navbar:not(.navbar-collapsed) .navbar_more {
+	background-color: #333;
+	color: #fff;
+}
+
+.navbar_item-overflow {
+	position: relative;
+	z-index: 300;
+  clear: both;
+  float: right;
+  display: none;
+  margin-right: -10.97em; /* match offset to more link width */
+  width: 11em;
+  border-right: 1px solid #aaa;
+  border-left: 1px solid #aaa;
+  box-shadow: -3px 3px 0 0 #f7f7f7; /* can’t use an rgba here because they overlap */
+}
+.navbar_item-overflow ~ .navbar_item-overflow .navbar_itemlink {
+	margin-top: -3px;
+}
+.enhanced .navbar-ready .navbar_item-overflow {
+  display: block;
+}
+.enhanced .navbar-collapsed .navbar_item-overflow,
+.navbar_more-nomore,
+.enhanced .navbar_more-nomore {
+  position: absolute;
+  left: -999px;
+  top: -999px;
+}
