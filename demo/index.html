@@ -534,6 +534,62 @@ The following example has an absolute-positioned collapsible-content div at wide
 		</ul>
 	</div>
 </div>
+
+<style>
+	.navbar,
+	.navbar_items,
+	.navbar_item,
+	.navbar_more  {
+	  font-size: 1em;
+	}
+	.navbar_itemlink,
+	.navbar_more {
+	  padding: 1em .7em;
+	  text-transform: uppercase;
+	  font-size: 1em;
+	  text-decoration: none;
+	  display: block;
+	  cursor: pointer;
+	  background: #fff;
+	}
+	.navbar_more {
+		width: 5.1em;
+		cursor: pointer;
+		background: #fff url(img/tri-down.png) 85% 50% no-repeat;
+	}
+	.navbar_more:hover,
+	.navbar_more:focus,
+	.navbar_itemlink:hover,
+	.navbar_itemlink:focus {
+		text-decoration: none;
+	  background-color: #eee;
+		outline: none;
+	}
+	.navbar-expanded .navbar_more {
+		background-color: #333;
+		color: #fff;
+	}
+	.navbar_item-overflow .navbar_itemlink {
+		border-top: 1px solid #eee;
+	}
+	.navbar_item-overflow ~ .navbar_item-overflow .navbar_itemlink {
+	  border-top: none;
+	}
+	.navbar_item-overflow:last-child .navbar_itemlink {
+	  border-bottom: 1px solid #eee;
+	}
+	.navbar_item-overflow {
+	  margin-right: -6.5em; /* match offset to more link width */
+	  width: 11em;
+	  border-right: 1px solid #eee;
+	  border-left: 1px solid #eee;
+	  box-shadow: -3px 3px 0 0 #f7f7f7; /* can’t use an rgba here because they overlap */
+	}
+	.navbar_item-overflow ~ .navbar_item-overflow .navbar_itemlink {
+		margin-top: -3px;
+	}
+
+</style>
 </div>
 
 
