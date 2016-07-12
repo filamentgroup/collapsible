@@ -536,57 +536,8 @@ The following example has an absolute-positioned collapsible-content div at wide
 </div>
 
 <style>
-	.navbar,
-	.navbar_items,
-	.navbar_item,
-	.navbar_more  {
-	  font-size: 1em;
-	}
-	.navbar_itemlink,
-	.navbar_more {
-	  padding: 1em .7em;
-	  text-transform: uppercase;
-	  font-size: 1em;
-	  text-decoration: none;
-	  display: block;
-	  cursor: pointer;
-	  background: #fff;
-	}
-	.navbar_more {
-		width: 5.1em;
-		cursor: pointer;
-		background: #fff url(img/tri-down.png) 85% 50% no-repeat;
-	}
-	.navbar_more:hover,
-	.navbar_more:focus,
-	.navbar_itemlink:hover,
-	.navbar_itemlink:focus {
-		text-decoration: none;
-	  background-color: #eee;
-		outline: none;
-	}
-	.navbar-expanded .navbar_more {
-		background-color: #333;
-		color: #fff;
-	}
-	.navbar_item-overflow .navbar_itemlink {
-		border-top: 1px solid #eee;
-	}
-	.navbar_item-overflow ~ .navbar_item-overflow .navbar_itemlink {
-	  border-top: none;
-	}
-	.navbar_item-overflow:last-child .navbar_itemlink {
-	  border-bottom: 1px solid #eee;
-	}
-	.navbar_item-overflow {
-	  margin-right: -6.5em; /* match offset to more link width */
-	  width: 11em;
-	  border-right: 1px solid #eee;
-	  border-left: 1px solid #eee;
-	  box-shadow: -3px 3px 0 0 #f7f7f7; /* can’t use an rgba here because they overlap */
-	}
-	.navbar_item-overflow ~ .navbar_item-overflow .navbar_itemlink {
-		margin-top: -3px;
+	.collapsible-menu .collapsible-content {
+		position: absolute;
 	}
 
 </style>
@@ -595,23 +546,77 @@ The following example has an absolute-positioned collapsible-content div at wide
 
 
 	<h3 class="docs">Collapsible Navbars</h3>
-	<p class="docs">Include the collapsible.navbar.js script.</p>
-	<div data-xrayhtml>
-		<div class="navbar navbar-collapsed collapsible" role="navigation" data-config data-collapsed-class="navbar-collapsed" data-expanded-class="navbar-expanded" data-header-class="navbar_more" data-enhanced-class="navbar-enhanced" data-content-class="navbar_items">
+	<p class="docs">Collapsible navbars manage a list of navigation items to move any items into a "More" menu that can't fit at a given width. To create a navbar, include the collapsible.navbar.js script and collapsible.navbar.css stylesheet, and follow this markup pattern. The data attribute class overrides are necessary for the navbar to pick up the styles in the component stylesheet.
+	The data-collapsible-ismenu attribute ensures that the "more" menu picks up menu-like features like click-out to close, even though its menu items are not in fact positioned absolute. </p>
+	<div data-xrayhtml class="navbar-example">
+		<div class="navbar navbar-collapsed collapsible" role="navigation" data-config data-collapsible-ismenu data-collapsed-class="navbar-collapsed" data-expanded-class="navbar-expanded" data-header-class="navbar_more" data-enhanced-class="navbar-enhanced" data-content-class="navbar_items">
 			<ul class="navbar_items">
-				<li class="navbar_item"><a href="#" class="navbar_itemlink navbar_itemlink-active">Men</a></li>
-				<li class="navbar_item"><a href="#" class="navbar_itemlink">Women</a></li>
-				<li class="navbar_item"><a href="#" class="navbar_itemlink">Kids</a></li>
-				<li class="navbar_item"><a href="#" class="navbar_itemlink">New</a></li>
-				<li class="navbar_item"><a href="#" class="navbar_itemlink">Ties</a></li>
-				<li class="navbar_item"><a href="#" class="navbar_itemlink">Gifts</a></li>
-				<li class="navbar_item"><a href="#" class="navbar_itemlink">Sale</a></li>
-				<li class="navbar_item"><a href="#" class="navbar_itemlink">Performance</a></li>
-				<li class="navbar_item"><a href="#" class="navbar_itemlink">Gift Guide</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink navbar_itemlink-active">Item A</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item B</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item C</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item D</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item E</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item F</a></li>
 			</ul>
 			<h2 class="navbar_more">More <span class="icon-arrow-menu"></span></h2>
 		</div><!--navbar-->
+
+		<style>
+			.navbar,
+			.navbar_items,
+			.navbar_item,
+			.navbar_more  {
+			  font-size: 1em;
+			}
+			.navbar_itemlink,
+			.navbar_more {
+			  padding: 1em .7em;
+			  text-transform: uppercase;
+			  font-size: 1em;
+			  text-decoration: none;
+			  display: block;
+			  cursor: pointer;
+			  background: #fff;
+				border: 1px solid #eee;
+			}
+			.navbar_more {
+				width: 5.1em;
+				cursor: pointer;
+				background: #fff url(img/tri-down.png) 85% 50% no-repeat;
+			}
+			.navbar_more:hover,
+			.navbar_more:focus,
+			.navbar_itemlink:hover,
+			.navbar_itemlink:focus {
+				text-decoration: none;
+			  background-color: #eee;
+				outline: none;
+			}
+			.navbar-expanded .navbar_more {
+				background-color: #333;
+				color: #fff;
+			}
+			.navbar_item-overflow ~ .navbar_item-overflow .navbar_itemlink {
+			  border-top: none;
+			}
+
+			.navbar_item-overflow {
+			  margin-right: -6.5em; /* match offset to more link width */
+			  width: 11em;
+			  box-shadow: -3px 3px 0 0 #f7f7f7; /* can’t use an rgba here because they overlap */
+			}
+
+		</style>
 	</div>
+
+	<style>
+	/* clearfix this example */
+		.navbar-example .snippet:after {
+			content: "\20";
+			clear: both;
+			display: block;
+		}
+	</style>
 
 </div>
 </body>
