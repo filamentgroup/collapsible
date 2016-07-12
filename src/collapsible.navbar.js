@@ -17,13 +17,13 @@
   			var $navItems = $collapsible.find( "." + itemClass );
         var $moreBtn = $collapsible.find( "." + itemMoreClass );
 
-        function resetItems(){
+        var resetItems = function(){
           $moreBtn.attr( "tabindex", "0" );
           $moreBtn.removeClass( itemMoreHiddenClass );
           $navItems.removeClass( itemMenuClass );
-        }
+        };
 
-        function initItems(){
+        var initItems = function(){
           menuNotReady();
           resetItems();
           var startTop = $navItems[ 0 ].offsetTop;
@@ -59,7 +59,7 @@
           }
           accommodateMoreBtn();
 
-        }
+        };
 
         // init immediately
         initItems();
