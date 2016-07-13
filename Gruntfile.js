@@ -29,5 +29,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('test', ['qunit']);
 	grunt.registerTask('lint', ['jshint']);
 	grunt.registerTask('default', ['copy', 'test', 'lint']);
+	grunt.registerTask('travis', ['test']);
 	grunt.registerTask('stage', ['default']);
 };
