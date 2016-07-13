@@ -562,6 +562,9 @@ The following example has an absolute-positioned collapsible-content div at wide
 		</div><!--navbar-->
 
 		<style>
+			.navbar {
+				border: 1px solid #eee;
+			}
 			.navbar,
 			.navbar_items,
 			.navbar_item,
@@ -570,19 +573,19 @@ The following example has an absolute-positioned collapsible-content div at wide
 			}
 			.navbar_itemlink,
 			.navbar_more {
-			  padding: 1em .7em;
+			  padding: .7em 1em;
 			  text-transform: uppercase;
 			  font-size: 1em;
 			  text-decoration: none;
 			  display: block;
 			  cursor: pointer;
 			  background-color: #fff;
-				border: 1px solid #eee;
+				border: 0;
 			}
 			.navbar_more {
 				width: 5.1em;
 				cursor: pointer;
-				background: #fff url(img/tri-down.png) 85% 50% no-repeat;
+				background: #eee url(img/tri-down.png) 85% 50% no-repeat;
 			}
 			.navbar_more:hover,
 			.navbar_more:focus,
@@ -659,7 +662,10 @@ The following example has an absolute-positioned collapsible-content div at wide
 		<style>
 			.navbar_item_menu {
 				position: absolute;
+				left: 0;
+				width: 100%;
 				border: 1px solid #eee;
+				box-sizing: border-box;
 			}
 			.navbar_item.collapsible .navbar_itemlink {
 				padding-left: 30px;

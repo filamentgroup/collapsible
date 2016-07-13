@@ -1,10 +1,11 @@
 .navbar {
   float: left; /* necessary to get overflow working */
   position: relative;
+  width: 100%;
 }
 .enhanced .navbar {
   overflow: hidden; /* hide items visually while calculating */
-  max-height: 2.65em; /* set this to match height of navbar */
+  max-height: 3.2em; /* set this to match height of navbar */
 }
 .enhanced .navbar_more {
   visibility: hidden;
@@ -47,12 +48,13 @@
   clear: both;
   float: right;
   display: none;
-  margin-right: -6.5em; /* match offset to "more" link outer width */
+  margin-right: -7em; /* match offset to "more" link outer width */
   width: 100%;
-  width: calc(100% +  6.5em); /* match calc to "more" link outer width if you want the menu items 100% width */
+  width: calc(100% +  7em); /* match calc to "more" link outer width if you want the menu items 100% width */
 }
 .enhanced .navbar-ready .navbar_item-overflow {
   display: block;
+  border: 1px solid #eee;
 }
 .enhanced .navbar-collapsed .navbar_item-overflow,
 .navbar_more-nomore,
@@ -62,14 +64,6 @@
   top: -999px;
 }
 
-.navbar-overflow-menuexpanded .navbar_item-overflow {
-  position: absolute;
-  top: 0;
-  z-index: 1;
-}
 .navbar_item-overflow[data-collapsible-hover] .collapsible-content {
   position: relative;
-}
-.navbar_item-overflow.collapsible-expanded .collapsible-content {
-  z-index: 300;
 }
