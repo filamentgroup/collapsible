@@ -4,5 +4,5 @@
 
 See demo page for how-to and examples:
 
-http://master.origin.collapsible.fgview.com/demos/
-OR if it's a branch you want to see: http://BRANCHNAMEHERE.origin.collapsible.fgview.com/demos/
+- http://master.origin.collapsible.fgview.com/demos/
+- OR if it's a branch you want to see: http://BRANCHNAMEHERE.origin.collapsible.fgview.com/demos/
