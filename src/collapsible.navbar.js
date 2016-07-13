@@ -67,13 +67,6 @@
         $( w ).bind( "resize", initItems );
 
         $collapsible
-        .bind( "click", function( e ){
-          var $target = $( e.target ).closest( "a" );
-          // if click is on overflow menu item, open its href explicitly
-          if( $target.closest( "." + itemMenuClass ).length ){
-            window.location.href = $target.attr( "href" );
-          }
-        })
         // NOTE: this tap-out needs scroll handling for tall more menus!!!
         .bind( "mouseover." + pluginName, function( e ){
 						if( $collapsible.is( "[data-collapsible-hover]" ) && !$( e.target ).closest( "." + itemMenuClass + ", ." + itemMoreClass ).length ){

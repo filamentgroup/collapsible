@@ -47,8 +47,9 @@
   clear: both;
   float: right;
   display: none;
-  margin-right: -6.5em; /* match offset to more link width */
-  width: 11em;
+  margin-right: -6.5em; /* match offset to "more" link outer width */
+  width: 100%;
+  width: calc(100% +  6.5em); /* match calc to "more" link outer width if you want the menu items 100% width */
 }
 .enhanced .navbar-ready .navbar_item-overflow {
   display: block;
@@ -59,4 +60,16 @@
   position: absolute;
   left: -999px;
   top: -999px;
+}
+
+.navbar-overflow-menuexpanded .navbar_item-overflow {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+.navbar_item-overflow[data-collapsible-hover] .collapsible-content {
+  position: relative;
+}
+.navbar_item-overflow.collapsible-expanded .collapsible-content {
+  z-index: 300;
 }
