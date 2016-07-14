@@ -1,0 +1,69 @@
+.navbar {
+  float: left; /* necessary to get overflow working */
+  position: relative;
+  width: 100%;
+}
+.enhanced .navbar {
+  overflow: hidden; /* hide items visually while calculating */
+  max-height: 2.6em; /* set this to match height of navbar */
+}
+.enhanced .navbar_more {
+  visibility: hidden;
+}
+.enhanced .navbar-ready {
+  overflow: visible; /* this class is present whenever navbar is done shuffling */
+}
+.enhanced .navbar-ready .navbar_more {
+  visibility: visible;
+}
+.navbar_items,
+.navbar_item,
+.navbar_more {
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar_itemlink,
+.collapsible .navbar_itemlink.collapsible-header {
+  text-align: left;
+}
+.navbar_more {
+	width: 5.1em;
+	white-space: nowrap;
+	position: absolute;
+	left: -9999px;
+	top: -999px;
+}
+.enhanced .navbar_more {
+	position: relative;
+	left: auto;
+	top: auto;
+}
+
+.navbar_item-overflow {
+	position: relative;
+	z-index: 300;
+  clear: both;
+  float: right;
+  display: none;
+  margin-right: -7em; /* match offset to "more" link outer width */
+  width: 100%;
+  width: calc(100% +  7em); /* match calc to "more" link outer width if you want the menu items 100% width */
+}
+.enhanced .navbar-ready .navbar_item-overflow {
+  display: block;
+  border: 1px solid #eee;
+}
+.enhanced .navbar-collapsed .navbar_item-overflow,
+.navbar_more-nomore,
+.enhanced .navbar_more-nomore {
+  position: absolute;
+  left: -999px;
+  top: -999px;
+}
+
+.navbar_item-overflow[data-collapsible-hover] .collapsible-content {
+  position: relative;
+}

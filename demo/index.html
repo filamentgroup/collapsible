@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="../src/lib/xrayhtml.css">
 	<link rel="stylesheet" href="../src/collapsible.css" />
 	<link rel="stylesheet" href="../src/collapsible-selectproxy.css" />
+	<link rel="stylesheet" href="../src/collapsible.navbar.css" />
 	<script src="../src/lib/jquery.js"></script>
 	<script src="../src/lib/xrayhtml.js"></script>
 	<script type="text/javascript" src="../src/collapsible.js"></script>
@@ -20,7 +21,11 @@
 	<script type="text/javascript" src="../src/collapsible.tab.js"></script>
 	<script type="text/javascript" src="../src/collapsible.externaltoggle.js"></script>
 	<script type="text/javascript" src="../src/collapsible.selectproxy.js"></script>
+	<script type="text/javascript" src="../src/collapsible.navbar.js"></script>
 	<script src="https://filamentgroup.github.io/demo-head/loadfont.js"></script>
+	<script>
+		document.documentElement.className += " enhanced";
+	</script>
 </head>
 
 
@@ -529,7 +534,143 @@ The following example has an absolute-positioned collapsible-content div at wide
 		</ul>
 	</div>
 </div>
+
+<style>
+	.collapsible-menu .collapsible-content {
+		position: absolute;
+	}
+
+</style>
 </div>
+
+
+
+	<h3 class="docs">Collapsible Navbars</h3>
+	<p class="docs">Collapsible navbars manage a list of navigation items to move any items into a "More" menu that can't fit at a given width. To create a navbar, include the collapsible.navbar.js script and collapsible.navbar.css stylesheet, and follow this markup pattern. The data attribute class overrides are necessary for the navbar to pick up the styles in the component stylesheet.
+	The data-collapsible-ismenu attribute ensures that the "more" menu picks up menu-like features like click-out to close, even though its menu items are not in fact positioned absolute. </p>
+	<div data-xrayhtml class="navbar-example">
+		<div class="navbar navbar-collapsed collapsible" role="navigation" data-config data-collapsible-ismenu data-collapsed-class="navbar-collapsed" data-expanded-class="navbar-expanded" data-header-class="navbar_more" data-enhanced-class="navbar-enhanced" data-content-class="navbar_items">
+			<ul class="navbar_items">
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item A</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item B</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item C</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item D</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item E</a></li>
+				<li class="navbar_item"><a href="#" class="navbar_itemlink">Item F</a></li>
+			</ul>
+			<h2 class="navbar_more">More <span class="icon-arrow-menu"></span></h2>
+		</div><!--navbar-->
+
+		<style>
+			.navbar {
+				border: 1px solid #eee;
+			}
+			.navbar,
+			.navbar_items,
+			.navbar_item,
+			.navbar_more  {
+			  font-size: 1em;
+			}
+			.navbar_itemlink,
+			.navbar_more {
+			  padding: .7em 1em;
+			  text-transform: uppercase;
+			  font-size: 1em;
+			  text-decoration: none;
+			  display: block;
+			  cursor: pointer;
+			  background-color: #fff;
+				border: 0;
+			}
+			.navbar_more {
+				width: 5.1em;
+				cursor: pointer;
+				background: #eee url(img/tri-down.png) 85% 50% no-repeat;
+			}
+			.navbar_more:hover,
+			.navbar_more:focus,
+			.navbar_itemlink:hover,
+			.navbar_itemlink:focus {
+				text-decoration: none;
+			  background-color: #eee;
+				outline: none;
+			}
+			.navbar-expanded .navbar_more {
+				background-color: #333;
+				color: #fff;
+			}
+			.navbar_item-overflow ~ .navbar_item-overflow .navbar_itemlink {
+			  border-top: none;
+			}
+			.navbar_item-overflow {
+			  box-shadow: -3px 3px 0 0 #f7f7f7; /* can’t use an rgba here because they overlap */
+			}
+
+		</style>
+	</div>
+
+	<style>
+	/* clearfix this example */
+		.navbar-example .snippet:after {
+			content: "\20";
+			clear: both;
+			display: block;
+		}
+	</style>
+
+
+	<h3 class="docs">Collapsible Navbar with Nested Menus</h3>
+	<p class="docs">Collapsible navbars manage a list of navigation items to move any items into a "More" menu that can't fit at a given width. To create a navbar, include the collapsible.navbar.js script and collapsible.navbar.css stylesheet, and follow this markup pattern. The data attribute class overrides are necessary for the navbar to pick up the styles in the component stylesheet.
+	The data-collapsible-ismenu attribute ensures that the "more" menu picks up menu-like features like click-out to close, even though its menu items are not in fact positioned absolute. </p>
+	<div data-xrayhtml class="navbar-example">
+		<div class="navbar navbar-collapsed collapsible" role="navigation" data-config data-collapsible-ismenu data-collapsible-hover data-collapsed-class="navbar-collapsed" data-expanded-class="navbar-expanded" data-header-class="navbar_more" data-enhanced-class="navbar-enhanced" data-content-class="navbar_items">
+			<ul class="navbar_items">
+				<li class="navbar_item collapsible collapsible-collapsed" data-collapsible-hover>
+					<a href="#" class="navbar_itemlink">Item A</a>
+					<div class="navbar_item_menu">This is the menu content for item A</div>
+
+				</li>
+				<li class="navbar_item collapsible collapsible-collapsed" data-collapsible-hover>
+					<a href="#" class="navbar_itemlink">Item B</a>
+					<div class="navbar_item_menu">This is the menu content for item B</div>
+
+				</li>
+				<li class="navbar_item collapsible collapsible-collapsed" data-collapsible-hover>
+					<a href="#" class="navbar_itemlink">Item C</a>
+					<div class="navbar_item_menu">This is the menu content for item C</div>
+
+				</li>
+				<li class="navbar_item collapsible collapsible-collapsed" data-collapsible-hover>
+					<a href="#" class="navbar_itemlink">Item D</a>
+					<div class="navbar_item_menu">This is the menu content for item D</div>
+
+				</li>
+				<li class="navbar_item collapsible collapsible-collapsed" data-collapsible-hover>
+					<a href="#" class="navbar_itemlink">Item E</a>
+					<div class="navbar_item_menu">This is the menu content for item E</div>
+
+				</li>
+				<li class="navbar_item collapsible collapsible-collapsed" data-collapsible-hover>
+					<a href="#" class="navbar_itemlink">Item F</a>
+					<div class="navbar_item_menu">This is the menu content for item G</div>
+
+				</li>
+			</ul>
+			<h2 class="navbar_more">More <span class="icon-arrow-menu"></span></h2>
+		</div><!--navbar-->
+
+		<style>
+			.navbar_item_menu {
+				position: absolute;
+				left: 0;
+				width: 100%;
+				border: 1px solid #eee;
+				box-sizing: border-box;
+			}
+			.navbar_item.collapsible .navbar_itemlink {
+				padding-left: 30px;
+			}
+		</style>
 	</div>
 
 </div>
