@@ -5,7 +5,7 @@
 }
 .enhanced .navbar {
   overflow: hidden; /* hide items visually while calculating */
-  max-height: 3.2em; /* set this to match height of navbar */
+  max-height: 2.6em; /* set this to match height of navbar */
 }
 .enhanced .navbar_more {
   visibility: hidden;
