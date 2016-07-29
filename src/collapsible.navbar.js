@@ -1,7 +1,6 @@
 /* collapsible extension for navbar functionality */
 ;(function( w ){
 
-  var collapsibleNavbar = function(){
     var $ = w.jQuery;
     $( w.document ).bind( "init", function( e ){
   		var pluginName = "collapsible";
@@ -81,13 +80,5 @@
           } );
       }
     });
-  };
-
-  if( typeof module !== "undefined" ){
-    module.exports = collapsibleNavbar;
-  }
-  else {
-    collapsibleNavbar();
-  }
 
 }( typeof global !== "undefined" ? global : this ));
