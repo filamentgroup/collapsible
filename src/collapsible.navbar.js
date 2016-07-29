@@ -67,12 +67,18 @@
         $( w ).bind( "resize", initItems );
 
         $collapsible
-        // NOTE: this tap-out needs scroll handling for tall more menus!!!
         .bind( "mouseover." + pluginName, function( e ){
 						if( $collapsible.is( "[data-collapsible-hover]" ) && !$( e.target ).closest( "." + itemMenuClass + ", ." + itemMoreClass ).length ){
 							$collapsible.data( pluginName ).collapse();
 						}
-					} );
+					} )
+          .bind( "collapse", function( e ){
+            var $childCollapsibles = $( e.target ).find( "." + pluginName + "-expanded." + itemMenuClass );
+            if( $childCollapsibles.length ){
+              $childCollapsibles.data( pluginName ).collapse();
+            }
+
+          } );
       }
     });
   };
