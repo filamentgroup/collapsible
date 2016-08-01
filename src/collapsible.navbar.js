@@ -16,8 +16,9 @@
   			var $navItems = $collapsible.find( "." + itemClass );
         var $moreBtn = $collapsible.find( "." + itemMoreClass );
 
+        $moreBtn.attr( "aria-label", "Navigation" );
+
         var resetItems = function(){
-          $moreBtn.attr( "tabindex", "0" );
           $moreBtn.removeClass( itemMoreHiddenClass );
           $navItems.removeClass( itemMenuClass );
         };
