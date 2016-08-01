@@ -46,7 +46,6 @@
             else {
               var $menuItems = $navItems.filter( "." + itemMenuClass );
               if( $menuItems.length === 0 ){
-                $moreBtn.attr( "tabindex", "-1" );
                 $moreBtn.addClass( itemMoreHiddenClass );
                 $collapsible.removeClass( overflowActiveClass );
               }
