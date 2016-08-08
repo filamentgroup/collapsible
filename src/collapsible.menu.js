@@ -85,6 +85,12 @@
 						if( !startedByTouch && isMenu() && $( e.target ).is( $collapsible ) ){
 							$collapsible.data( pluginName ).collapse();
 						}
+					} )
+					// make hover menu header links click-through for mouse, though not for touch
+					.bind( "click", function( e ){
+						if( $( e.target ).is( self.header ) && isMenu() && $( e.target ).is( "a[href]" ) && !startedByTouch ){
+							window.location.href = e.target.href;
+						}
 					} );
 
 				$collapsible
