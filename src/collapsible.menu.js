@@ -95,7 +95,6 @@
 					// make hover menu header links click-through for mouse, though not for touch
 					.bind( "click", function( e ){
 						var timesincemouseover = new Date().getTime() - mouseovertimestamp;
-						alert(timesincemouseover);
 						if( $( e.target ).is( self.header ) && isMenu() && $( e.target ).is( "a[href]" ) && !startedByTouch && timesincemouseover > 300 ){
 							window.location.href = e.target.href;
 						}
