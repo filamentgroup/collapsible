@@ -75,9 +75,10 @@
 					.bind( "touchstart pointerdown MSPointerDown", function( e ){
 						// ignore hovers that begin with touch
 						var evt = e.originalEvent ? e.originalEvent : e;
-						if( ( evt.type === "pointerdown" || evt.type === "pointerdown" ) && evt.pointerType && evt.pointerType === "mouse" ){
+						if( ( evt.type === "pointerdown" || evt.type === "MSPointerDown" ) && evt.pointerType && ( evt.pointerType === "mouse" || evt.pointerType === 4 ) ){
 							return;
 						}
+
 						startedByTouch = true;
 					} )
 					// mouseover covers child collapsibles in a more friendly way than mouseleave
