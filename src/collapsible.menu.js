@@ -71,8 +71,12 @@
 
 				$collapsible
 					.add( $trigger )
-					.bind( "touchstart pointerdown MSPointerDown", function(){
+					.bind( "touchstart pointerdown MSPointerDown", function( e ){
 						// ignore hovers that begin with touch
+						var evt = e.originalEvent ? e.originalEvent : e;
+						if( ( evt.type === "pointerdown" || evt.type === "pointerdown" ) && evt.pointerType && evt.pointerType === "mouse" ){
+							return;
+						}
 						startedByTouch = true;
 					} )
 					// mouseover covers child collapsibles in a more friendly way than mouseleave
@@ -88,6 +92,7 @@
 					} )
 					// make hover menu header links click-through for mouse, though not for touch
 					.bind( "click", function( e ){
+
 						if( $( e.target ).is( self.header ) && isMenu() && $( e.target ).is( "a[href]" ) && !startedByTouch ){
 							window.location.href = e.target.href;
 						}
