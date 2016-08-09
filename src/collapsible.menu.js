@@ -63,6 +63,7 @@
 			var startedByTouch = false;
 			var hover = $collapsible.is( "[data-collapsible-hover]" );
 			var exclusiveHover = $collapsible.is( "[data-collapsible-hover='exclusive']" );
+			var mouseovertimestamp = 0;
 
 			if( hover ){
 				if( exclusiveHover ){
@@ -81,6 +82,7 @@
 					} )
 					// mouseover covers child collapsibles in a more friendly way than mouseleave
 					.bind( "mouseover." + pluginName, function( e ){
+						mouseovertimestamp = new Date().getTime();
 						if( !startedByTouch && isMenu() && $( e.target ).closest( self.header ).length ){
 							$collapsible.data( pluginName ).expand();
 						}
@@ -92,8 +94,9 @@
 					} )
 					// make hover menu header links click-through for mouse, though not for touch
 					.bind( "click", function( e ){
-
-						if( $( e.target ).is( self.header ) && isMenu() && $( e.target ).is( "a[href]" ) && !startedByTouch ){
+						var timesincemouseover = new Date().getTime() - mouseovertimestamp;
+						alert(timesincemouseover);
+						if( $( e.target ).is( self.header ) && isMenu() && $( e.target ).is( "a[href]" ) && !startedByTouch && timesincemouseover > 300 ){
 							window.location.href = e.target.href;
 						}
 					} );
