@@ -90,21 +90,12 @@
 				this.header.attr( "title", this.options.instructions );
 			}
 
-			var id = "collapsible-" + idInt;
-
 			this.header.attr( "role", "button" );
-
-			this.header.attr( "aria-haspopup", "true" );
-
-			this.header.attr( "aria-controls", id );
 
 			this.header.attr( "tabindex", "0" );
 
-			this.content.attr( "role", "menu" );
-
 			this.content.addClass( this.options.contentClass );
 
-			this.content.attr( "id", id );
 		},
 
 		_bindEvents: function(){
@@ -139,8 +130,6 @@
 			this.element.removeClass( this.options.collapsedClass );
 			this.element.addClass( this.options.expandedClass );
 			this.collapsed = false;
-			this.header.attr( "aria-expanded", "true" );
-			this.content.attr( "aria-hidden", "false" );
 		},
 
 		expand: function () {
@@ -154,8 +143,6 @@
 			this.element.addClass( this.options.collapsedClass );
 			this.element.removeClass( this.options.expandedClass );
 			this.collapsed = true;
-			this.header.attr( "aria-expanded", "false" );
-			this.content.attr( "aria-hidden", "true" );
 		},
 
 		collapse: function() {
