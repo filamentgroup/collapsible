@@ -90,22 +90,12 @@
 				this.header.attr( "title", this.options.instructions );
 			}
 
-			var id = "collapsible-content-" + idInt;
-			var headerId = "collapsible-header-" + idInt;
-
 			this.header.attr( "role", "button" );
-
-			this.header.attr( "aria-controls", id );
 
 			this.header.attr( "tabindex", "0" );
 
-			this.header.attr( "id", headerId );
-
-			this.content.attr( "aria-labeledby", headerId );
-
 			this.content.addClass( this.options.contentClass );
 
-			this.content.attr( "id", id );
 		},
 
 		_bindEvents: function(){

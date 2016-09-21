@@ -40,12 +40,9 @@
 		ok( !$( "#outoforder .collapsible-header" ).is( ".collapsible-content" ), "header can come second in child order, if classes are preset" );
 	});
 
-	test( "Aria", function() {
+	test( "a11y", function() {
 		ok( $( "#default .collapsible-header" ).is( "[tabindex='0']" ), "Tabindex added." );
 		ok( $( "#default .collapsible-header" ).is( "[role=button]" ), "Role added." );
-		ok( $( "#default .collapsible-header" ).is( "[aria-controls]" ), "aria-controls added." );
-		ok( $( "#default .collapsible-content" ).is( "[id]" ), "collapsible content has an ID." );
-		equal( $( "#default .collapsible-header" ).attr( "aria-controls" ), $( "#default .collapsible-content" ).attr( "id" ), "aria-controls value matches content ID." );
 	});
 
 	test( "Click the header", function() {
