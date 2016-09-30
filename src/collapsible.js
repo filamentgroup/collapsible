@@ -18,7 +18,7 @@
 		headerClass: pluginName + "-header",
 		contentClass: pluginName + "-content",
 		enhancedClass: pluginName + "-enhanced",
-		instructions: false,
+		instructions: "Toggle contents",
 		collapsed: false
 	};
 
@@ -87,7 +87,7 @@
 			this.header.addClass( this.options.headerClass );
 
 			if( this.options.instructions ){
-				this.header.attr( "title", this.options.instructions );
+				this.header.attr( "aria-label", this.options.instructions );
 			}
 
 			this.header.attr( "role", "button" );
