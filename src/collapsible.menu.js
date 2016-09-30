@@ -182,8 +182,17 @@
 							e.preventDefault();
 						}
 					}
-
 				});
+
+				self.header
+					.bind( "keydown." + pluginName, function( e ){
+						if( $( e.target ).is( this ) && !self.collapsed && isMenu() && ( e.which === 13 || e.which === 32 ) ){
+							setTimeout(function(){
+								self.content.find( self.focusable ).eq( 0 ).focus();
+							});
+						}
+					});
+
 
 
 		}

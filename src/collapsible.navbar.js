@@ -16,7 +16,13 @@
   			var $navItems = $collapsible.find( "." + itemClass );
         var $moreBtn = $collapsible.find( "." + itemMoreClass );
 
-        $moreBtn.attr( "aria-label", "More items" );
+        $moreBtn
+          .attr( "aria-label", "More items" )
+          .bind( "click", function(){
+            if( $collapsible.is( ".collapsible-expanded" ) ){
+              $collapsible.find( "." + itemMenuClass ).eq(0).focus();
+            }
+          } );
 
         var resetItems = function(){
           $moreBtn.removeClass( itemMoreHiddenClass );
@@ -66,10 +72,6 @@
         $( w ).bind( "resize", initItems );
 
         $collapsible
-        .bind( "expand", function( e ){
-          if( $( e.target ).is( $collapsible )  )
-            $collapsible.find( "." + itemMenuClass + " a" ).eq( 0 ).focus();
-        })
         .bind( "mouseover." + pluginName, function( e ){
 						if( $collapsible.is( "[data-collapsible-hover]" ) && !$( e.target ).closest( "." + itemMenuClass + ", ." + itemMoreClass ).length ){
 							$collapsible.data( pluginName ).collapse();

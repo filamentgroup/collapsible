@@ -18,7 +18,7 @@
 		headerClass: pluginName + "-header",
 		contentClass: pluginName + "-content",
 		enhancedClass: pluginName + "-enhanced",
-		instructions: false,
+		instructions: "Use space or enter key to expand menu content.",
 		collapsed: false
 	};
 
@@ -87,7 +87,7 @@
 			this.header.addClass( this.options.headerClass );
 
 			if( this.options.instructions ){
-				this.header.attr( "title", this.options.instructions );
+				this.header.attr( "aria-label", this.options.instructions );
 			}
 
 			this.header.attr( "role", "button" );
@@ -129,6 +129,7 @@
 		_expand: function() {
 			this.element.removeClass( this.options.collapsedClass );
 			this.element.addClass( this.options.expandedClass );
+			this.element.attr( "aria-expanded", "true" );
 			this.collapsed = false;
 		},
 
@@ -142,6 +143,7 @@
 		_collapse: function() {
 			this.element.addClass( this.options.collapsedClass );
 			this.element.removeClass( this.options.expandedClass );
+			this.element.attr( "aria-expanded", "false" );
 			this.collapsed = true;
 		},
 
