@@ -27,6 +27,9 @@
 				.bind( "gesturestart." + pluginName, function(){
 					touchCancel = true;
 				})
+				.bind( "mousemove." + pluginName, function(){
+					touchCancel = true;
+				})
 				.bind( "touchstart." + pluginName + " pointerdown." + pluginName + " MSPointerDown." + pluginName, function( a ){
 					targetTop = a.target.getBoundingClientRect().top;
 				})
@@ -63,7 +66,7 @@
 			var startedByTouch = false;
 			var hover = $collapsible.is( "[data-collapsible-hover]" );
 			var exclusiveHover = $collapsible.is( "[data-collapsible-hover='exclusive']" );
-			var mouseovertimestamp = 0;
+			var mouseovertimestamp;
 
 			if( hover ){
 				if( exclusiveHover ){
@@ -89,13 +92,18 @@
 						}
 					} )
 					.bind( "mouseleave." + pluginName, function(){
+						mouseovertimestamp = null;
 						if( !startedByTouch && isMenu() && $( e.target ).is( $collapsible ) ){
 							$collapsible.data( pluginName ).collapse();
 						}
 					} )
 					// make hover menu header links click-through for mouse, though not for touch
 					.bind( "click", function( e ){
+						if( !mouseovertimestamp ){
+							return;
+						}
 						var timesincemouseover = new Date().getTime() - mouseovertimestamp;
+
 						if( $( e.target ).is( self.header ) && isMenu() && $( e.target ).is( "a[href]" ) && !startedByTouch && timesincemouseover > 300 ){
 							window.location.href = e.target.href;
 						}
