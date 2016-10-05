@@ -86,17 +86,41 @@
 
 			this.header.addClass( this.options.headerClass );
 
-			if( this.options.instructions ){
-				this.header.attr( "title", this.options.instructions );
-			}
-
-			this.header.attr( "role", "button" );
-
-			this.header.attr( "tabindex", "0" );
+			this._addA11yAttrs();
 
 			this.content.addClass( this.options.contentClass );
 
 		},
+
+		_addA11yAttrs: function(){
+			this.header.attr( "role", "button" );
+			this.header.attr( "tabindex", "0" );
+			if( this.options.instructions ){
+				this.header.attr( "title", this.options.instructions );
+			}
+		},
+
+		_removeA11yAttrs: function(){
+			this.header.removeAttr( "role" );
+			this.header.removeAttr( "tabindex" );
+			this.header.removeAttr( "title" );
+		},
+
+		_isNonInteractive: function(){
+			var computedContent = window.getComputedStyle( this.content[ 0 ], null );
+			var computedHeader = window.getComputedStyle( this.header[ 0 ], null );
+			return computedContent.getPropertyValue( "display" ) !== "none" && computedContent.getPropertyValue( "visibility" ) !== "hidden" && computedHeader.getPropertyValue( "cursor" ) === "default";
+		},
+
+		_checkInteractivity: function(){
+			if( this._isNonInteractive() ){
+				this._removeA11yAttrs();
+			}
+			else{
+				this._addA11yAttrs();
+			}
+		},
+
 
 		_bindEvents: function(){
 			var self = this;
@@ -121,6 +145,18 @@
 			else {
 				this._expand();
 			}
+
+
+			this._checkInteractivity();
+			var resizepoll;
+			$( window ).bind( "resize", function(){
+				if( resizepoll ){
+					clearTimeout( resizepoll );
+				}
+				resizepoll = setTimeout( function(){
+					self._checkInteractivity.call( self );
+				}, 150 );
+			} );
 		},
 
 		collapsed: false,

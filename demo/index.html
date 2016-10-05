@@ -154,6 +154,34 @@
 	</style>
 </div>
 
+<h2 class="docs">Disabling interactivity with CSS</h2>
+<p class="docs">If, at certain media query breakpoints, you'd like to show a collapsible's content without offering the user any ability to toggle it,
+you can do that by setting the content element's CSS display to "block", and the header's cursor property to "default". This tells the collapsible that it
+should act as if it is non-interactive, and attributes like tabindex, role will be removed.</p>
+
+
+
+
+
+<div data-xrayhtml>
+	<div class="collapsible collapsible-expandwhenwide">
+		<h4>Heading</h4>
+		<p>This is the collapsible content. Currently, it's a <code>p</code> element, but it could be anything really, like a <code>div</code> containing other <code>p</code>'s for example.</p>
+	</div>
+
+
+	<style>
+	@media (min-width: 35em) {
+		.collapsible-expandwhenwide.collapsible .collapsible-content {
+				display: block;
+			}
+			.collapsible-expandwhenwide.collapsible .collapsible-header {
+				cursor: default;
+				background: none;
+		}
+	}
+	</style>
+</div>
 
 
 
