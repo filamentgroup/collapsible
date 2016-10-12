@@ -16,13 +16,7 @@
   			var $navItems = $collapsible.find( "." + itemClass );
         var $moreBtn = $collapsible.find( "." + itemMoreClass );
 
-        $moreBtn
-          .attr( "aria-label", "More items" )
-          .bind( "click", function(){
-            if( $collapsible.is( ".collapsible-expanded" ) ){
-              $collapsible.find( "." + itemMenuClass ).eq(0).focus();
-            }
-          } );
+        $moreBtn.attr( "aria-label", "Toggle more items" );
 
         var resetItems = function(){
           $moreBtn.removeClass( itemMoreHiddenClass );
@@ -77,10 +71,20 @@
 							$collapsible.data( pluginName ).collapse();
 						}
 					} )
+          .bind( "expand", function( e ){
+            if( $( e.target ).is( this ) ){
+              $moreBtn.attr( "tabindex", "-1" );
+              $collapsible.find( "." + itemMenuClass + " a" ).eq(0).focus();
+            }
+          })
           .bind( "collapse", function( e ){
             var $childCollapsibles = $( e.target ).find( "." + pluginName + "-expanded." + itemMenuClass );
             if( $childCollapsibles.length ){
               $childCollapsibles.data( pluginName ).collapse();
+            }
+            // restore tabindex
+            if( $( e.target ).is( this ) ){
+              $moreBtn.attr( "tabindex", "0" );
             }
 
           } );
