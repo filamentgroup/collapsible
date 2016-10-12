@@ -33,7 +33,7 @@
 				.bind( "touchstart." + pluginName + " pointerdown." + pluginName + " MSPointerDown." + pluginName, function( a ){
 					targetTop = a.target.getBoundingClientRect().top;
 				})
-				.bind( "touchend." + pluginName + " click." + pluginName+ " pointerup." + pluginName + " MSPointerUp." + pluginName, function( a ){
+				.bind( "focusin." + pluginName + " touchend." + pluginName + " click." + pluginName+ " pointerup." + pluginName + " MSPointerUp." + pluginName, function( a ){
 					var atype = a.originalEvent ? a.originalEvent.type : a.type;
 					if( atype === "touchend" || atype === "pointerup" || atype === "MSPointerUp" ){
 						if( targetTop && Math.abs( targetTop - a.target.getBoundingClientRect().top ) > 5 ){
@@ -192,7 +192,7 @@
 					}
 				});
 
-			
+
 
 
 
