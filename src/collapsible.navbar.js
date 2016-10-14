@@ -72,9 +72,13 @@
 						}
 					} )
           .bind( "expand", function( e ){
+            var $childCollapsibles = $( e.target ).find( "." + pluginName + "-expanded." + itemMenuClass );
             if( $( e.target ).is( this ) ){
               $moreBtn.attr( "tabindex", "-1" );
               $collapsible.find( "." + itemMenuClass + " a" ).eq(0).focus();
+            }
+            else if( !$childCollapsibles.length ) {
+              $collapsible.data( pluginName ).collapse();
             }
           })
           .bind( "collapse", function( e ){
