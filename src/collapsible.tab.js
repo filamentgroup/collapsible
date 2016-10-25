@@ -7,48 +7,103 @@
 
 ;(function ($, window, document) {
 
+	var pluginName = "collapsible";
+	var activeTabClass = "tab-active";
+	var defaultAttrs = {
+		"tabindex": "-1",
+		"aria-selected": false
+	};
+	var uniqueIdPrefix = pluginName + "-id-";
+	var counter = 0;
+
+	function deactivateTab( $tabHeader ) {
+		$tabHeader.removeClass( activeTabClass ).attr( defaultAttrs );
+	}
+
+	function activateTab( $tabHeader ) {
+		$tabHeader.addClass( activeTabClass ).attr({
+			"aria-selected": "true"
+		}).removeAttr( "tabindex" );
+	}
+
 	$( document ).bind( "init", function( e ){
-		var pluginName = "collapsible";
-		var activeTabClass = "tab-active";
 		var $collapsible = $( e.target ).closest( "." + pluginName );
 		var $tabContainer = $collapsible.parent();
 		var $tabNav = $tabContainer.find( ".tabnav" );
 		var self;
 		var id;
+		var linkId;
 
 		if( $collapsible.is( "." + pluginName ) && $tabContainer.is( ".tabs" ) ){
 			self = $collapsible.data( pluginName );
 			id = self.content.attr( "id" );
+
 			$tabNav.find( "[aria-controls=" + id + "]" ).remove();
 
-			self.$tabHeader = $( "<a href='#'>" + self.header[0].innerHTML + "</a>" ).attr( "aria-controls", id );
-			self.header.css( 'display', 'none' );
+			if( !id ) {
+				id = uniqueIdPrefix + ( ++counter );
+				self.content.attr( "id", id );
+			}
 
-			self.$tabHeader.bind( window.tappy ? "tap" : "click", function( e ){
+			linkId = id + "-link";
+
+			var attrs = {
+				"id": linkId,
+				"aria-controls": id,
+				"role": "tab"
+			};
+
+			for( var j in defaultAttrs ) {
+				attrs[ j ] = defaultAttrs[ j ];
+			}
+
+			self.$tabHeaderListItem = $( "<li>" ).attr( "role", "presentation" );
+			self.$tabHeader = $( "<a href='#" + id + "'>" + self.header[0].innerHTML + "</a>" ).attr( attrs );
+			self.header.css( 'display', 'none' );
+			self.content.attr({
+				"aria-labeledby": linkId
+			});
+
+			self.$tabHeader.bind( "click", function( e ){
 				e.preventDefault();
 				e.stopPropagation();
 
 				if( self.$tabHeader.is( '.' + activeTabClass ) ) {
-					self.$tabHeader.removeClass( activeTabClass );
+					deactivateTab( self.$tabHeader );
 				} else {
-					$tabContainer.find( '.' + activeTabClass ).removeClass( activeTabClass );
-					self.$tabHeader.addClass( activeTabClass );
+					deactivateTab( $tabContainer.find( '.' + activeTabClass ) );
+					activateTab( self.$tabHeader );
 				}
 
 				self.toggle();
+			}).bind( "keydown", function( e ){
+				var $activeTab = $tabNav.find( "." + activeTabClass );
+				var direction;
+
+				// arrow key behavior
+				if( e.which === 39 ) { // forward
+					direction = "next";
+				} else if( e.which === 37 ) { // back
+					direction = "prev";
+				}
+
+				if( direction ) {
+					$activeTab.parent()[ direction ]().find( "a" ).trigger( "click" ).focus();
+					e.preventDefault();
+				}
 			});
 
 			if( !$tabNav.length ) {
-				$tabNav = $( "<nav class='tabnav'></nav>" );
+				$tabNav = $( "<ul class='tabnav' role='tablist'></nav>" );
 				$tabContainer.prepend( $tabNav );
 			}
 
 			if( !self.collapsed ) {
-				self.$tabHeader.addClass( activeTabClass );
+				activateTab( self.$tabHeader );
 				self._expand();
 			}
 
-			$tabNav.append( self.$tabHeader );
+			$tabNav.append( self.$tabHeaderListItem.append( self.$tabHeader ) );
 		}
 	});
 
