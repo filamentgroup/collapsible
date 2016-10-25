@@ -51,8 +51,16 @@
 
 		<h1 class="docs">Collapsible Examples</h1>
 
+		<ul class="docs">
+			<li><a href="#basic">Basic Collapsible</a></li>
+			<li><a href="#initial-state">Collapsed Initial State</a></li>
+			<li><a href="#order">Header/Content Order</a></li>
+			<li><a href="#interactivity">Disabling Interactivity with CSS</a></li>
+			<li><a href="#attributes">Optional Attribute Configuration</a></li>
+			<li><a href="#extensions">Collapsible Extensions</a></li>
+		</ul>
 
-		<h2 class="docs">Basic collapsible</h2>
+		<h2 id="basic" class="docs">Basic collapsible</h2>
 
 		<p class="docs">To make a collapsible, you'll need the collapsible.css styles, jQuery (or equivalent), and  collapsible.js script in your page.</p>
 
@@ -109,7 +117,7 @@
 
 
 
-		<h2 class="docs">Collapsed initial state</h2>
+		<h2 id="initial-state" class="docs">Collapsed initial state</h2>
 
 		<p class="docs">To collapse the collapsible when the page first renders, add the <code>collapsible-collapsed</code> class.</p>
 
@@ -129,7 +137,7 @@
 }</code></pre>
 
 
-<h2 class="docs">Header/Content Order</h2>
+<h2 id="order" class="docs">Header/Content Order</h2>
 <p class="docs">By default, the collapsible script will apply header and content classes to the first and second child elements, respectively. If this order isn't ideal, you can pre-apply the classes and the script will use those instead.</p>
 
 <div data-xrayhtml class="flipped-demo">
@@ -154,7 +162,7 @@
 	</style>
 </div>
 
-<h2 class="docs">Disabling interactivity with CSS</h2>
+<h2 id="interactivity" class="docs">Disabling interactivity with CSS</h2>
 <p class="docs">If, at certain media query breakpoints, you'd like to show a collapsible's content without offering the user any ability to toggle it,
 you can do that by setting the content element's CSS display to "block", and the header's cursor property to "default". This tells the collapsible that it
 should act as if it is non-interactive, and attributes like tabindex, role will be removed.</p>
@@ -185,7 +193,7 @@ should act as if it is non-interactive, and attributes like tabindex, role will 
 
 
 
-<h2 class="docs">Optional attribute configuration</h2>
+<h2 id="attributes" class="docs">Optional attribute configuration</h2>
 
 <p class="docs">Collapsible allows you to override many presets via HTML data attributes.
 To use any data attribute configuration, first include the <code>data-config</code> attribute, and then any others you'd like to specify.</p>
@@ -218,7 +226,7 @@ To use any data attribute configuration, first include the <code>data-config</co
 
 
 
-<h2 class="docs">Collapsible Extensions</h2>
+<h2 id="extensions" class="docs">Collapsible Extensions</h2>
 
 <p class="docs">Include the collapsible.set.js to use collapsible sets. A set of collapsibles work as an accordion. In the HTML, add <code>data-set</code> attributes with a shared value to include collapsibles in a set.</p>
 
