@@ -21,7 +21,7 @@
 			id = self.content.attr( "id" );
 			$tabNav.find( "[aria-controls=" + id + "]" ).remove();
 
-			self.$tabHeader = $( "<a href='#'>" + self.header[0].innerHTML + "</a>" ).attr( "aria-controls", id );
+			self.$tabHeader = $( "<a href='#'>" + self.header[0].innerHTML + "</a>" ).attr( "aria-controls", id ).attr("role","tab").attr("aria-selected","false");
 			self.header.css( 'display', 'none' );
 
 			self.$tabHeader.bind( window.tappy ? "tap" : "click", function( e ){
@@ -31,8 +31,8 @@
 				if( self.$tabHeader.is( '.' + activeTabClass ) ) {
 					self.$tabHeader.removeClass( activeTabClass );
 				} else {
-					$tabContainer.find( '.' + activeTabClass ).removeClass( activeTabClass );
-					self.$tabHeader.addClass( activeTabClass );
+					$tabContainer.find( '.' + activeTabClass ).removeClass( activeTabClass ).attr("aria-selected","false");
+					self.$tabHeader.addClass( activeTabClass ).attr("aria-selected","true");
 				}
 
 				self.toggle();
@@ -44,7 +44,7 @@
 			}
 
 			if( !self.collapsed ) {
-				self.$tabHeader.addClass( activeTabClass );
+				self.$tabHeader.addClass( activeTabClass ).attr("aria-selected","true");
 				self._expand();
 			}
 
