@@ -126,9 +126,7 @@
 			var self = this;
 
 			this.header
-				// use the tappy plugin if it's available
-				// tap can't be namespaced yet without special events api: https://github.com/filamentgroup/tappy/issues/22
-				.bind( ( window.tappy ? "tap" : "click" ), function( e ){
+				.bind( ( "click" ), function( e ){
 					self.toggle( e.target );
 					e.preventDefault();
 				})
