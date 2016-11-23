@@ -21,7 +21,7 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-qunit": "^1.2.0",
-    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-jshint": "~1.1.0",
     "grunt-contrib-copy": "^0.8.2",
     "jquery": "^2.2.3",
     "xrayhtml": "^2.1.2",
