@@ -26,6 +26,6 @@
     "jquery": "^2.2.3",
     "xrayhtml": "^2.1.2",
     "matchdep": "^1.0.1",
-    "qunitjs": "^2.0.0-rc1"
+    "qunitjs": "^2.0.0"
   }
 }
