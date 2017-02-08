@@ -137,6 +137,18 @@
 }</code></pre>
 
 
+<h2 id="initial-state" class="docs">Inner Button Option</h2>
+
+<p class="docs">todo</p>
+
+<div data-xrayhtml>
+	<div class="collapsible collapsible-collapsed" data-config data-inner-button="true">
+		<h4>Show/Hide content</h4>
+		<p>And this is the collapsible content</p>
+	</div>
+</div>
+
+
 <h2 id="order" class="docs">Header/Content Order</h2>
 <p class="docs">By default, the collapsible script will apply header and content classes to the first and second child elements, respectively. If this order isn't ideal, you can pre-apply the classes and the script will use those instead.</p>
 
@@ -183,7 +195,8 @@ should act as if it is non-interactive, and attributes like tabindex, role will 
 		.collapsible-expandwhenwide.collapsible .collapsible-content {
 				display: block;
 			}
-			.collapsible-expandwhenwide.collapsible .collapsible-header {
+			.collapsible-expandwhenwide.collapsible .collapsible-header,
+			.collapsible-expandwhenwide.collapsible .collapsible-header button {
 				cursor: default;
 				background: none;
 		}
