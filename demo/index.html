@@ -55,6 +55,7 @@
 			<li><a href="#basic">Basic Collapsible</a></li>
 			<li><a href="#initial-state">Collapsed Initial State</a></li>
 			<li><a href="#order">Header/Content Order</a></li>
+			<li><a href="#inner-button">Inner Button</a></li>
 			<li><a href="#interactivity">Disabling Interactivity with CSS</a></li>
 			<li><a href="#attributes">Optional Attribute Configuration</a></li>
 			<li><a href="#extensions">Collapsible Extensions</a></li>
@@ -137,6 +138,18 @@
 }</code></pre>
 
 
+<h2 id="inner-button" class="docs">Inner Button Option</h2>
+
+<p class="docs">If the <code>innerButton</code> option is true, the contents of the collapsible header will be wrapped in a <code>button</code> element. Generally, this is preferable to the default behavior of converting the header to a button by adding aria attributes. If the header starts as a non-interactive element like a <code>h3</code>, we recommend setting this option to <code>true</code>. If the header starts as an anchor or other interactive element, it's best to use the default.</p>
+
+<div data-xrayhtml>
+	<div class="collapsible collapsible-collapsed" data-config data-inner-button="true">
+		<h4>Show/Hide content</h4>
+		<p>And this is the collapsible content</p>
+	</div>
+</div>
+
+
 <h2 id="order" class="docs">Header/Content Order</h2>
 <p class="docs">By default, the collapsible script will apply header and content classes to the first and second child elements, respectively. If this order isn't ideal, you can pre-apply the classes and the script will use those instead.</p>
 
@@ -183,7 +196,8 @@ should act as if it is non-interactive, and attributes like tabindex, role will 
 		.collapsible-expandwhenwide.collapsible .collapsible-content {
 				display: block;
 			}
-			.collapsible-expandwhenwide.collapsible .collapsible-header {
+			.collapsible-expandwhenwide.collapsible .collapsible-header,
+			.collapsible-expandwhenwide.collapsible .collapsible-header button {
 				cursor: default;
 				background: none;
 		}

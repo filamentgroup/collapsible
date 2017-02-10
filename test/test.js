@@ -45,6 +45,16 @@
 		ok( $( "#default .collapsible-header" ).is( "[role=button]" ), "Role added." );
 	});
 
+	test( "inner button", function() {
+		ok( $( "#innerButton .collapsible-header button" ).length, "button exists" );
+		ok( $( "#innerButton .collapsible-header button" ).is( "[aria-expanded='false']" ), "aria-expanded attr (false) is on the button" );
+		ok( $( "#innerButton .collapsible-header button" ).text() === "Toggle collapsible content", "button content is correct" );
+		$( "#innerButton .collapsible-header button" ).trigger( "click" );
+		ok( $( "#innerButton .collapsible-header button" ).is( "[aria-expanded='true']" ), "aria-expanded attr (true) is on the button" );
+
+
+	});
+
 	test( "Click the header", function() {
 		$( "#default .collapsible-header" ).trigger( "click" );
 		ok( $( "#default .collapsible-content" ).is( ":hidden" ), "Content is hidden after header click." );
