@@ -51,8 +51,8 @@
 		ok( $( "#innerButton .collapsible-header button" ).text() === "Toggle collapsible content", "button content is correct" );
 		$( "#innerButton .collapsible-header button" ).trigger( "click" );
 		ok( $( "#innerButton .collapsible-header button" ).is( "[aria-expanded='true']" ), "aria-expanded attr (true) is on the button" );
-
-
+		$( "#innerButton .collapsible-header button" ).trigger( "click" );
+		ok( $( "#innerButton .collapsible-header button" ).is( "[aria-expanded='false']" ), "aria-expanded attr (false) is on the button" );
 	});
 
 	test( "Click the header", function() {
