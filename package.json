@@ -20,7 +20,7 @@
   "homepage": "https://github.com/filamentgroup/collapsible",
   "devDependencies": {
     "grunt": "^1.0.1",
-    "grunt-contrib-qunit": "^1.2.0",
+    "grunt-contrib-qunit": "^2.0.0",
     "grunt-contrib-jshint": "~1.0.0",
     "grunt-contrib-copy": "^0.8.2",
     "jquery": "^2.2.3",
