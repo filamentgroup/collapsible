@@ -565,6 +565,8 @@ The following example has an absolute-positioned collapsible-content div at wide
 
 <h3 class="docs">Select Proxy</h3>
 <p class="docs">Include the collapsible.selectproxy.js script.</p>
+<p class="docs">Add the <code>data-collapsible-follow-link</code> attribute to keep <code>preventDefault()</code> from firing.</p>
+
 <div data-xrayhtml>
 <select id="bag-priority-1">
 	<option value="Highest">Highest Priority</option>
@@ -579,7 +581,7 @@ The following example has an absolute-positioned collapsible-content div at wide
 	<div class="collapsible-content">
 		<ul>
 			<li><a href="#" data-value="Highest"><strong>Highest</strong> Priority</a></li>
-			<li><a href="#" data-value="High"><strong>High</strong> Priority</a></li>
+			<li><a href="https://www.filamentgroup.com/" data-value="High" data-collapsible-follow-link><strong>High</strong> Priority</a></li>
 			<li><a href="#" data-value="Medium"><strong>Medium</strong> Priority</a></li>
 			<li><a href="#" data-value="Low"><strong>Low</strong> Priority</a></li>
 			<li><a href="#" data-value="Lowest"><strong>Lowest</strong> Priority</a></li>
