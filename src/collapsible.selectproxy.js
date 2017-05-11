@@ -11,6 +11,7 @@
 		var pluginName = "collapsible";
 		var $target = $( e.target );
 		var attr = "data-" + pluginName + "-selectproxy";
+		var followLinkAttr = "data-" + pluginName + "-follow-link";
 		var $select;
 		if( $target.is( "." + pluginName + "[" + attr + "]" ) ){
 			$select = $( "#" + $target.attr( attr ) ).attr( "tabindex", "-1" );
@@ -21,7 +22,9 @@
 					$a.closest( "." + pluginName + "-content" ).prev().filter( "." + pluginName + "-header" ).html( $a.html() );
 					$a.closest( "." + pluginName ).data( pluginName ).collapse();
 					$select.val( $a.attr( "data-value" ) ).trigger( "change" );
-					e.preventDefault();
+					if ( !$a.is( "[" + followLinkAttr + "]" ) ) {
+						e.preventDefault();
+					}					
 				}
 			});
 		}
