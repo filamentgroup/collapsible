@@ -19,6 +19,7 @@
 		contentClass: pluginName + "-content",
 		enhancedClass: pluginName + "-enhanced",
 		instructions: false,
+		innerButton: false, // this wraps the text of the header in a button and transfers the aria info to that button
 		collapsed: false
 	};
 
@@ -72,6 +73,10 @@
 			if( !this.content.length ){
 				this.content = this.header.next();
 			}
+			if( this.options.innerButton ){
+				this.headerHTML = this.header.text();
+				this.headerButton = $( "<button></button>" ).append( this.headerHTML );
+			}
 			this._addAttributes();
 			this._bindEvents();
 			idInt++;
@@ -93,22 +98,37 @@
 		},
 
 		_addA11yAttrs: function(){
-			this.header.attr( "role", "button" );
-			this.header.attr( "tabindex", "0" );
-			if( this.options.instructions ){
-				this.header.attr( "title", this.options.instructions );
+			if( this.options.innerButton ){
+					this.header.html( '' );
+					this.header.append( this.headerButton );
+			}
+			else {
+				this.header.attr( "role", "button" );
+				this.header.attr( "tabindex", "0" );
+				if( this.options.instructions ){
+					this.header.attr( "title", this.options.instructions );
+				}
 			}
 		},
 
 		_removeA11yAttrs: function(){
-			this.header.removeAttr( "role" );
-			this.header.removeAttr( "tabindex" );
-			this.header.removeAttr( "title" );
+			if( this.options.innerButton ){
+				this.header.html( '' );
+				this.header.append( this.headerHTML );
+			}
+			else {
+				this.header.removeAttr( "role" );
+				this.header.removeAttr( "tabindex" );
+				this.header.removeAttr( "title" );
+			}
 		},
 
 		_isNonInteractive: function(){
 			var computedContent = window.getComputedStyle( this.content[ 0 ], null );
 			var computedHeader = window.getComputedStyle( this.header[ 0 ], null );
+			if( this.options.innerButton ){
+				computedHeader = window.getComputedStyle( this.headerButton[ 0 ], null );
+			}
 			return computedContent.getPropertyValue( "display" ) !== "none" && computedContent.getPropertyValue( "visibility" ) !== "hidden" && computedHeader.getPropertyValue( "cursor" ) === "default";
 		},
 
@@ -163,7 +183,12 @@
 		_expand: function() {
 			this.element.removeClass( this.options.collapsedClass );
 			this.element.addClass( this.options.expandedClass );
-			this.header.attr( "aria-expanded", "true" );
+			if( this.options.innerButton ){
+				this.headerButton.attr( "aria-expanded", "true" );
+			}
+			else {
+				this.header.attr( "aria-expanded", "true" );
+			}
 			this.collapsed = false;
 		},
 
@@ -177,7 +202,12 @@
 		_collapse: function() {
 			this.element.addClass( this.options.collapsedClass );
 			this.element.removeClass( this.options.expandedClass );
-			this.header.attr( "aria-expanded", "false" );
+			if( this.options.innerButton ){
+				this.headerButton.attr( "aria-expanded", "false" );
+			}
+			else {
+				this.header.attr( "aria-expanded", "false" );
+			}
 			this.collapsed = true;
 		},
 
