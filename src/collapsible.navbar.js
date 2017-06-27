@@ -72,19 +72,24 @@
 						}
 					} )
           .bind( "expand", function( e ){
-            var $childCollapsibles = $( e.target ).find( "." + pluginName + "-expanded." + itemMenuClass );
+            var $target = $( e.target );
+            var $childCollapsibles = $target.find( "." + pluginName + "-expanded." + itemMenuClass );
+
             if( $( e.target ).is( this ) ){
               $moreBtn.attr( "tabindex", "-1" );
               $collapsible.find( "." + itemMenuClass + " a" ).eq(0).focus();
             }
-            else if( !$childCollapsibles.length ) {
+            else if( !$childCollapsibles.length && !$target.is("." + pluginName + "-expanded." + itemMenuClass) ) {
               $collapsible.data( pluginName ).collapse();
             }
           })
           .bind( "collapse", function( e ){
-            var $childCollapsibles = $( e.target ).find( "." + pluginName + "-expanded." + itemMenuClass );
-            if( $childCollapsibles.length ){
+            var $target = $( e.target );
+            var $childCollapsibles = $target.find( "." + pluginName + "-expanded." + itemMenuClass );
+
+            if( $childCollapsibles.length && $target.is("." + pluginName + "-expanded." + itemMenuClass) ) {
               $childCollapsibles.data( pluginName ).collapse();
+              $target.data( pluginName ).collapse();
             }
             // restore tabindex
             if( $( e.target ).is( this ) ){
