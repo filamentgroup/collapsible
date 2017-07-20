@@ -64,6 +64,8 @@
         initItems();
         // and on window resize
         $( w ).bind( "resize", initItems );
+	// and on window load just in case things have shifted
+        $( w ).bind( "load", initItems );
 
         $collapsible
         .bind( "mouseover." + pluginName, function( e ){
