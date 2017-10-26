@@ -61,7 +61,7 @@
 			self.$tabHeader = $( "<a href='#" + id + "'>" + self.header[0].innerHTML + "</a>" ).attr( attrs );
 			self.header.css( 'display', 'none' );
 			self.content.attr({
-				"aria-labeledby": linkId
+				"aria-labelledby": linkId
 			});
 
 			self.$tabHeader.bind( "click", function( e ){
