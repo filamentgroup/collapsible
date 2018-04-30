@@ -17,7 +17,7 @@
 
 			// menu behavior (clickout, and optionally hover)
 			var isMenu = function(){
-				return $collapsible.children( "." + pluginName + "-content" ).css( "position" ) === "absolute" || $collapsible.is( "[data-collapsible-ismenu]" );
+				return ( $collapsible.children( "." + pluginName + "-content" ).css( "position" ) === "absolute" || $collapsible.is( "[data-collapsible-ismenu]" ) ) && !$collapsible.is( "[data-collapsible-hoverdisabled]" );
 			};
 
 			// tapout/clickout behavior
