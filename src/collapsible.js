@@ -175,6 +175,9 @@
 					self._checkInteractivity.call( self );
 				}, 150 );
 			} );
+			$( window ).bind( "expand", function(){
+				self._checkInteractivity.call( self );
+			} );
 		},
 
 		collapsed: false,
