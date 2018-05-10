@@ -25,7 +25,6 @@
     "grunt-contrib-copy": "^1.0.0",
     "jquery": "^3.2.1",
     "xrayhtml": "^2.1.2",
-    "matchdep": "^1.0.1",
-    "qunitjs": "^2.0.0-rc1"
+    "matchdep": "^1.0.1"
   }
 }

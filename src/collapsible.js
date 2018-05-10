@@ -175,6 +175,11 @@
 					self._checkInteractivity.call( self );
 				}, 150 );
 			} );
+			$( window ).bind( "expand", function( e ){
+				if( $( e.target ).find( self.element ).length ){
+					self._checkInteractivity.call( self );
+				}
+			} );
 		},
 
 		collapsed: false,
