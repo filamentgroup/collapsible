@@ -1,6 +1,6 @@
-/*! X-rayHTML - v2.1.5 - 2017-07-05
+/*! X-rayHTML - v2.1.3 - 2016-12-20
 * https://github.com/filamentgroup/x-rayhtml
-* Copyright (c) 2017 Filament Group; Licensed MIT */
+* Copyright (c) 2016 Filament Group; Licensed MIT */
 window.jQuery = window.jQuery || window.shoestring;
 
 (function( $ ) {
@@ -14,7 +14,7 @@ window.jQuery = window.jQuery || window.shoestring;
 			antipattern: "Do Not Use"
 		},
 		classes: {
-			button: "btn btn-small btn-xrayhtml-flipsource",
+			button: "btn btn-small",
 			open: "view-source",
 			sourcepanel: "source-panel",
 			title: "xraytitle",
