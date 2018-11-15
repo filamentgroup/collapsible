@@ -147,15 +147,17 @@
 
 			this.header
 				.bind( ( "click" ), function( e ){
+					self.toggle( e.target );
 					if( !self._isNonInteractive() ){
-						self.toggle( e.target );
 						e.preventDefault();
 					}
 				})
 				.bind( "keydown." + pluginName, function( e ){
-					if( ( e.which === 13 || e.which === 32 ) && !self._isNonInteractive() ){
+					if( ( e.which === 13 || e.which === 32 ) ){
 						self.toggle( e.target );
-						e.preventDefault();
+						if( !self._isNonInteractive() ){
+							e.preventDefault();							
+						}
 					}
 				});
 
