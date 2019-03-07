@@ -69,10 +69,7 @@
 				e.stopPropagation();
 
 				if( !self.$tabHeader.is( '.' + activeTabClass ) ) {
-					var nonActives = $tabContainer.find( '.' + activeTabClass ).not( self.$tabHeader );
-					if( nonActives.length ){
-						deactivateTab( nonActives );
-					}
+					deactivateTab( $tabContainer.find( '.' + activeTabClass ) );
 					activateTab( self.$tabHeader );
 					self.expand();
 				}
