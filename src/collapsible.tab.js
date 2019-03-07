@@ -68,14 +68,11 @@
 				e.preventDefault();
 				e.stopPropagation();
 
-				if( self.$tabHeader.is( '.' + activeTabClass ) ) {
-					deactivateTab( self.$tabHeader );
-				} else {
+				if( !self.$tabHeader.is( '.' + activeTabClass ) ) {
 					deactivateTab( $tabContainer.find( '.' + activeTabClass ) );
 					activateTab( self.$tabHeader );
+					self.expand();
 				}
-
-				self.toggle();
 			}).bind( "keydown", function( e ){
 				var $activeTab = $tabNav.find( "." + activeTabClass );
 				var direction;
@@ -100,7 +97,7 @@
 
 			if( !self.collapsed ) {
 				activateTab( self.$tabHeader );
-				self._expand();
+				self.expand();
 			}
 
 			$tabNav.append( self.$tabHeaderListItem.append( self.$tabHeader ) );
