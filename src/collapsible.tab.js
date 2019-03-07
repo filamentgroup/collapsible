@@ -68,14 +68,14 @@
 				e.preventDefault();
 				e.stopPropagation();
 
-				if( self.$tabHeader.is( '.' + activeTabClass ) ) {
-					deactivateTab( self.$tabHeader );
-				} else {
-					deactivateTab( $tabContainer.find( '.' + activeTabClass ) );
+				if( !self.$tabHeader.is( '.' + activeTabClass ) ) {
+					var nonActives = $tabContainer.find( '.' + activeTabClass ).not( self.$tabHeader );
+					if( nonActives.length ){
+						deactivateTab( nonActives );
+					}
 					activateTab( self.$tabHeader );
+					self.expand();
 				}
-
-				self.toggle();
 			}).bind( "keydown", function( e ){
 				var $activeTab = $tabNav.find( "." + activeTabClass );
 				var direction;
@@ -100,7 +100,7 @@
 
 			if( !self.collapsed ) {
 				activateTab( self.$tabHeader );
-				self._expand();
+				self.expand();
 			}
 
 			$tabNav.append( self.$tabHeaderListItem.append( self.$tabHeader ) );
