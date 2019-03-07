@@ -44,6 +44,7 @@
 					// if the event target is not in the collapsible, and the collapsible is expanded, and it's a menu presentation... collapse it!
 					if( !$( a.target ).closest( e.target ).length &&
 						!$( a.target ).closest( $trigger ).length &&
+						$collapsible.data( pluginName ) &&
 						!$collapsible.data( pluginName ).collapsed &&
 						isMenu()  &&
 						touchCancel === false ){
