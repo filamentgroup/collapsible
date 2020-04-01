@@ -68,6 +68,7 @@
         $( w ).bind( "load", initItems );
 
         $collapsible
+        .bind("navbarsort", initItems)
         .bind( "mouseover." + pluginName, function( e ){
 						if( $collapsible.is( "[data-collapsible-hover]" ) && !$( e.target ).closest( "." + itemMenuClass + ", ." + itemMoreClass ).length ){
 							$collapsible.data( pluginName ).collapse();
